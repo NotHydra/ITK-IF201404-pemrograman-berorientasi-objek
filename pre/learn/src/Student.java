@@ -1,7 +1,7 @@
 public class Student extends Human {
-    static int count = 0;
+    private static int count = 0;
 
-    int[] grades;
+    private int[] grades;
 
     Student(String name, int age, int height, int weight, int[] grades) {
         super(name, age, height, weight);
@@ -15,10 +15,14 @@ public class Student extends Human {
         System.out.println("There is a total of " + count + " student object");
     }
 
+    int[] getGrades() {
+        return this.grades;
+    }
+
     @Override
     void greet() {
         System.out.println(
-                "Hello my name is " + this.name + ", my age is " + this.age + " and I'm a student");
+                "Hello my name is " + this.getName() + ", my age is " + this.getAge() + " and I'm a student");
     };
 
     void displayGrade() {

@@ -15,12 +15,12 @@ public class Main {
         };
 
         // for (Human human : humans) {
-        // human.greet();
+        // human.data();
         // System.out.println();
         // }
 
         for (Student student : students) {
-            System.out.println("Name    : " + student.name);
+            System.out.println("Name    : " + student.getName());
             System.out.println("Grade   :");
 
             student.displayGrade();

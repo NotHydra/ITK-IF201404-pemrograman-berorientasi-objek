@@ -1,10 +1,10 @@
 public class Human {
-    static int count = 0;
+    private static int count = 0;
 
-    String name;
-    int age;
-    int height;
-    int weight;
+    private String name;
+    private int age;
+    private int height;
+    private int weight;
 
     Human(String name, int age, int height, int weight) {
         this.name = name;
@@ -17,6 +17,22 @@ public class Human {
 
     static void displayCount() {
         System.out.println("There is a total of " + count + " human object");
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    int getAge() {
+        return this.age;
+    }
+
+    int getHeight() {
+        return this.height;
+    }
+
+    int getWeight() {
+        return this.weight;
     }
 
     void greet() {
