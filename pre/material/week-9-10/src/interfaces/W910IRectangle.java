@@ -1,12 +1,10 @@
-package abstraction;
+package interfaces;
 
-public class W910ARectangle extends W910AShape {
+public class W910IRectangle implements W910IShape {
     private int length;
     private int width;
 
-    public W910ARectangle(String color, int length, int width) {
-        super(color);
-
+    public W910IRectangle(int length, int width) {
         this.length = length;
         this.width = width;
     };
