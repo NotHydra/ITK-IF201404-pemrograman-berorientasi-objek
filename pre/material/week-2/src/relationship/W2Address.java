@@ -1,13 +1,13 @@
 package relationship;
 
-public class Address {
+public class W2Address {
     private String street;
     private String city;
     private String state;
     private int postalCode;
     private String country;
 
-    public Address(
+    public W2Address(
             String street,
             String city,
             String state,

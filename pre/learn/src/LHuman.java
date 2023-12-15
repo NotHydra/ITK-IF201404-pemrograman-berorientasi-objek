@@ -1,4 +1,4 @@
-public class Human {
+public class LHuman {
     private static int count = 0;
 
     private String name;
@@ -6,7 +6,7 @@ public class Human {
     private int height;
     private int weight;
 
-    Human(String name, int age, int height, int weight) {
+    LHuman(String name, int age, int height, int weight) {
         this.name = name;
         this.age = age;
         this.height = height;

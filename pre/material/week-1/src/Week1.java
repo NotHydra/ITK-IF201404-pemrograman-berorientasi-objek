@@ -1,6 +1,6 @@
-public class App {
+public class Week1 {
     public static void main(String[] args) throws Exception {
-        Mahasiswa rizky = new Mahasiswa("Rizky", 3.5f);
+        W1Mahasiswa rizky = new W1Mahasiswa("Rizky", 3.5f);
 
         rizky.tampilkanNama();
         rizky.tampilkanIPK();

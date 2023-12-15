@@ -1,6 +1,6 @@
 package get_set;
 
-public class GetSet {
+public class W3GetSet {
     private static String name = "Name 1";
 
     public static String getName() {

@@ -1,8 +1,8 @@
-package rectangle;
+package shape;
 
-public class App {
+public class W2Shape {
     public static void main(String[] args) throws Exception {
-        Rectangle rectangle = new Rectangle(4, 3);
+        W2Rectangle rectangle = new W2Rectangle(4, 3);
 
         System.out.println(rectangle.distance());
     }

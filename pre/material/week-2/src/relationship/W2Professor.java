@@ -1,9 +1,9 @@
 package relationship;
 
-public class Professor extends Person {
+public class W2Professor extends W2Person {
     private int salary;
 
-    public Professor(
+    public W2Professor(
             String name,
             String phoneNumber,
             String emailAddress,

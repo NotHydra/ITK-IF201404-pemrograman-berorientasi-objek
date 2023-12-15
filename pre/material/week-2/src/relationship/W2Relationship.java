@@ -1,8 +1,8 @@
 package relationship;
 
-public class App {
+public class W2Relationship {
     public static void main(String[] args) throws Exception {
-        Student student1 = new Student(
+        W2Student student1 = new W2Student(
                 "Student 1",
                 "Phone Number 1",
                 "Email Address 1",
@@ -14,7 +14,7 @@ public class App {
                 1,
                 87);
 
-        Professor professor1 = new Professor(
+        W2Professor professor1 = new W2Professor(
                 "Professor 2",
                 "Phone Number 2",
                 "Email Address 2",

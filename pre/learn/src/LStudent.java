@@ -1,9 +1,9 @@
-public class Student extends Human {
+public class LStudent extends LHuman {
     private static int count = 0;
 
     private int[] grades;
 
-    Student(String name, int age, int height, int weight, int[] grades) {
+    LStudent(String name, int age, int height, int weight, int[] grades) {
         super(name, age, height, weight);
 
         this.grades = grades;

@@ -1,10 +1,10 @@
 package relationship;
 
-public class Student extends Person {
+public class W2Student extends W2Person {
     private int studentNumber;
     private float averageMark;
 
-    public Student(
+    public W2Student(
             String name,
             String phoneNumber,
             String emailAddress,

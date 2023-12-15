@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Utility {
+public class LUtility {
     public static Random random = new Random();
 
     public static int randomBetween(int start, int end) {

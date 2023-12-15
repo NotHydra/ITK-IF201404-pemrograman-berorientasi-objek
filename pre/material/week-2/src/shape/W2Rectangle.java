@@ -1,10 +1,10 @@
-package rectangle;
+package shape;
 
-public class Rectangle {
+public class W2Rectangle {
     private int width;
     private int height;
 
-    public Rectangle(int width, int height) {
+    public W2Rectangle(int width, int height) {
         this.width = width;
         this.height = height;
     }

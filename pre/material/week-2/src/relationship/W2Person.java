@@ -1,11 +1,11 @@
 package relationship;
 
-public class Person extends Address {
+public class W2Person extends W2Address {
     private String name;
     private String phoneNumber;
     private String emailAddress;
 
-    public Person(
+    public W2Person(
             String name,
             String phoneNumber,
             String emailAddress,

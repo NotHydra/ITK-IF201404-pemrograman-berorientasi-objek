@@ -1,5 +1,5 @@
 package overloading;
-public class Overloading {
+public class W3Overloading {
     public static float average(int firstValue, int secondValue) {
         return (float) ((firstValue + secondValue) / 2);
     };

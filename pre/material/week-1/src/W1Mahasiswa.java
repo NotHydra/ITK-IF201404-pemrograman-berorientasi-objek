@@ -1,8 +1,8 @@
-public class Mahasiswa {
+public class W1Mahasiswa {
     private String nama;
     private float ipk;
 
-    public Mahasiswa(String nama, float ipk) {
+    public W1Mahasiswa(String nama, float ipk) {
         this.nama = nama;
         this.ipk = ipk;
     };

@@ -1,4 +1,4 @@
-public class Main {
+public class Learn {
     public static void main(String[] args) throws Exception {
 
         // Human[] humans = {
@@ -12,14 +12,14 @@ public class Main {
         // System.out.println();
         // }
 
-        Student[] students = {
-                new Student("Student 1", 13, 150, 50, Utility.randomGrades()),
-                new Student("Student 2", 15, 165, 60, Utility.randomGrades()),
-                new Student("Student 3", 15, 160, 55, Utility.randomGrades()),
-                new Student("Student 4", 12, 140, 40, Utility.randomGrades()),
+        LStudent[] students = {
+                new LStudent("Student 1", 13, 150, 50, LUtility.randomGrades()),
+                new LStudent("Student 2", 15, 165, 60, LUtility.randomGrades()),
+                new LStudent("Student 3", 15, 160, 55, LUtility.randomGrades()),
+                new LStudent("Student 4", 12, 140, 40, LUtility.randomGrades()),
         };
 
-        for (Student student : students) {
+        for (LStudent student : students) {
             System.out.println("Name    : " + student.getName());
             System.out.println("Grade   :");
             student.displayGrade();
@@ -28,7 +28,7 @@ public class Main {
             System.out.println("Index   : " + student.getIndex());
             System.out.println();
 
-            student.setGrades(Utility.randomGrades());
+            student.setGrades(LUtility.randomGrades());
 
             System.out.println("Grade   :");
             student.displayGrade();

@@ -1,9 +1,9 @@
-public class Book {
+public class W5Book {
     private String title;
-    private Author author;
+    private W5Author author;
     private Double price;
 
-    public Book(String title, Author author, Double price) {
+    public W5Book(String title, W5Author author, Double price) {
         this.title = title;
         this.author = author;
         this.price = price;
@@ -13,7 +13,7 @@ public class Book {
         return this.title;
     };
 
-    public Author getAuthor() {
+    public W5Author getAuthor() {
         return this.author;
     };
 
