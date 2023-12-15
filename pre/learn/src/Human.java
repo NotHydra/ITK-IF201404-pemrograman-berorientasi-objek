@@ -1,10 +1,10 @@
 public class Human {
+    static int count = 0;
+
     String name;
     int age;
     int height;
     int weight;
-
-    static int count = 0;
 
     Human(String name, int age, int height, int weight) {
         this.name = name;
@@ -16,7 +16,7 @@ public class Human {
     };
 
     static void displayCount() {
-        System.out.println("There is a total of 3 human object");
+        System.out.println("There is a total of " + count + " human object");
     }
 
     void greet() {
