@@ -19,6 +19,10 @@ public class Student extends Human {
         return this.grades;
     }
 
+    void setGrades(int[] grades) {
+        this.grades = grades;
+    }
+
     @Override
     void greet() {
         System.out.println(
