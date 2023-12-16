@@ -19,6 +19,10 @@ public class StudentModel implements StudentInterface {
         this.major = major;
     };
 
+    public static int getCount() {
+        return count;
+    }
+
     public int getId() {
         return this.id;
     };
