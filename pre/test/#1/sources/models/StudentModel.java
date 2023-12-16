@@ -67,13 +67,17 @@ public class StudentModel implements StudentInterface {
 
     public static ArrayList<StudentModel> getStudent() {
         return students;
-    }
+    };
 
     public static void addStudent(StudentModel student) {
         students.add(student);
     };
 
+    public static void changeStudent(StudentModel oldStudent, StudentModel newStudent) {
+        students.set(students.indexOf(oldStudent), newStudent);
+    };
+
     public static void removeStudent(StudentModel student) {
         students.remove(student);
-    }
+    };
 }
