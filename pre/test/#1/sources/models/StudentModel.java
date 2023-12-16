@@ -1,9 +1,11 @@
 package models;
 
+import java.util.ArrayList;
 import interfaces.StudentInterface;
 
 public class StudentModel implements StudentInterface {
     private static int count = 0;
+    private static ArrayList<StudentModel> students = new ArrayList<StudentModel>();
 
     private int id;
     private String name;
@@ -61,5 +63,13 @@ public class StudentModel implements StudentInterface {
 
     public void setMajor(String major) {
         this.major = major;
+    };
+
+    public static ArrayList<StudentModel> getStudent() {
+        return students;
+    }
+
+    public static void addStudent(StudentModel student) {
+        students.add(student);
     };
 }
