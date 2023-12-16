@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import interfaces.StudentInterface;
 
 public class StudentModel implements StudentInterface {
-    private static int count = 0;
+    private static int increment = 0;
     private static ArrayList<StudentModel> students = new ArrayList<StudentModel>();
 
     private int id;
@@ -14,15 +14,15 @@ public class StudentModel implements StudentInterface {
     private String major;
 
     public StudentModel(String name, int age, String grade, String major) {
-        this.id = ++count;
+        this.id = ++increment;
         this.name = name;
         this.age = age;
         this.grade = grade;
         this.major = major;
     };
 
-    public static int getCount() {
-        return count;
+    public static int getIncrement() {
+        return increment;
     }
 
     public int getId() {
@@ -72,4 +72,8 @@ public class StudentModel implements StudentInterface {
     public static void addStudent(StudentModel student) {
         students.add(student);
     };
+
+    public static void removeStudent(StudentModel student) {
+        students.remove(student);
+    }
 }

@@ -16,5 +16,8 @@ public class App {
         StudentModel.addStudent(student3);
 
         System.out.println(StudentModel.getStudent());
+        StudentModel.removeStudent(student2);
+
+        System.out.println(StudentModel.getStudent());
     }
 }
