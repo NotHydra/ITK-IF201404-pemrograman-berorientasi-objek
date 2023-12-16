@@ -1,6 +1,8 @@
 package models;
 
-public class StudentModel {
+import interfaces.StudentInterface;
+
+public class StudentModel implements StudentInterface {
     private static int count = 0;
 
     private int id;
