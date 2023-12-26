@@ -4,9 +4,9 @@ import models.StudentModel;
 import views.StudentView;
 
 public class StudentController {
-    public static void DisplayStudentName() {
+    public static void displayStudentName() {
         for (StudentModel student : StudentModel.getStudent()) {
-            StudentView.Display(student.getName());
+            StudentView.display(student.getName());
         }
     };
 }
