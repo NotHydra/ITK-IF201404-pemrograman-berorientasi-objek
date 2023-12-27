@@ -1,7 +1,10 @@
 package controllers;
 
-import models.StudentModel;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import schemas.StudentSchema;
+import models.StudentModel;
 import views.StudentView;
 
 public class StudentController {
@@ -13,21 +16,13 @@ public class StudentController {
         this.studentView = studentView;
     }
 
-    public void display() {
+    public ArrayList<StudentSchema> get() throws SQLException {
+        return this.studentModel.get();
+    }
+
+    public void display() throws SQLException {
         for (StudentSchema student : this.studentModel.get()) {
-            this.studentView.display(student.toString());
+            this.studentView.display(student.getName());
         }
-    }
-
-    public StudentSchema add(String name, String grade, String major) {
-        return this.studentModel.add(name, grade, major);
-    }
-
-    public StudentSchema change(int id, String name, String grade, String major) {
-        return this.studentModel.change(id, name, grade, major);
-    }
-
-    public StudentSchema remove(int id) {
-        return this.studentModel.remove(id);
     }
 }
