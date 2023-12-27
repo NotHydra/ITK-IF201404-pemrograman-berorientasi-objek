@@ -1,71 +1,28 @@
 package models;
 
+import java.sql.*;
 import java.util.ArrayList;
 
+import providers.Database;
 import schemas.StudentSchema;
 
 public class StudentModel {
-    private int increment;
-    private ArrayList<StudentSchema> students;
+    public ArrayList<StudentSchema> get() throws SQLException {
+        Database database = new Database();
+        ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
 
-    public StudentModel() {
-        this.increment = 0;
-        this.students = new ArrayList<StudentSchema>();
-    }
-
-    public int getIncrement() {
-        return this.increment;
-    }
-
-    public void setIncrement(int increment) {
-        this.increment = increment;
-    }
-
-    public ArrayList<StudentSchema> get() {
-        return this.students;
-    }
-
-    public StudentSchema getOne(int id) {
-        for (StudentSchema student : this.students) {
-            if (student.getId() == id) {
-                return student;
-            }
+        ArrayList<StudentSchema> students = new ArrayList<StudentSchema>();
+        while (result.next()) {
+            students.add(new StudentSchema(
+                    result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("grade"),
+                    result.getString("major")));
         }
 
-        return null;
+        database.close();
+
+        return students;
     }
 
-    public StudentSchema add(String name, String grade, String major) {
-        this.increment++;
-        StudentSchema student = new StudentSchema(this.increment, name, grade, major);
-        this.students.add(student);
-
-        return student;
-    }
-
-    public StudentSchema change(int id, String name, String grade, String major) {
-        for (StudentSchema student : this.students) {
-            if (student.getId() == id) {
-                student.setName(name);
-                student.setGrade(grade);
-                student.setMajor(major);
-
-                return student;
-            }
-        }
-
-        return null;
-    }
-
-    public StudentSchema remove(int id) {
-        for (StudentSchema student : this.students) {
-            if (student.getId() == id) {
-                this.students.remove(student);
-
-                return student;
-            }
-        }
-
-        return null;
-    }
 }
