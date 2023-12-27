@@ -13,6 +13,14 @@ public class StudentModel {
         this.students = new ArrayList<StudentSchema>();
     }
 
+    public int getIncrement() {
+        return this.increment;
+    }
+
+    public void setIncrement(int increment) {
+        this.increment = increment;
+    }
+
     public ArrayList<StudentSchema> get() {
         return this.students;
     }
