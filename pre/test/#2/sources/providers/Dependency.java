@@ -1,3 +1,5 @@
+package providers;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Dependency {
