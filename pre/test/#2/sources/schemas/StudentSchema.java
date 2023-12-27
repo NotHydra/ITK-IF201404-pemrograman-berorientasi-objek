@@ -44,4 +44,8 @@ public class StudentSchema {
     public void setMajor(String major) {
         this.major = major;
     }
+
+    public String toString() {
+        return "Student(" + this.id + ", " + this.name + ", " + this.grade + ", " + this.major + ")";
+    }
 }
