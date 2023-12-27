@@ -1,3 +1,5 @@
 **/settings.json
 **/*.md
 **/bin
+
+**/*.env
