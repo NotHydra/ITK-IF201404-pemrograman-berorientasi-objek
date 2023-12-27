@@ -41,4 +41,11 @@ public class StudentModel {
 
         database.close();
     }
+
+    public void remove(int id) throws SQLException {
+        Database database = new Database();
+        database.executeUpdate("DELETE FROM student WHERE id='" + id + "'");
+
+        database.close();
+    }
 }

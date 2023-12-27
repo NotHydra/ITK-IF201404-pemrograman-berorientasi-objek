@@ -33,4 +33,8 @@ public class StudentController {
     public void change(int id, String name, String grade, String major) throws SQLException {
         this.studentModel.change(id, name, grade, major);
     }
+
+    public void remove(int id) throws SQLException {
+        this.studentModel.remove(id);
+    }
 }
