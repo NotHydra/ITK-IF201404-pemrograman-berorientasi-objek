@@ -9,9 +9,7 @@ public class App {
         studentModel.add("Student 3", "Grade 3", "Major 3");
 
         System.out.println(studentModel.get());
-        System.out.println(studentModel.getOne(1));
-        System.out.println(studentModel.change(1, "Student 4", "Grade 4", "Major 4"));
-        System.out.println(studentModel.getOne(1));
+        System.out.println(studentModel.remove(1));
         System.out.println(studentModel.get());
     };
 }

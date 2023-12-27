@@ -48,4 +48,16 @@ public class StudentModel {
 
         return null;
     }
+
+    public StudentSchema remove(int id) {
+        for (StudentSchema student : students) {
+            if (student.getId() == id) {
+                students.remove(student);
+
+                return student;
+            }
+        }
+
+        return null;
+    }
 }
