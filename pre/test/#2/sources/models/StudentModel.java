@@ -26,7 +26,7 @@ public class StudentModel {
     }
 
     public StudentSchema getOne(int id) {
-        for (StudentSchema student : students) {
+        for (StudentSchema student : this.students) {
             if (student.getId() == id) {
                 return student;
             }
@@ -44,7 +44,7 @@ public class StudentModel {
     }
 
     public StudentSchema change(int id, String name, String grade, String major) {
-        for (StudentSchema student : students) {
+        for (StudentSchema student : this.students) {
             if (student.getId() == id) {
                 student.setName(name);
                 student.setGrade(grade);
@@ -58,9 +58,9 @@ public class StudentModel {
     }
 
     public StudentSchema remove(int id) {
-        for (StudentSchema student : students) {
+        for (StudentSchema student : this.students) {
             if (student.getId() == id) {
-                students.remove(student);
+                this.students.remove(student);
 
                 return student;
             }
