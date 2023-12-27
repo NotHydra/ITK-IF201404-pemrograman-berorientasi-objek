@@ -25,6 +25,26 @@ public class StudentModel {
         return students;
     }
 
+    public StudentSchema getOne(int id) throws SQLException {
+        Database database = new Database();
+        ResultSet result = database
+                .executeQuery("SELECT id, name, grade, major FROM student WHERE id='" + id + "';");
+
+        StudentSchema student = null;
+
+        if (result.next()) {
+            student = new StudentSchema(
+                    result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("grade"),
+                    result.getString("major"));
+        }
+
+        database.close();
+
+        return student;
+    }
+
     public void add(String name, String grade, String major) throws SQLException {
         Database database = new Database();
         database.executeUpdate(

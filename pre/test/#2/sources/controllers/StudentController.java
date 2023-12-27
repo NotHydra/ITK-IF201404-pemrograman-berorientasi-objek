@@ -26,6 +26,10 @@ public class StudentController {
         return this.studentModel.get();
     }
 
+    public StudentSchema getOne(int id) throws SQLException {
+        return this.studentModel.getOne(id);
+    }
+
     public void add(String name, String grade, String major) throws SQLException {
         this.studentModel.add(name, grade, major);
     }
