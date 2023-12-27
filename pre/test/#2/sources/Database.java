@@ -11,8 +11,6 @@ public class Database {
                     dependency.getDatabaseURL(),
                     dependency.getDatabaseUsername(),
                     dependency.getDatabasePassword());
-
-            this.close();
         } catch (SQLException e) {
             throw e;
         }
@@ -23,6 +21,22 @@ public class Database {
             if (this.connection != null && !this.connection.isClosed()) {
                 this.connection.close();
             }
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public ResultSet executeQuery(String query) throws SQLException {
+        try {
+            return this.connection.prepareStatement(query).executeQuery();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public void executeUpdate(String query) throws SQLException {
+        try {
+            this.connection.prepareStatement(query).executeUpdate();
         } catch (SQLException e) {
             throw e;
         }
