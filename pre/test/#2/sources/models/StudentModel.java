@@ -32,4 +32,13 @@ public class StudentModel {
 
         database.close();
     }
+
+    public void change(int id, String name, String grade, String major) throws SQLException {
+        Database database = new Database();
+        database.executeUpdate(
+                "UPDATE student SET name='" + name + "', grade='" + grade + "', major='" + major + "' WHERE id='" + id
+                        + "';");
+
+        database.close();
+    }
 }
