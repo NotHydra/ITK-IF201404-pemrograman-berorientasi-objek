@@ -34,4 +34,18 @@ public class StudentModel {
 
         return student;
     }
+
+    public StudentSchema change(int id, String name, String grade, String major) {
+        for (StudentSchema student : students) {
+            if (student.getId() == id) {
+                student.setName(name);
+                student.setGrade(grade);
+                student.setMajor(major);
+
+                return student;
+            }
+        }
+
+        return null;
+    }
 }
