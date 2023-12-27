@@ -25,4 +25,11 @@ public class StudentModel {
         return students;
     }
 
+    public void add(String name, String grade, String major) throws SQLException {
+        Database database = new Database();
+        database.executeUpdate(
+                "INSERT INTO student (name, grade, major) VALUES('" + name + "', '" + grade + "', '" + major + "');");
+
+        database.close();
+    }
 }

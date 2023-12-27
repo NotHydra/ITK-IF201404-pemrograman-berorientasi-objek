@@ -16,13 +16,17 @@ public class StudentController {
         this.studentView = studentView;
     }
 
-    public ArrayList<StudentSchema> get() throws SQLException {
-        return this.studentModel.get();
-    }
-
     public void display() throws SQLException {
         for (StudentSchema student : this.studentModel.get()) {
             this.studentView.display(student.getName());
         }
+    }
+
+    public ArrayList<StudentSchema> get() throws SQLException {
+        return this.studentModel.get();
+    }
+
+    public void add(String name, String grade, String major) throws SQLException {
+        this.studentModel.add(name, grade, major);
     }
 }

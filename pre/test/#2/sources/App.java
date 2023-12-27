@@ -9,6 +9,10 @@ public class App {
         StudentController studentController = new StudentController(studentModel, studentView);
 
         System.out.println(studentController.get());
-        studentController.display();
+
+        studentController.add("Student 3", "Grade 3", "Major 3");
+
+        System.out.println(studentController.get());
+
     };
 }
