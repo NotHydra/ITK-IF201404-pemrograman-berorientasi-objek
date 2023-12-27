@@ -1,7 +1,7 @@
 package views;
 
 public class StudentView {
-    public static void display(String text) {
+    public void display(String text) {
         System.out.println(text);
     };
 }

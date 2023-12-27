@@ -4,9 +4,11 @@ import models.StudentModel;
 import views.StudentView;
 
 public class StudentController {
+    StudentView studentView = new StudentView();
+
     public void displayStudent() {
         for (StudentModel student : StudentModel.getStudent()) {
-            StudentView.display(student.getName());
+            studentView.display(student.getName());
         }
     };
 
