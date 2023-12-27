@@ -29,22 +29,6 @@ public class StudentSchema {
         return this.major;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
     public String toString() {
         return "Student(" + this.id + ", " + this.name + ", " + this.grade + ", " + this.major + ")";
     }
