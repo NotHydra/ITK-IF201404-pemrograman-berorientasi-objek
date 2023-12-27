@@ -22,4 +22,12 @@ public class StudentController {
     public StudentSchema add(String name, String grade, String major) {
         return this.studentModel.add(name, grade, major);
     }
+
+    public StudentSchema change(int id, String name, String grade, String major) {
+        return this.studentModel.change(id, name, grade, major);
+    }
+
+    public StudentSchema remove(int id) {
+        return this.studentModel.remove(id);
+    }
 }

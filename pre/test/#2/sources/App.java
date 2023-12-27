@@ -13,5 +13,16 @@ public class App {
         studentController.add("Student 3", "Grade 3", "Major 3");
 
         studentController.display();
+        System.out.println();
+
+        studentController.change(2, "Student 4", "Grade 4", "Major 4");
+
+        studentController.display();
+        System.out.println();
+
+        studentController.remove(2);
+
+        studentController.display();
+        System.out.println();
     };
 }
