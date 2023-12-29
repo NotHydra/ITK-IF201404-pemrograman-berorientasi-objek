@@ -1,6 +1,8 @@
 package schemas;
 
-public class StudentSchema {
+import interfaces.StudentInterface;
+
+public class StudentSchema extends BaseSchema implements StudentInterface {
     private int id;
     private String name;
     private String grade;
@@ -13,22 +15,27 @@ public class StudentSchema {
         this.major = major;
     }
 
+    @Override
     public int getId() {
         return this.id;
     }
 
+    @Override
     public String getName() {
         return this.name;
     }
 
+    @Override
     public String getGrade() {
         return this.grade;
     }
 
+    @Override
     public String getMajor() {
         return this.major;
     }
 
+    @Override
     public String toString() {
         return "Student(" + this.id + ", " + this.name + ", " + this.grade + ", " + this.major + ")";
     }
