@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import providers.Database;
 import schemas.StudentSchema;
 
-public class StudentModel {
+public class StudentModel extends BaseModel<StudentSchema> {
+    @Override
     public ArrayList<StudentSchema> get() throws SQLException {
         Database database = new Database();
         ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
@@ -25,6 +26,7 @@ public class StudentModel {
         return students;
     }
 
+    @Override
     public StudentSchema getOne(int id) throws SQLException {
         Database database = new Database();
         ResultSet result = database
@@ -45,23 +47,27 @@ public class StudentModel {
         return student;
     }
 
-    public void add(String name, String grade, String major) throws SQLException {
+    @Override
+    public void add(StudentSchema schema) throws SQLException {
         Database database = new Database();
         database.executeUpdate(
-                "INSERT INTO student (name, grade, major) VALUES('" + name + "', '" + grade + "', '" + major + "');");
+                "INSERT INTO student (name, grade, major) VALUES('" + schema.getName() + "', '" + schema.getGrade()
+                        + "', '" + schema.getMajor() + "');");
 
         database.close();
     }
 
-    public void change(int id, String name, String grade, String major) throws SQLException {
+    @Override
+    public void change(int id, StudentSchema schema) throws SQLException {
         Database database = new Database();
         database.executeUpdate(
-                "UPDATE student SET name='" + name + "', grade='" + grade + "', major='" + major + "' WHERE id='" + id
-                        + "';");
+                "UPDATE student SET name='" + schema.getName() + "', grade='" + schema.getGrade() + "', major='"
+                        + schema.getMajor() + "' WHERE id='" + id + "';");
 
         database.close();
     }
 
+    @Override
     public void remove(int id) throws SQLException {
         Database database = new Database();
         database.executeUpdate("DELETE FROM student WHERE id='" + id + "'");
