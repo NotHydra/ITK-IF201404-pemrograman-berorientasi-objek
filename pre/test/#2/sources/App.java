@@ -17,7 +17,6 @@ public class App {
         // System.out.println(studentController.get());
         // studentController.remove(2);
 
-        // System.out.println(studentController.get());
-        // System.out.println(studentController.getOne(3));
+        System.out.println(studentController.get());
     };
 }
