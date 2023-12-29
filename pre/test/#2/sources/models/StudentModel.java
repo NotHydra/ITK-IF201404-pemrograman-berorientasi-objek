@@ -51,8 +51,11 @@ public class StudentModel extends BaseModel<StudentSchema> {
     public void add(StudentSchema schema) throws SQLException {
         Database database = new Database();
         database.executeUpdate(
-                "INSERT INTO student (name, grade, major) VALUES ('" + schema.getName() + "', '" + schema.getGrade()
-                        + "', '" + schema.getMajor() + "');");
+                "INSERT INTO student (name, grade, major) VALUES ("
+                        + "'" + schema.getName() + "', "
+                        + "'" + schema.getGrade() + "', "
+                        + "'" + schema.getMajor() + "'"
+                        + ");");
 
         database.close();
     }
@@ -61,8 +64,13 @@ public class StudentModel extends BaseModel<StudentSchema> {
     public void change(int id, StudentSchema schema) throws SQLException {
         Database database = new Database();
         database.executeUpdate(
-                "UPDATE student SET name='" + schema.getName() + "', grade='" + schema.getGrade() + "', major='"
-                        + schema.getMajor() + "' WHERE id='" + id + "';");
+                "UPDATE student SET "
+                        + "name='" + schema.getName() + "', "
+                        + "grade='" + schema.getGrade() + "', "
+                        + "major='" + schema.getMajor() + "' "
+                        + "WHERE "
+                        + "id='" + id + "'"
+                        + ";");
 
         database.close();
     }

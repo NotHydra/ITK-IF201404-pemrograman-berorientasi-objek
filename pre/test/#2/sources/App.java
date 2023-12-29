@@ -8,15 +8,12 @@ public class App {
         StudentView studentView = new StudentView();
         StudentController studentController = new StudentController(studentModel, studentView);
 
-        // System.out.println(studentController.get());
-        // studentController.add("Student 3", "Grade 3", "Major 3");
-
-        // System.out.println(studentController.get());
-        // studentController.change(2, "Student 4", "Grade 4", "Major 4");
-
-        // System.out.println(studentController.get());
-        // studentController.remove(2);
-
+        // Implementation
         System.out.println(studentController.get());
+        // System.out.println(studentController.getOne(1));
+        // studentController.add("Student 4", "Grade 4", "Major 4");
+        // studentController.change(1, "Student 5", "Grade 5", "Major 5");
+        // studentController.remove(3);
+
     };
 }

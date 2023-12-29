@@ -18,7 +18,7 @@ public class Database {
                     + "id INT AUTO_INCREMENT PRIMARY KEY, "
                     + "name VARCHAR(255), "
                     + "grade VARCHAR(255), "
-                    + "major VARCHAR(255) "
+                    + "major VARCHAR(255)"
                     + ");");
 
             this.executeUpdate("" +
