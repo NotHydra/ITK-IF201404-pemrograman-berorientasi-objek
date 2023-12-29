@@ -51,7 +51,7 @@ public class StudentModel extends BaseModel<StudentSchema> {
     public void add(StudentSchema schema) throws SQLException {
         Database database = new Database();
         database.executeUpdate(
-                "INSERT INTO student (name, grade, major) VALUES('" + schema.getName() + "', '" + schema.getGrade()
+                "INSERT INTO student (name, grade, major) VALUES ('" + schema.getName() + "', '" + schema.getGrade()
                         + "', '" + schema.getMajor() + "');");
 
         database.close();
