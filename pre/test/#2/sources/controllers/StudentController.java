@@ -31,11 +31,11 @@ public class StudentController {
     }
 
     public void add(String name, String grade, String major) throws SQLException {
-        this.studentModel.add(new StudentSchema(0, name, grade, major));
+        this.studentModel.add(new StudentSchema(name, grade, major));
     }
 
     public void change(int id, String name, String grade, String major) throws SQLException {
-        this.studentModel.change(id, new StudentSchema(0, name, grade, major));
+        this.studentModel.change(id, new StudentSchema(name, grade, major));
     }
 
     public void remove(int id) throws SQLException {

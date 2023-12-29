@@ -8,6 +8,13 @@ public class StudentSchema extends BaseSchema implements StudentInterface {
     private String grade;
     private String major;
 
+    public StudentSchema(String name, String grade, String major) {
+        this.id = -1;
+        this.name = name;
+        this.grade = grade;
+        this.major = major;
+    }
+
     public StudentSchema(int id, String name, String grade, String major) {
         this.id = id;
         this.name = name;
