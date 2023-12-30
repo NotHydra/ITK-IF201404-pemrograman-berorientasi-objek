@@ -16,7 +16,7 @@ public class App {
         // System.out.println(studentController.get());
         // System.out.println(studentController.getOne(1));
         // studentController.add("Student 4", "Grade 4", "Major 4");
-        studentModel.add(new StudentSchema[] {
+        studentController.add(new StudentSchema[] {
                 new StudentSchema("Student 5", "Grade 5", "Major 5"),
                 new StudentSchema("Student 6", "Grade 6", "Major 6"),
                 new StudentSchema("Student 7", "Grade 7", "Major 7")

@@ -34,6 +34,10 @@ public class StudentController {
         this.studentModel.add(new StudentSchema(name, grade, major));
     }
 
+    public void add(StudentSchema[] students) throws SQLException {
+        this.studentModel.add(students);
+    }
+
     public void change(int id, String name, String grade, String major) throws SQLException {
         this.studentModel.change(id, new StudentSchema(name, grade, major));
     }
