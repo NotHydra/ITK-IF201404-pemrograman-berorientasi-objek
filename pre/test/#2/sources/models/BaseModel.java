@@ -10,6 +10,8 @@ public abstract class BaseModel<SchemaType> {
 
     public abstract void add(SchemaType schema) throws SQLException;
 
+    public abstract void add(SchemaType[] schemas) throws SQLException;
+
     public abstract void change(int id, SchemaType schema) throws SQLException;
 
     public abstract void remove(int id) throws SQLException;
