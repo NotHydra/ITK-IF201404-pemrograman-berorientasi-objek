@@ -1,7 +1,5 @@
 package controllers;
 
-import java.sql.SQLException;
-
 import schemas.StudentSchema;
 import models.StudentModel;
 import views.StudentView;
@@ -15,33 +13,65 @@ public class StudentController {
         this.studentView = studentView;
     }
 
-    public void display() throws SQLException {
-        for (StudentSchema student : this.studentModel.get()) {
-            this.studentView.display(student.getName());
+    public void display() {
+        try {
+            for (StudentSchema student : this.studentModel.get()) {
+                this.studentView.display(student.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public StudentSchema[] get() throws SQLException {
-        return this.studentModel.get();
+    public StudentSchema[] get() {
+        try {
+            return this.studentModel.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
-    public StudentSchema getOne(int id) throws SQLException {
-        return this.studentModel.getOne(id);
+    public StudentSchema getOne(int id) {
+        try {
+            return this.studentModel.getOne(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
-    public void add(String name, String grade, String major) throws SQLException {
-        this.studentModel.add(new StudentSchema(name, grade, major));
+    public void add(String name, String grade, String major) {
+        try {
+            this.studentModel.add(new StudentSchema(name, grade, major));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void add(StudentSchema[] students) throws SQLException {
-        this.studentModel.add(students);
+    public void add(StudentSchema[] students) {
+        try {
+            this.studentModel.add(students);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void change(int id, String name, String grade, String major) throws SQLException {
-        this.studentModel.change(id, new StudentSchema(name, grade, major));
+    public void change(int id, String name, String grade, String major) {
+        try {
+            this.studentModel.change(id, new StudentSchema(name, grade, major));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void remove(int id) throws SQLException {
-        this.studentModel.remove(id);
+    public void remove(int id) {
+        try {
+            this.studentModel.remove(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
