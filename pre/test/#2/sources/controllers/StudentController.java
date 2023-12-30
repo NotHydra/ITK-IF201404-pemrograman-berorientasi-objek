@@ -8,8 +8,8 @@ import models.StudentModel;
 import views.StudentView;
 
 public class StudentController {
-    private StudentModel studentModel;
-    private StudentView studentView;
+    private final StudentModel studentModel;
+    private final StudentView studentView;
 
     public StudentController(StudentModel studentModel, StudentView studentView) {
         this.studentModel = studentModel;
