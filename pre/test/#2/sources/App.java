@@ -1,5 +1,6 @@
 import controllers.StudentController;
 import models.StudentModel;
+import providers.Database;
 import providers.Dependency;
 import schemas.StudentSchema;
 import views.StudentView;
@@ -38,10 +39,9 @@ public class App {
         // }
 
         try {
-            Dependency dependency = new Dependency();
-            System.out.println(dependency.getDatabaseUsername());
+            Database database = new Database();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     };
 }
