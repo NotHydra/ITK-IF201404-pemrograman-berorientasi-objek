@@ -6,7 +6,7 @@ public class Database {
     private final Connection connection;
 
     public Database() throws SQLException {
-        Dependency dependency = new Dependency();
+        final Dependency dependency = new Dependency();
         this.connection = DriverManager.getConnection(
                 dependency.getDatabaseURL(),
                 dependency.getDatabaseUsername(),

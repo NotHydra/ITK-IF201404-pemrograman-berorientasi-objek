@@ -9,10 +9,10 @@ import schemas.StudentSchema;
 public class StudentModel extends BaseModel<StudentSchema> {
     @Override
     public ArrayList<StudentSchema> get() throws SQLException {
-        Database database = new Database();
-        ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
+        final Database database = new Database();
+        final ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
 
-        ArrayList<StudentSchema> students = new ArrayList<StudentSchema>();
+        final ArrayList<StudentSchema> students = new ArrayList<StudentSchema>();
         while (result.next()) {
             students.add(new StudentSchema(
                     result.getInt("id"),
@@ -28,8 +28,8 @@ public class StudentModel extends BaseModel<StudentSchema> {
 
     @Override
     public StudentSchema getOne(int id) throws SQLException {
-        Database database = new Database();
-        ResultSet result = database
+        final Database database = new Database();
+        final ResultSet result = database
                 .executeQuery("SELECT id, name, grade, major FROM student WHERE id='" + id + "';");
 
         StudentSchema student = null;
@@ -49,7 +49,7 @@ public class StudentModel extends BaseModel<StudentSchema> {
 
     @Override
     public void add(StudentSchema schema) throws SQLException {
-        Database database = new Database();
+        final Database database = new Database();
         database.executeUpdate(
                 "INSERT INTO student (name, grade, major) VALUES ("
                         + "'" + schema.getName() + "', "
@@ -62,10 +62,9 @@ public class StudentModel extends BaseModel<StudentSchema> {
 
     @Override
     public void add(StudentSchema[] schemas) throws SQLException {
-        Database database = new Database();
+        final Database database = new Database();
 
         String query = "INSERT INTO student (name, grade, major) VALUES ";
-
         for (int i = 0; i < schemas.length; i++) {
             query = query + "("
                     + "'" + schemas[i].getName() + "', "
@@ -87,7 +86,7 @@ public class StudentModel extends BaseModel<StudentSchema> {
 
     @Override
     public void change(int id, StudentSchema schema) throws SQLException {
-        Database database = new Database();
+        final Database database = new Database();
         database.executeUpdate(
                 "UPDATE student SET "
                         + "name='" + schema.getName() + "', "
@@ -102,7 +101,7 @@ public class StudentModel extends BaseModel<StudentSchema> {
 
     @Override
     public void remove(int id) throws SQLException {
-        Database database = new Database();
+        final Database database = new Database();
         database.executeUpdate("DELETE FROM student WHERE id='" + id + "'");
 
         database.close();

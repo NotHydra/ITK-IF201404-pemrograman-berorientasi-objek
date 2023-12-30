@@ -8,7 +8,7 @@ public class Dependency {
     private final String databasePassword;
 
     public Dependency() {
-        Dotenv environment = Dotenv.load();
+        final Dotenv environment = Dotenv.load();
 
         this.databaseURL = environment.get("DATABASE_URL");
         this.databaseUsername = environment.get("DATABASE_USERNAME");
