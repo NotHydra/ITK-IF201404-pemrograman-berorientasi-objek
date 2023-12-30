@@ -3,7 +3,7 @@ package providers;
 import java.sql.*;
 
 public class Database {
-    private Connection connection;
+    private final Connection connection;
 
     public Database() throws SQLException {
         Dependency dependency = new Dependency();
