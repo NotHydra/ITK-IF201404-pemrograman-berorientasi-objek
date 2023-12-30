@@ -3,10 +3,10 @@ package schemas;
 import interfaces.StudentInterface;
 
 public class StudentSchema extends BaseSchema implements StudentInterface {
-    private int id;
-    private String name;
-    private String grade;
-    private String major;
+    private final int id;
+    private final String name;
+    private final String grade;
+    private final String major;
 
     public StudentSchema(String name, String grade, String major) {
         this.id = -1;
@@ -44,6 +44,11 @@ public class StudentSchema extends BaseSchema implements StudentInterface {
 
     @Override
     public String toString() {
-        return "Student(id=" + this.id + ", name=" + this.name + ", grade=" + this.grade + ", major=" + this.major + ")";
+        return "Student("
+                + "id=" + this.id + ", "
+                + "name=" + this.name + ", "
+                + "grade=" + this.grade + ", "
+                + "major=" + this.major
+                + ")";
     }
 }
