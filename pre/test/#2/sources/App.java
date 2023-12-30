@@ -9,10 +9,10 @@ public class App {
         StudentView studentView = new StudentView();
         StudentController studentController = new StudentController(studentModel, studentView);
 
-        // Implementation
-        for (StudentSchema student : studentController.get()) {
-            System.out.println(student);
-        }
+        // Controller Implementation
+        // for (StudentSchema student : studentController.get()) {
+        // System.out.println(student);
+        // }
 
         // System.out.println(studentController.getOne(1));
 
@@ -27,5 +27,12 @@ public class App {
         // studentController.change(1, "Student 5", "Grade 5", "Major 5");
 
         // studentController.remove(3);
+
+        // Model Implementation
+        // try {
+        // System.out.println(new StudentSchema(1, "Student 1", "Grade 1", "Major 1"));
+        // } catch (Exception e) {
+        // System.out.println(e.getMessage());
+        // }
     };
 }
