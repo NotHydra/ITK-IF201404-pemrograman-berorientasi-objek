@@ -3,9 +3,9 @@ package providers;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Dependency {
-    private String databaseURL;
-    private String databaseUsername;
-    private String databasePassword;
+    private final String databaseURL;
+    private final String databaseUsername;
+    private final String databasePassword;
 
     public Dependency() {
         Dotenv environment = Dotenv.load();
