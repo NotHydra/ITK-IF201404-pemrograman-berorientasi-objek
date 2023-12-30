@@ -14,6 +14,5 @@ public class App {
         // studentController.add("Student 4", "Grade 4", "Major 4");
         // studentController.change(1, "Student 5", "Grade 5", "Major 5");
         // studentController.remove(3);
-
     };
 }

@@ -44,6 +44,6 @@ public class StudentSchema extends BaseSchema implements StudentInterface {
 
     @Override
     public String toString() {
-        return "Student(" + this.id + ", " + this.name + ", " + this.grade + ", " + this.major + ")";
+        return "Student(id=" + this.id + ", name=" + this.name + ", grade=" + this.grade + ", major=" + this.major + ")";
     }
 }
