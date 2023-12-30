@@ -8,17 +8,25 @@ import schemas.StudentSchema;
 
 public class StudentModel extends BaseModel<StudentSchema> {
     @Override
-    public ArrayList<StudentSchema> get() throws SQLException {
+    public StudentSchema[] get() throws SQLException {
         final Database database = new Database();
+
+        final ResultSet resultTotal = database.executeQuery("SELECT COUNT(*) AS `total` FROM student;");
+        resultTotal.next();
+        final int total = resultTotal.getInt("total");
+
         final ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
 
-        final ArrayList<StudentSchema> students = new ArrayList<StudentSchema>();
+        final StudentSchema[] students = new StudentSchema[total];
+        int i = 0;
         while (result.next()) {
-            students.add(new StudentSchema(
+            students[i] = new StudentSchema(
                     result.getInt("id"),
                     result.getString("name"),
                     result.getString("grade"),
-                    result.getString("major")));
+                    result.getString("major"));
+
+            i++;
         }
 
         database.close();

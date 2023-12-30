@@ -1,7 +1,6 @@
 package controllers;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import schemas.StudentSchema;
 import models.StudentModel;
@@ -22,7 +21,7 @@ public class StudentController {
         }
     }
 
-    public ArrayList<StudentSchema> get() throws SQLException {
+    public StudentSchema[] get() throws SQLException {
         return this.studentModel.get();
     }
 
