@@ -61,6 +61,31 @@ public class StudentModel extends BaseModel<StudentSchema> {
     }
 
     @Override
+    public void add(StudentSchema[] schemas) throws SQLException {
+        Database database = new Database();
+
+        String query = "INSERT INTO student (name, grade, major) VALUES ";
+
+        for (int i = 0; i < schemas.length; i++) {
+            query = query + "("
+                    + "'" + schemas[i].getName() + "', "
+                    + "'" + schemas[i].getGrade() + "', "
+                    + "'" + schemas[i].getMajor() + "'"
+                    + ")";
+
+            if (i != (schemas.length - 1)) {
+                query = query + ", ";
+            } else {
+                query = query + ";";
+            }
+        }
+
+        database.executeUpdate(query);
+
+        database.close();
+    }
+
+    @Override
     public void change(int id, StudentSchema schema) throws SQLException {
         Database database = new Database();
         database.executeUpdate(
