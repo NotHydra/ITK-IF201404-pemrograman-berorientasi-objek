@@ -13,6 +13,18 @@ public class Dependency {
         this.databaseURL = environment.get("DATABASE_URL");
         this.databaseUsername = environment.get("DATABASE_USERNAME");
         this.databasePassword = environment.get("DATABASE_PASSWORD");
+
+        if (databaseURL == null || databaseURL.trim().isEmpty()) {
+            throw new IllegalArgumentException("Database URL cannot be empty");
+        }
+
+        if (databaseUsername == null || databaseUsername.trim().isEmpty()) {
+            throw new IllegalArgumentException("Database username cannot be empty");
+        }
+
+        if (databasePassword == null || databasePassword.trim().isEmpty()) {
+            throw new IllegalArgumentException("Database password cannot be empty");
+        }
     }
 
     public String getDatabaseURL() {

@@ -1,13 +1,15 @@
 import controllers.StudentController;
 import models.StudentModel;
+import providers.Dependency;
 import schemas.StudentSchema;
 import views.StudentView;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        StudentModel studentModel = new StudentModel();
-        StudentView studentView = new StudentView();
-        StudentController studentController = new StudentController(studentModel, studentView);
+        // StudentModel studentModel = new StudentModel();
+        // StudentView studentView = new StudentView();
+        // StudentController studentController = new StudentController(studentModel,
+        // studentView);
 
         // Controller Implementation
         // for (StudentSchema student : studentController.get()) {
@@ -34,5 +36,12 @@ public class App {
         // } catch (Exception e) {
         // System.out.println(e.getMessage());
         // }
+
+        try {
+            Dependency dependency = new Dependency();
+            System.out.println(dependency.getDatabaseUsername());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     };
 }
