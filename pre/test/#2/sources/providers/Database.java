@@ -36,8 +36,15 @@ public class Database {
         }
     }
 
-    private boolean tableExist(String tableName) throws SQLException {
-        return this.connection.getMetaData().getTables(null, null, tableName, null).next();
+    private boolean tableExist(String table) throws SQLException {
+        return this.connection.getMetaData().getTables(null, null, table, null).next();
+    }
+
+    public int tableTotal(String table) throws SQLException {
+        final ResultSet result = this.executeQuery("SELECT COUNT(*) AS `total` FROM " + table + ";");
+        result.next();
+
+        return result.getInt("total");
     }
 
     public ResultSet executeQuery(String query) throws SQLException {

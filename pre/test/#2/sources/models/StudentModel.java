@@ -1,7 +1,6 @@
 package models;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 import providers.Database;
 import schemas.StudentSchema;
@@ -10,11 +9,7 @@ public class StudentModel extends BaseModel<StudentSchema> {
     @Override
     public StudentSchema[] get() throws SQLException {
         final Database database = new Database();
-
-        final ResultSet resultTotal = database.executeQuery("SELECT COUNT(*) AS `total` FROM student;");
-        resultTotal.next();
-        final int total = resultTotal.getInt("total");
-
+        final int total = database.tableTotal("student");
         final ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
 
         final StudentSchema[] students = new StudentSchema[total];
