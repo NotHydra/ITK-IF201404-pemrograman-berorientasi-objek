@@ -16,18 +16,24 @@ public class MainController extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         scene = new Scene(loadView("Student"));
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) {
         scene.setRoot(loadView(fxml));
     }
 
-    private static Parent loadView(String fxml) throws IOException {
-        return (new FXMLLoader(MainController.class.getResource("../pages/" + fxml + "Page.fxml"))).load();
+    private static Parent loadView(String fxml) {
+        try {
+            return (new FXMLLoader(MainController.class.getResource("../pages/" + fxml + "Page.fxml"))).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }

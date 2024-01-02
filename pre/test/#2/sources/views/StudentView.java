@@ -1,15 +1,13 @@
 package views;
 
-import java.io.IOException;
-
 import controllers.MainController;
 
 public class StudentView {
-    public void home() throws IOException {
+    public void home() {
         MainController.setRoot("Student");
     }
 
-    public void add() throws IOException {
+    public void add() {
         MainController.setRoot("StudentAdd");
     }
 }
