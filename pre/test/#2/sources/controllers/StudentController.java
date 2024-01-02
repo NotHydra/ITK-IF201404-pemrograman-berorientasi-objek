@@ -2,10 +2,9 @@ package controllers;
 
 import views.StudentView;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 import models.StudentModel;
 
@@ -14,12 +13,28 @@ public class StudentController {
     private final static StudentView view = new StudentView();
 
     @FXML
-    void buttonHomeEvent(ActionEvent event) throws IOException {
+    private TextField textFieldName;
+
+    @FXML
+    private TextField textFieldGrade;
+
+    @FXML
+    private TextField textFieldMajor;
+
+    @FXML
+    void buttonAddEvent(ActionEvent event) {
+        view.add();
+    }
+
+    @FXML
+    void buttonBackEvent(ActionEvent event) {
         view.home();
     }
 
     @FXML
-    void buttonAddEvent(ActionEvent event) throws IOException {
-        view.add();
+    void buttonSubmitEvent(ActionEvent event) {
+        System.out.println(textFieldName.getText());
+        System.out.println(textFieldGrade.getText());
+        System.out.println(textFieldMajor.getText());
     }
 }
