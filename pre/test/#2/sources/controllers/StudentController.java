@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import models.StudentModel;
+import schemas.StudentSchema;
 
 public class StudentController {
     private final static StudentModel model = new StudentModel();
@@ -33,8 +34,6 @@ public class StudentController {
 
     @FXML
     void buttonSubmitEvent(ActionEvent event) {
-        System.out.println(textFieldName.getText());
-        System.out.println(textFieldGrade.getText());
-        System.out.println(textFieldMajor.getText());
+        model.add(new StudentSchema(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
     }
 }
