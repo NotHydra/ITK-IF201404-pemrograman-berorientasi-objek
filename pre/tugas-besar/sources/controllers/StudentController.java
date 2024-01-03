@@ -17,11 +17,11 @@ import javafx.scene.input.MouseEvent;
 
 import utilities.Modal;
 import models.JurusanModel;
-import services.StudentService;
+import services.JurusanService;
 
 public class StudentController implements Initializable {
     private final static Modal modal = new Modal();
-    private final static StudentService service = new StudentService();
+    private final static JurusanService service = new JurusanService();
     private final static StudentView view = new StudentView();
 
     private JurusanModel selectedStudent;
