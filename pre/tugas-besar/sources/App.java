@@ -1,5 +1,5 @@
 import controllers.MainController;
-import models.ProgramStudiModel;
+import models.ProgramStudiExtendModel;
 
 public class App {
     public static void main(String[] args) {
@@ -9,7 +9,13 @@ public class App {
         // e.printStackTrace();
         // }
 
-        ProgramStudiModel programStudiModel = new ProgramStudiModel(1, "Program Studi 2", "Deskripsi 2");
-        System.out.println(programStudiModel);
+        ProgramStudiExtendModel programStudiExtendModel = new ProgramStudiExtendModel(
+                1,
+                1,
+                "Program Studi 2",
+                "Deskripsi 2",
+                "Jurusan 1",
+                "Deskripsi 1");
+        System.out.println(programStudiExtendModel.getJurusanExtend().getJurusan());
     };
 }

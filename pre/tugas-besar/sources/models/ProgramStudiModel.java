@@ -67,7 +67,7 @@ public class ProgramStudiModel extends BaseModel implements ProgramStudiInterfac
 
     @Override
     public String toString() {
-        return "Jurusan("
+        return "ProgramStudi("
                 + "id=" + this.id + ", "
                 + "idJurusan=" + this.idJurusan + ", "
                 + "programStudi=" + this.programStudi + ", "
