@@ -2,21 +2,21 @@ package services;
 
 import java.sql.*;
 
-import models.StudentModel;
+import models.JurusanModel;
 import providers.Database;
 
-public class StudentService extends BaseService<StudentModel> {
+public class StudentService extends BaseService<JurusanModel> {
     @Override
-    public StudentModel[] get() {
+    public JurusanModel[] get() {
         try {
             final Database database = new Database();
             final int total = database.tableTotal("student");
             final ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
 
-            final StudentModel[] students = new StudentModel[total];
+            final JurusanModel[] students = new JurusanModel[total];
             int i = 0;
             while (result.next()) {
-                students[i] = new StudentModel(
+                students[i] = new JurusanModel(
                         result.getInt("id"),
                         result.getString("name"),
                         result.getString("grade"),
@@ -36,16 +36,16 @@ public class StudentService extends BaseService<StudentModel> {
     }
 
     @Override
-    public StudentModel getOne(int id) {
+    public JurusanModel getOne(int id) {
         try {
             final Database database = new Database();
             final ResultSet result = database
                     .executeQuery("SELECT id, name, grade, major FROM student WHERE id='" + id + "';");
 
-            StudentModel student = null;
+            JurusanModel student = null;
 
             if (result.next()) {
-                student = new StudentModel(
+                student = new JurusanModel(
                         result.getInt("id"),
                         result.getString("name"),
                         result.getString("grade"),
@@ -63,7 +63,7 @@ public class StudentService extends BaseService<StudentModel> {
     }
 
     @Override
-    public void add(StudentModel model) {
+    public void add(JurusanModel model) {
         try {
             final Database database = new Database();
             database.executeUpdate(
@@ -80,7 +80,7 @@ public class StudentService extends BaseService<StudentModel> {
     }
 
     @Override
-    public void add(StudentModel[] models) {
+    public void add(JurusanModel[] models) {
         try {
             final Database database = new Database();
 
@@ -108,7 +108,7 @@ public class StudentService extends BaseService<StudentModel> {
     }
 
     @Override
-    public void change(int id, StudentModel model) {
+    public void change(int id, JurusanModel model) {
         try {
             final Database database = new Database();
             database.executeUpdate(

@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import utilities.Modal;
-import models.StudentModel;
+import models.JurusanModel;
 import services.StudentService;
 
 public class StudentController implements Initializable {
@@ -24,19 +24,19 @@ public class StudentController implements Initializable {
     private final static StudentService service = new StudentService();
     private final static StudentView view = new StudentView();
 
-    private StudentModel selectedStudent;
+    private JurusanModel selectedStudent;
 
     @FXML
-    private TableView<StudentModel> tableViewStudent;
+    private TableView<JurusanModel> tableViewStudent;
 
     @FXML
-    private TableColumn<StudentModel, String> tableColumnName;
+    private TableColumn<JurusanModel, String> tableColumnName;
 
     @FXML
-    private TableColumn<StudentModel, String> tableColumnGrade;
+    private TableColumn<JurusanModel, String> tableColumnGrade;
 
     @FXML
-    private TableColumn<StudentModel, String> tableColumnMajor;
+    private TableColumn<JurusanModel, String> tableColumnMajor;
 
     @FXML
     private TextField textFieldName;
@@ -53,9 +53,9 @@ public class StudentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("name"));
-        tableColumnGrade.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("grade"));
-        tableColumnMajor.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("major"));
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<JurusanModel, String>("name"));
+        tableColumnGrade.setCellValueFactory(new PropertyValueFactory<JurusanModel, String>("grade"));
+        tableColumnMajor.setCellValueFactory(new PropertyValueFactory<JurusanModel, String>("major"));
 
         tableViewStudent.setItems(FXCollections.observableArrayList(service.get()));
     }
@@ -79,7 +79,7 @@ public class StudentController implements Initializable {
     @FXML
     public void buttonAddEvent(ActionEvent event) {
         if (modal.confirmation()) {
-            service.add(new StudentModel(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
+            service.add(new JurusanModel(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
 
             this.tableReload();
         }
@@ -91,7 +91,7 @@ public class StudentController implements Initializable {
             if (modal.confirmation()) {
                 service.change(
                         this.selectedStudent.getId(),
-                        new StudentModel(
+                        new JurusanModel(
                                 textFieldName.getText(),
                                 textFieldGrade.getText(),
                                 textFieldMajor.getText()));
