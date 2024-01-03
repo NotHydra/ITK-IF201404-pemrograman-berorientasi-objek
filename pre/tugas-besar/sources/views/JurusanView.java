@@ -2,8 +2,8 @@ package views;
 
 import controllers.MainController;
 
-public class StudentView {
+public class JurusanView {
     public void page() {
-        MainController.setRoot("Student");
+        MainController.setRoot("Jurusan");
     }
 }

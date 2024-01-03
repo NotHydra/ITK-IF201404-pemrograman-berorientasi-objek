@@ -17,7 +17,7 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage stage) {
-        scene = new Scene(loadView("Student"));
+        scene = new Scene(loadView("Jurusan"));
         stage.setScene(scene);
         stage.show();
     }
