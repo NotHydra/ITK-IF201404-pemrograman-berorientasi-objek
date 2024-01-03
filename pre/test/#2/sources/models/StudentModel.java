@@ -1,140 +1,76 @@
 package models;
 
-import java.sql.*;
+import interfaces.StudentInterface;
 
-import providers.Database;
-import schemas.StudentSchema;
+public class StudentModel extends BaseModel implements StudentInterface {
+    private final int id;
+    private final String name;
+    private final String grade;
+    private final String major;
 
-public class StudentModel extends BaseModel<StudentSchema> {
-    @Override
-    public StudentSchema[] get() {
-        try {
-            final Database database = new Database();
-            final int total = database.tableTotal("student");
-            final ResultSet result = database.executeQuery("SELECT id, name, grade, major FROM student;");
+    public StudentModel(String name, String grade, String major) {
+        this.validate(name, grade, major);
 
-            final StudentSchema[] students = new StudentSchema[total];
-            int i = 0;
-            while (result.next()) {
-                students[i] = new StudentSchema(
-                        result.getInt("id"),
-                        result.getString("name"),
-                        result.getString("grade"),
-                        result.getString("major"));
-
-                i++;
-            }
-
-            database.close();
-
-            return students;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        this.id = -1;
+        this.name = name;
+        this.grade = grade;
+        this.major = major;
     }
 
-    @Override
-    public StudentSchema getOne(int id) {
-        try {
-            final Database database = new Database();
-            final ResultSet result = database
-                    .executeQuery("SELECT id, name, grade, major FROM student WHERE id='" + id + "';");
-
-            StudentSchema student = null;
-
-            if (result.next()) {
-                student = new StudentSchema(
-                        result.getInt("id"),
-                        result.getString("name"),
-                        result.getString("grade"),
-                        result.getString("major"));
-            }
-
-            database.close();
-
-            return student;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public StudentModel(int id, String name, String grade, String major) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("Id is invalid");
         }
 
-        return null;
+        this.validate(name, grade, major);
+
+        this.id = id;
+        this.name = name;
+        this.grade = grade;
+        this.major = major;
     }
 
-    @Override
-    public void add(StudentSchema schema) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate(
-                    "INSERT INTO student (name, grade, major) VALUES ("
-                            + "'" + schema.getName() + "', "
-                            + "'" + schema.getGrade() + "', "
-                            + "'" + schema.getMajor() + "'"
-                            + ");");
+    private void validate(String name, String grade, String major) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
 
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (grade == null || grade.trim().isEmpty()) {
+            throw new IllegalArgumentException("Grade cannot be empty");
+        }
+
+        if (major == null || major.trim().isEmpty()) {
+            throw new IllegalArgumentException("Major cannot be empty");
         }
     }
 
     @Override
-    public void add(StudentSchema[] schemas) {
-        try {
-            final Database database = new Database();
-
-            String query = "INSERT INTO student (name, grade, major) VALUES ";
-            for (int i = 0; i < schemas.length; i++) {
-                query = query + "("
-                        + "'" + schemas[i].getName() + "', "
-                        + "'" + schemas[i].getGrade() + "', "
-                        + "'" + schemas[i].getMajor() + "'"
-                        + ")";
-
-                if (i != (schemas.length - 1)) {
-                    query = query + ", ";
-                } else {
-                    query = query + ";";
-                }
-            }
-
-            database.executeUpdate(query);
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public int getId() {
+        return this.id;
     }
 
     @Override
-    public void change(int id, StudentSchema schema) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate(
-                    "UPDATE student SET "
-                            + "name='" + schema.getName() + "', "
-                            + "grade='" + schema.getGrade() + "', "
-                            + "major='" + schema.getMajor() + "' "
-                            + "WHERE "
-                            + "id='" + id + "'"
-                            + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public String getName() {
+        return this.name;
     }
 
     @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM student WHERE id='" + id + "'");
+    public String getGrade() {
+        return this.grade;
+    }
 
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @Override
+    public String getMajor() {
+        return this.major;
+    }
+
+    @Override
+    public String toString() {
+        return "Student("
+                + "id=" + this.id + ", "
+                + "name=" + this.name + ", "
+                + "grade=" + this.grade + ", "
+                + "major=" + this.major
+                + ")";
     }
 }

@@ -5,12 +5,11 @@ import views.StudentView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
 import models.StudentModel;
-import schemas.StudentSchema;
+import services.StudentService;
 
 public class StudentController {
-    private final static StudentModel model = new StudentModel();
+    private final static StudentService service = new StudentService();
     private final static StudentView view = new StudentView();
 
     @FXML
@@ -34,6 +33,6 @@ public class StudentController {
 
     @FXML
     void buttonSubmitEvent(ActionEvent event) {
-        model.add(new StudentSchema(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
+        service.add(new StudentModel(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
     }
 }
