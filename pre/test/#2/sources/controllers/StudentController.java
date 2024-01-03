@@ -9,15 +9,20 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+
+import utilities.Modal;
 import models.StudentModel;
 import services.StudentService;
 
 public class StudentController implements Initializable {
+    private final static Modal modal = new Modal();
     private final static StudentService service = new StudentService();
     private final static StudentView view = new StudentView();
 
@@ -75,37 +80,43 @@ public class StudentController implements Initializable {
 
     @FXML
     public void buttonAddEvent(ActionEvent event) {
-        service.add(new StudentModel(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
-
-        this.tableReload();
-    }
-
-    @FXML
-    public void buttonChangeEvent(ActionEvent event) {
-        if (this.selectedStudent != null) {
-            service.change(
-                    this.selectedStudent.getId(),
-                    new StudentModel(
-                            textFieldName.getText(),
-                            textFieldGrade.getText(),
-                            textFieldMajor.getText()));
+        if (modal.confirmation()) {
+            service.add(new StudentModel(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
 
             this.tableReload();
         }
     }
 
     @FXML
+    public void buttonChangeEvent(ActionEvent event) {
+        if (this.selectedStudent != null) {
+            if (modal.confirmation()) {
+                service.change(
+                        this.selectedStudent.getId(),
+                        new StudentModel(
+                                textFieldName.getText(),
+                                textFieldGrade.getText(),
+                                textFieldMajor.getText()));
+
+                this.tableReload();
+            }
+        }
+    }
+
+    @FXML
     public void buttonRemoveEvent(ActionEvent event) {
         if (this.selectedStudent != null) {
-            service.remove(this.selectedStudent.getId());
+            if (modal.confirmation()) {
+                service.remove(this.selectedStudent.getId());
 
-            this.selectedStudent = null;
+                this.selectedStudent = null;
 
-            textFieldName.clear();
-            textFieldGrade.clear();
-            textFieldMajor.clear();
+                textFieldName.clear();
+                textFieldGrade.clear();
+                textFieldMajor.clear();
 
-            this.tableReload();
+                this.tableReload();
+            }
         }
     }
 }
