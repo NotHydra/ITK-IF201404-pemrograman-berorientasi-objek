@@ -13,12 +13,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import models.StudentModel;
 import services.StudentService;
 
 public class StudentController implements Initializable {
     private final static StudentService service = new StudentService();
     private final static StudentView view = new StudentView();
+
+    private StudentModel selectedStudent;
 
     @FXML
     private TableView<StudentModel> tableViewStudent;
@@ -45,10 +48,6 @@ public class StudentController implements Initializable {
         view.page();
     }
 
-    public void reloadPage() {
-        tableViewStudent.setItems(FXCollections.observableArrayList(service.get()));
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableColumnName.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("name"));
@@ -58,18 +57,55 @@ public class StudentController implements Initializable {
         tableViewStudent.setItems(FXCollections.observableArrayList(service.get()));
     }
 
+    public void tableReload() {
+        tableViewStudent.setItems(FXCollections.observableArrayList(service.get()));
+    }
+
+    @FXML
+    public void tableItemClick(MouseEvent event) {
+        try {
+            this.selectedStudent = tableViewStudent.getSelectionModel().getSelectedItem();
+
+            textFieldName.setText(this.selectedStudent.getName());
+            textFieldGrade.setText(this.selectedStudent.getGrade());
+            textFieldMajor.setText(this.selectedStudent.getMajor());
+        } catch (Exception e) {
+        }
+    }
+
     @FXML
     public void buttonAddEvent(ActionEvent event) {
         service.add(new StudentModel(textFieldName.getText(), textFieldGrade.getText(), textFieldMajor.getText()));
 
-        this.reloadPage();
+        this.tableReload();
     }
 
     @FXML
     public void buttonChangeEvent(ActionEvent event) {
+        if (this.selectedStudent != null) {
+            service.change(
+                    this.selectedStudent.getId(),
+                    new StudentModel(
+                            textFieldName.getText(),
+                            textFieldGrade.getText(),
+                            textFieldMajor.getText()));
+
+            this.tableReload();
+        }
     }
 
     @FXML
     public void buttonRemoveEvent(ActionEvent event) {
+        if (this.selectedStudent != null) {
+            service.remove(this.selectedStudent.getId());
+
+            this.selectedStudent = null;
+
+            textFieldName.clear();
+            textFieldGrade.clear();
+            textFieldMajor.clear();
+
+            this.tableReload();
+        }
     }
 }
