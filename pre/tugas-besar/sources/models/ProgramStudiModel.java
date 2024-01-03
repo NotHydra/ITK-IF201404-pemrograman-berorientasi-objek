@@ -74,5 +74,4 @@ public class ProgramStudiModel extends BaseModel implements ProgramStudiInterfac
                 + "deskripsi=" + this.deskripsi
                 + ")";
     }
-
 }

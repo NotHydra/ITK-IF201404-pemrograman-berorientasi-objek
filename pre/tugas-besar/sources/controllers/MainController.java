@@ -35,5 +35,4 @@ public class MainController extends Application {
 
         return null;
     }
-
 }

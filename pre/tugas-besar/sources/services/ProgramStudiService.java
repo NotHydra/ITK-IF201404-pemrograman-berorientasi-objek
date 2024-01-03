@@ -3,24 +3,26 @@ package services;
 import java.sql.*;
 
 import providers.Database;
-import models.JurusanModel;
+import models.ProgramStudiModel;
 
-public class JurusanService extends BaseService<JurusanModel> {
-    private final String table = "jurusan";
+public class ProgramStudiService extends BaseService<ProgramStudiModel> {
+    private final String table = "program_studi";
 
     @Override
-    public JurusanModel[] get() {
+    public ProgramStudiModel[] get() {
         try {
             final Database database = new Database();
             final int total = database.tableTotal(table);
-            final ResultSet result = database.executeQuery("SELECT id, jurusan, deskripsi FROM " + table + ";");
+            final ResultSet result = database
+                    .executeQuery("SELECT id, id_jurusan, program_studi, deskripsi FROM " + table + ";");
 
-            final JurusanModel[] jurusanList = new JurusanModel[total];
+            final ProgramStudiModel[] jurusanList = new ProgramStudiModel[total];
             int i = 0;
             while (result.next()) {
-                jurusanList[i] = new JurusanModel(
+                jurusanList[i] = new ProgramStudiModel(
                         result.getInt("id"),
-                        result.getString("jurusan"),
+                        result.getInt("id_jurusan"),
+                        result.getString("program_studi"),
                         result.getString("deskripsi"));
 
                 i++;
@@ -37,24 +39,29 @@ public class JurusanService extends BaseService<JurusanModel> {
     }
 
     @Override
-    public JurusanModel getOne(int id) {
+    public ProgramStudiModel getOne(int id) {
         try {
             final Database database = new Database();
             final ResultSet result = database
-                    .executeQuery("SELECT id, jurusan, deskripsi FROM " + table + " WHERE id='" + id + "';");
+                    .executeQuery(""
+                            + "SELECT id, id_jurusan, program_studi, deskripsi "
+                            + "FROM " + table + " "
+                            + "WHERE id='" + id + "'"
+                            + ";");
 
-            JurusanModel jurusan = null;
+            ProgramStudiModel programStudi = null;
 
             if (result.next()) {
-                jurusan = new JurusanModel(
+                programStudi = new ProgramStudiModel(
                         result.getInt("id"),
-                        result.getString("jurusan"),
+                        result.getInt("id_jurusan"),
+                        result.getString("program_studi"),
                         result.getString("deskripsi"));
             }
 
             database.close();
 
-            return jurusan;
+            return programStudi;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,12 +70,13 @@ public class JurusanService extends BaseService<JurusanModel> {
     }
 
     @Override
-    public void add(JurusanModel model) {
+    public void add(ProgramStudiModel model) {
         try {
             final Database database = new Database();
             database.executeUpdate(
-                    "INSERT INTO " + table + " (jurusan, deskripsi) VALUES ("
-                            + "'" + model.getJurusan() + "', "
+                    "INSERT INTO " + table + " (id_jurusan, program_studi, deskripsi) VALUES ("
+                            + "'" + model.getIdJurusan() + "', "
+                            + "'" + model.getProgramStudi() + "', "
                             + "'" + model.getDeskripsi() + "'"
                             + ");");
 
@@ -79,14 +87,15 @@ public class JurusanService extends BaseService<JurusanModel> {
     }
 
     @Override
-    public void add(JurusanModel[] models) {
+    public void add(ProgramStudiModel[] models) {
         try {
             final Database database = new Database();
 
-            String query = "INSERT INTO " + table + " (jurusan, deskripsi) VALUES ";
+            String query = "INSERT INTO " + table + " (id_jurusan, program_studi, deskripsi) VALUES ";
             for (int i = 0; i < models.length; i++) {
                 query = query + "("
-                        + "'" + models[i].getJurusan() + "', "
+                        + "'" + models[i].getIdJurusan() + "', "
+                        + "'" + models[i].getProgramStudi() + "', "
                         + "'" + models[i].getDeskripsi() + "'"
                         + ")";
 
@@ -106,12 +115,13 @@ public class JurusanService extends BaseService<JurusanModel> {
     }
 
     @Override
-    public void change(int id, JurusanModel model) {
+    public void change(int id, ProgramStudiModel model) {
         try {
             final Database database = new Database();
             database.executeUpdate(
                     "UPDATE " + table + " SET "
-                            + "jurusan='" + model.getJurusan() + "', "
+                            + "id_jurusan='" + model.getIdJurusan() + "', "
+                            + "program_studi='" + model.getProgramStudi() + "', "
                             + "deskripsi='" + model.getDeskripsi() + "' "
                             + "WHERE "
                             + "id='" + id + "'"

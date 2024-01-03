@@ -1,5 +1,6 @@
 import controllers.MainController;
-import models.ProgramStudiExtendModel;
+import models.ProgramStudiModel;
+import services.ProgramStudiService;
 
 public class App {
     public static void main(String[] args) {
@@ -9,13 +10,9 @@ public class App {
         // e.printStackTrace();
         // }
 
-        ProgramStudiExtendModel programStudiExtendModel = new ProgramStudiExtendModel(
-                1,
-                1,
-                "Program Studi 2",
-                "Deskripsi 2",
-                "Jurusan 1",
-                "Deskripsi 1");
-        System.out.println(programStudiExtendModel.getJurusanExtend().getJurusan());
+        ProgramStudiService programStudiService = new ProgramStudiService();
+        for (ProgramStudiModel programStudi : programStudiService.get()) {
+            System.out.println(programStudi);
+        }
     };
 }

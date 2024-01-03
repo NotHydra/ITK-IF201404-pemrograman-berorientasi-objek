@@ -35,5 +35,4 @@ public class ProgramStudiExtendModel extends ProgramStudiModel implements Progra
                 + ")"
                 + ")";
     }
-
 }

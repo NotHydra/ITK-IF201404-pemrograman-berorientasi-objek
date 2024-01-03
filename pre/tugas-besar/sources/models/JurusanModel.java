@@ -61,5 +61,4 @@ public class JurusanModel extends BaseModel implements JurusanInterface {
                 + "deskripsi=" + this.deskripsi
                 + ")";
     }
-
 }
