@@ -3,11 +3,7 @@ package views;
 import controllers.MainController;
 
 public class StudentView {
-    public void home() {
+    public void page() {
         MainController.setRoot("Student");
-    }
-
-    public void add() {
-        MainController.setRoot("StudentAdd");
     }
 }
