@@ -4,8 +4,11 @@ import java.sql.*;
 
 import providers.Database;
 import models.ProgramStudiModel;
+import models.ProgramStudiExtendModel;
 
-public class ProgramStudiService extends BaseService<ProgramStudiModel> {
+public class ProgramStudiService
+        extends BaseService<ProgramStudiModel>
+        implements ExtendService<ProgramStudiExtendModel> {
     private final String table = "program_studi";
 
     @Override
@@ -14,12 +17,19 @@ public class ProgramStudiService extends BaseService<ProgramStudiModel> {
             final Database database = new Database();
             final int total = database.tableTotal(table);
             final ResultSet result = database
-                    .executeQuery("SELECT id, id_jurusan, program_studi, deskripsi FROM " + table + ";");
+                    .executeQuery(""
+                            + "SELECT "
+                            + "id, "
+                            + "id_jurusan, "
+                            + "program_studi, "
+                            + "deskripsi "
+                            + "FROM " + table
+                            + ";");
 
-            final ProgramStudiModel[] jurusanList = new ProgramStudiModel[total];
+            final ProgramStudiModel[] programStudiList = new ProgramStudiModel[total];
             int i = 0;
             while (result.next()) {
-                jurusanList[i] = new ProgramStudiModel(
+                programStudiList[i] = new ProgramStudiModel(
                         result.getInt("id"),
                         result.getInt("id_jurusan"),
                         result.getString("program_studi"),
@@ -30,7 +40,7 @@ public class ProgramStudiService extends BaseService<ProgramStudiModel> {
 
             database.close();
 
-            return jurusanList;
+            return programStudiList;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +54,11 @@ public class ProgramStudiService extends BaseService<ProgramStudiModel> {
             final Database database = new Database();
             final ResultSet result = database
                     .executeQuery(""
-                            + "SELECT id, id_jurusan, program_studi, deskripsi "
+                            + "SELECT "
+                            + "id, "
+                            + "id_jurusan, "
+                            + "program_studi, "
+                            + "deskripsi "
                             + "FROM " + table + " "
                             + "WHERE id='" + id + "'"
                             + ";");
@@ -57,6 +71,88 @@ public class ProgramStudiService extends BaseService<ProgramStudiModel> {
                         result.getInt("id_jurusan"),
                         result.getString("program_studi"),
                         result.getString("deskripsi"));
+            }
+
+            database.close();
+
+            return programStudi;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public ProgramStudiExtendModel[] getExtend() {
+        try {
+            final Database database = new Database();
+            final int total = database.tableTotal(table);
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "program_studi.id, "
+                            + "program_studi.id_jurusan, "
+                            + "program_studi.program_studi, "
+                            + "program_studi.deskripsi "
+                            + "jurusan.jurusan, "
+                            + "jurusan.deskripsi, "
+                            + "FROM program_studi "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
+                            + ";");
+
+            final ProgramStudiExtendModel[] programStudiList = new ProgramStudiExtendModel[total];
+            int i = 0;
+            while (result.next()) {
+                programStudiList[i] = new ProgramStudiExtendModel(
+                        result.getInt("program_studi.id"),
+                        result.getInt("program_studi.id_jurusan"),
+                        result.getString("program_studi.program_studi"),
+                        result.getString("program_studi.deskripsi"),
+                        result.getString("jurusan.jurusan"),
+                        result.getString("jurusan.deskripsi"));
+
+                i++;
+            }
+
+            database.close();
+
+            return programStudiList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public ProgramStudiExtendModel getOneExtend(int id) {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "program_studi.id, "
+                            + "program_studi.id_jurusan, "
+                            + "program_studi.program_studi, "
+                            + "program_studi.deskripsi "
+                            + "jurusan.jurusan, "
+                            + "jurusan.deskripsi, "
+                            + "FROM program_studi "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
+                            + "WHERE id='" + id + "'"
+                            + ";");
+
+            ProgramStudiExtendModel programStudi = null;
+
+            if (result.next()) {
+                programStudi = new ProgramStudiExtendModel(
+                        result.getInt("program_studi.id"),
+                        result.getInt("program_studi.id_jurusan"),
+                        result.getString("program_studi.program_studi"),
+                        result.getString("program_studi.deskripsi"),
+                        result.getString("jurusan.jurusan"),
+                        result.getString("jurusan.deskripsi"));
             }
 
             database.close();
@@ -144,4 +240,5 @@ public class ProgramStudiService extends BaseService<ProgramStudiModel> {
             e.printStackTrace();
         }
     }
+
 }
