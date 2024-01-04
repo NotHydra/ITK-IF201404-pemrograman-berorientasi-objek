@@ -194,8 +194,65 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
 
     @Override
     public void add(MahasiswaModel[] models) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        try {
+            final Database database = new Database();
+
+            String query = ""
+                    + "INSERT INTO " + table + " ("
+                    + "nik, "
+                    + "nim, "
+                    + "nama, "
+                    + "email, "
+                    + "password, "
+                    + "alamat, "
+                    + "id_tempat_lahir , "
+                    + "tanggal_lahir, "
+                    + "jenis_kelamin, "
+                    + "golongan_darah, "
+                    + "agama, "
+                    + "nomor_telepon, "
+                    + "id_tahun_ajaran , "
+                    + "id_tahun_masuk , "
+                    + "id_program_studi , "
+                    + "id_dosen_wali , "
+                    + "aktif, "
+                    + "keterangan"
+                    + ") VALUES ";
+            for (int i = 0; i < models.length; i++) {
+                query = query + "("
+                        + "'" + models[i].getNIK() + "', "
+                        + "'" + models[i].getNIM() + "', "
+                        + "'" + models[i].getNama() + "', "
+                        + "'" + models[i].getEmail() + "', "
+                        + "'" + models[i].getPassword() + "', "
+                        + "'" + models[i].getAlamat() + "', "
+                        + "'" + models[i].getIdTempatLahir() + "', "
+                        + "'" + CustomDate.dateToSQL(models[i].getTanggalLahir()) + "', "
+                        + "'" + models[i].getJenisKelamin() + "', "
+                        + "'" + models[i].getGolonganDarah() + "', "
+                        + "'" + models[i].getAgama() + "', "
+                        + "'" + models[i].getNomorTelepon() + "', "
+                        + "'" + models[i].getIdTahunAjaran() + "', "
+                        + "'" + models[i].getIdTahunMasuk() + "', "
+                        + "'" + models[i].getIdProgramStudi() + "', "
+                        + "'" + models[i].getIdDosenWali() + "', "
+                        + "'" + (models[i].getAktif() ? 1 : 0) + "', "
+                        + "'" + models[i].getKeterangan() + "'"
+                        + ")";
+
+                if (i != (models.length - 1)) {
+                    query = query + ", ";
+                } else {
+                    query = query + ";";
+                }
+            }
+
+            database.executeUpdate(query);
+
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -209,39 +266,6 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
-
-    // @Override
-    // public void add(ProgramStudiModel[] models) {
-    // try {
-    // final Database database = new Database();
-
-    // String query = ""
-    // + "INSERT INTO " + table + " ("
-    // + "id_jurusan, "
-    // + "program_studi, "
-    // + "deskripsi"
-    // + ") VALUES ";
-    // for (int i = 0; i < models.length; i++) {
-    // query = query + "("
-    // + "'" + models[i].getIdJurusan() + "', "
-    // + "'" + models[i].getProgramStudi() + "', "
-    // + "'" + models[i].getDeskripsi() + "'"
-    // + ")";
-
-    // if (i != (models.length - 1)) {
-    // query = query + ", ";
-    // } else {
-    // query = query + ";";
-    // }
-    // }
-
-    // database.executeUpdate(query);
-
-    // database.close();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
 
     // @Override
     // public void change(int id, ProgramStudiModel model) {
