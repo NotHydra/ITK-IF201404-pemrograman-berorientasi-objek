@@ -62,8 +62,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
                 idTahunAjaran,
                 idTahunMasuk,
                 idProgramStudi,
-                idDosenWali,
-                keterangan);
+                idDosenWali);
 
         this.id = -1;
         this.nik = nik;
@@ -126,8 +125,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
                 idTahunAjaran,
                 idTahunMasuk,
                 idProgramStudi,
-                idDosenWali,
-                keterangan);
+                idDosenWali);
 
         this.id = id;
         this.nik = nik;
@@ -166,8 +164,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
             int idTahunAjaran,
             int idTahunMasuk,
             int idProgramStudi,
-            int idDosenWali,
-            String keterangan) {
+            int idDosenWali) {
         if (nik == null || nik.trim().isEmpty()) {
             throw new IllegalArgumentException("NIK cannot be empty");
         }
@@ -226,10 +223,6 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
 
         if (idDosenWali <= 0) {
             throw new IllegalArgumentException("Id dosen wali is invalid");
-        }
-
-        if (keterangan == null || keterangan.trim().isEmpty()) {
-            throw new IllegalArgumentException("Keterangan cannot be empty");
         }
     }
 
@@ -339,7 +332,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
                 + "password=" + password + ", "
                 + "alamat=" + alamat + ", "
                 + "idTempatLahir=" + idTempatLahir + ", "
-                + "tanggalLahir=" + tanggalLahir + ", "
+                + "tanggalLahir=" + CustomDate.dateToString(tanggalLahir) + ", "
                 + "jenisKelamin=" + jenisKelamin + ", "
                 + "golonganDarah=" + golonganDarah + ", "
                 + "agama=" + agama + ", "
