@@ -1,5 +1,6 @@
 import controllers.MainController;
-import services.RuanganService;
+
+import services.MataKuliahService;
 
 public class App {
     public static void main(String[] args) {
@@ -9,7 +10,7 @@ public class App {
         // e.printStackTrace();
         // }
 
-        RuanganService ruanganService = new RuanganService();
-        System.out.println(ruanganService.getOne(1));
+        MataKuliahService mataKuliahService = new MataKuliahService();
+        System.out.println(mataKuliahService.getOne(1));
     };
 }
