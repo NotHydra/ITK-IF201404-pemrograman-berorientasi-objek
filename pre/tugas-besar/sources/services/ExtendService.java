@@ -1,7 +1,7 @@
 package services;
 
-public interface ExtendService<ModelType> {
-    public ModelType[] getExtend();
+public interface ExtendService<ModelExtendType> {
+    public ModelExtendType[] getExtend();
 
-    public ModelType getOneExtend(int id);
+    public ModelExtendType getOneExtend(int id);
 }
