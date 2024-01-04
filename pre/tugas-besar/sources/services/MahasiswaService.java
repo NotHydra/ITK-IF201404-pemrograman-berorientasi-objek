@@ -75,40 +75,94 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
         return null;
     }
 
-    // @Override
-    // public ProgramStudiModel getOne(int id) {
-    // try {
-    // final Database database = new Database();
-    // final ResultSet result = database
-    // .executeQuery(""
-    // + "SELECT "
-    // + "id, "
-    // + "id_jurusan, "
-    // + "program_studi, "
-    // + "deskripsi "
-    // + "FROM " + table + " "
-    // + "WHERE id='" + id + "'"
-    // + ";");
+    @Override
+    public MahasiswaModel getOne(int id) {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "id, "
+                            + "nik, "
+                            + "nim, "
+                            + "nama, "
+                            + "email, "
+                            + "password, "
+                            + "alamat, "
+                            + "id_tempat_lahir , "
+                            + "tanggal_lahir, "
+                            + "jenis_kelamin, "
+                            + "golongan_darah, "
+                            + "agama, "
+                            + "nomor_telepon, "
+                            + "id_tahun_ajaran , "
+                            + "id_tahun_masuk , "
+                            + "id_program_studi , "
+                            + "id_dosen_wali , "
+                            + "aktif, "
+                            + "keterangan "
+                            + "FROM " + table + " "
+                            + "WHERE id='" + id + "'"
+                            + ";");
 
-    // ProgramStudiModel programStudi = null;
+            MahasiswaModel mahasiswa = null;
 
-    // if (result.next()) {
-    // programStudi = new ProgramStudiModel(
-    // result.getInt("id"),
-    // result.getInt("id_jurusan"),
-    // result.getString("program_studi"),
-    // result.getString("deskripsi"));
-    // }
+            if (result.next()) {
+                mahasiswa = new MahasiswaModel(
+                        result.getInt("id"),
+                        result.getString("nik"),
+                        result.getString("nim"),
+                        result.getString("nama"),
+                        result.getString("email"),
+                        result.getString("password"),
+                        result.getString("alamat"),
+                        result.getInt("id_tempat_lahir"),
+                        result.getString("tanggal_lahir"),
+                        result.getString("jenis_kelamin"),
+                        result.getString("golongan_darah"),
+                        result.getString("agama"),
+                        result.getString("nomor_telepon"),
+                        result.getInt("id_tahun_ajaran"),
+                        result.getInt("id_tahun_masuk"),
+                        result.getInt("id_program_studi"),
+                        result.getInt("id_dosen_wali"),
+                        result.getBoolean("aktif"),
+                        result.getString("keterangan"));
+            }
 
-    // database.close();
+            database.close();
 
-    // return programStudi;
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
+            return mahasiswa;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    // return null;
-    // }
+        return null;
+    }
+
+    @Override
+    public void add(MahasiswaModel model) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    }
+
+    @Override
+    public void add(MahasiswaModel[] models) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    }
+
+    @Override
+    public void change(int id, MahasiswaModel model) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'change'");
+    }
+
+    @Override
+    public void remove(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+    }
 
     // @Override
     // public void add(ProgramStudiModel model) {

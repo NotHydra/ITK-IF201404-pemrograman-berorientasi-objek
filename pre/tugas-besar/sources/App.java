@@ -14,5 +14,7 @@ public class App {
         for (MahasiswaModel mahasiswa : mahasiswaService.get()) {
             System.out.println(mahasiswa);
         }
+
+        System.out.println(mahasiswaService.getOne(1));
     };
 }
