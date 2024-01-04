@@ -29,10 +29,7 @@ public class ProgramStudiExtendModel extends ProgramStudiModel implements Progra
                 + "idJurusan=" + this.getIdJurusan() + ", "
                 + "programStudi=" + this.getProgramStudi() + ", "
                 + "deskripsi=" + this.getDeskripsi() + ", "
-                + "Jurusan("
-                + "jurusan=" + this.getJurusanExtend().getJurusan() + ", "
-                + "deskripsi=" + this.getJurusanExtend().getDeskripsi()
-                + ")"
+                + this.getJurusanExtend().toString()
                 + ")";
     }
 }
