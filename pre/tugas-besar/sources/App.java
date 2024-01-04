@@ -1,6 +1,6 @@
 import controllers.MainController;
-
-import services.MataKuliahService;
+import models.MahasiswaModel;
+import services.MahasiswaService;
 
 public class App {
     public static void main(String[] args) {
@@ -10,7 +10,9 @@ public class App {
         // e.printStackTrace();
         // }
 
-        MataKuliahService mataKuliahService = new MataKuliahService();
-        System.out.println(mataKuliahService.getOne(1));
+        MahasiswaService mahasiswaService = new MahasiswaService();
+        for (MahasiswaModel mahasiswa : mahasiswaService.get()) {
+            System.out.println(mahasiswa);
+        }
     };
 }
