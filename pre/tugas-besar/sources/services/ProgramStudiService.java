@@ -94,9 +94,9 @@ public class ProgramStudiService
                             + "program_studi.id, "
                             + "program_studi.id_jurusan, "
                             + "program_studi.program_studi, "
-                            + "program_studi.deskripsi "
+                            + "program_studi.deskripsi, "
                             + "jurusan.jurusan, "
-                            + "jurusan.deskripsi, "
+                            + "jurusan.deskripsi "
                             + "FROM program_studi "
                             + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
                             + ";");
@@ -135,12 +135,12 @@ public class ProgramStudiService
                             + "program_studi.id, "
                             + "program_studi.id_jurusan, "
                             + "program_studi.program_studi, "
-                            + "program_studi.deskripsi "
+                            + "program_studi.deskripsi, "
                             + "jurusan.jurusan, "
-                            + "jurusan.deskripsi, "
+                            + "jurusan.deskripsi "
                             + "FROM program_studi "
-                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
-                            + "WHERE id='" + id + "'"
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
+                            + "WHERE program_studi.id='" + id + "'"
                             + ";");
 
             ProgramStudiExtendModel programStudi = null;
@@ -169,12 +169,16 @@ public class ProgramStudiService
     public void add(ProgramStudiModel model) {
         try {
             final Database database = new Database();
-            database.executeUpdate(
-                    "INSERT INTO " + table + " (id_jurusan, program_studi, deskripsi) VALUES ("
-                            + "'" + model.getIdJurusan() + "', "
-                            + "'" + model.getProgramStudi() + "', "
-                            + "'" + model.getDeskripsi() + "'"
-                            + ");");
+            database.executeUpdate(""
+                    + "INSERT INTO " + table + " ("
+                    + "id_jurusan, "
+                    + "program_studi, "
+                    + "deskripsi"
+                    + ") VALUES ("
+                    + "'" + model.getIdJurusan() + "', "
+                    + "'" + model.getProgramStudi() + "', "
+                    + "'" + model.getDeskripsi() + "'"
+                    + ");");
 
             database.close();
         } catch (Exception e) {
@@ -187,7 +191,12 @@ public class ProgramStudiService
         try {
             final Database database = new Database();
 
-            String query = "INSERT INTO " + table + " (id_jurusan, program_studi, deskripsi) VALUES ";
+            String query = ""
+                    + "INSERT INTO " + table + " ("
+                    + "id_jurusan, "
+                    + "program_studi, "
+                    + "deskripsi"
+                    + ") VALUES ";
             for (int i = 0; i < models.length; i++) {
                 query = query + "("
                         + "'" + models[i].getIdJurusan() + "', "
@@ -214,14 +223,14 @@ public class ProgramStudiService
     public void change(int id, ProgramStudiModel model) {
         try {
             final Database database = new Database();
-            database.executeUpdate(
-                    "UPDATE " + table + " SET "
-                            + "id_jurusan='" + model.getIdJurusan() + "', "
-                            + "program_studi='" + model.getProgramStudi() + "', "
-                            + "deskripsi='" + model.getDeskripsi() + "' "
-                            + "WHERE "
-                            + "id='" + id + "'"
-                            + ";");
+            database.executeUpdate(""
+                    + "UPDATE " + table + " SET "
+                    + "id_jurusan='" + model.getIdJurusan() + "', "
+                    + "program_studi='" + model.getProgramStudi() + "', "
+                    + "deskripsi='" + model.getDeskripsi() + "' "
+                    + "WHERE "
+                    + "id='" + id + "'"
+                    + ";");
 
             database.close();
         } catch (Exception e) {

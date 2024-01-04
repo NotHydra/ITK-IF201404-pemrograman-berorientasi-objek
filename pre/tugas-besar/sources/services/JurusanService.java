@@ -13,7 +13,13 @@ public class JurusanService extends BaseService<JurusanModel> {
         try {
             final Database database = new Database();
             final int total = database.tableTotal(table);
-            final ResultSet result = database.executeQuery("SELECT id, jurusan, deskripsi FROM " + table + ";");
+            final ResultSet result = database.executeQuery(""
+                    + "SELECT "
+                    + "id, "
+                    + "jurusan, "
+                    + "deskripsi "
+                    + "FROM " + table + ""
+                    + ";");
 
             final JurusanModel[] jurusanList = new JurusanModel[total];
             int i = 0;
@@ -41,7 +47,14 @@ public class JurusanService extends BaseService<JurusanModel> {
         try {
             final Database database = new Database();
             final ResultSet result = database
-                    .executeQuery("SELECT id, jurusan, deskripsi FROM " + table + " WHERE id='" + id + "';");
+                    .executeQuery(""
+                            + "SELECT "
+                            + "id, "
+                            + "jurusan, "
+                            + "deskripsi "
+                            + "FROM " + table + " "
+                            + "WHERE id='" + id + "'"
+                            + ";");
 
             JurusanModel jurusan = null;
 
@@ -66,11 +79,14 @@ public class JurusanService extends BaseService<JurusanModel> {
     public void add(JurusanModel model) {
         try {
             final Database database = new Database();
-            database.executeUpdate(
-                    "INSERT INTO " + table + " (jurusan, deskripsi) VALUES ("
-                            + "'" + model.getJurusan() + "', "
-                            + "'" + model.getDeskripsi() + "'"
-                            + ");");
+            database.executeUpdate(""
+                    + "INSERT INTO " + table + " ("
+                    + "jurusan, "
+                    + "deskripsi"
+                    + ") VALUES ("
+                    + "'" + model.getJurusan() + "', "
+                    + "'" + model.getDeskripsi() + "'"
+                    + ");");
 
             database.close();
         } catch (Exception e) {
@@ -83,7 +99,11 @@ public class JurusanService extends BaseService<JurusanModel> {
         try {
             final Database database = new Database();
 
-            String query = "INSERT INTO " + table + " (jurusan, deskripsi) VALUES ";
+            String query = ""
+                    + "INSERT INTO " + table + " ("
+                    + "jurusan, "
+                    + "deskripsi"
+                    + ") VALUES ";
             for (int i = 0; i < models.length; i++) {
                 query = query + "("
                         + "'" + models[i].getJurusan() + "', "
@@ -109,13 +129,13 @@ public class JurusanService extends BaseService<JurusanModel> {
     public void change(int id, JurusanModel model) {
         try {
             final Database database = new Database();
-            database.executeUpdate(
-                    "UPDATE " + table + " SET "
-                            + "jurusan='" + model.getJurusan() + "', "
-                            + "deskripsi='" + model.getDeskripsi() + "' "
-                            + "WHERE "
-                            + "id='" + id + "'"
-                            + ";");
+            database.executeUpdate(""
+                    + "UPDATE " + table + " SET "
+                    + "jurusan='" + model.getJurusan() + "', "
+                    + "deskripsi='" + model.getDeskripsi() + "' "
+                    + "WHERE "
+                    + "id='" + id + "'"
+                    + ";");
 
             database.close();
         } catch (Exception e) {
