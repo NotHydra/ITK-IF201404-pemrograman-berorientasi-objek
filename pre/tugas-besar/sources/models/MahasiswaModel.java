@@ -193,6 +193,10 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
             throw new IllegalArgumentException("Tanggal lahir cannot be empty");
         }
 
+        if (!tanggalLahir.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            throw new IllegalArgumentException("Tanggal lahir invalid date format.");
+        }
+
         if (jenisKelamin == null || jenisKelamin.trim().isEmpty()) {
             throw new IllegalArgumentException("Jenis kelamin cannot be empty");
         }
