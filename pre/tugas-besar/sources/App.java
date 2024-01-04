@@ -1,6 +1,5 @@
 import controllers.MainController;
-import models.ProgramStudiModel;
-import services.ProgramStudiService;
+import services.TahunAjaranService;
 
 public class App {
     public static void main(String[] args) {
@@ -10,6 +9,7 @@ public class App {
         // e.printStackTrace();
         // }
 
-        
+        TahunAjaranService tahunAjaranService = new TahunAjaranService();
+        System.out.println(tahunAjaranService.getOne(1));
     };
 }
