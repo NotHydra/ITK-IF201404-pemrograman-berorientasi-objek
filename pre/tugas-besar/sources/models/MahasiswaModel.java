@@ -72,7 +72,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
         this.password = password;
         this.alamat = alamat;
         this.idTempatLahir = idTempatLahir;
-        this.tanggalLahir = CustomDate.stringToDate(tanggalLahir);
+        this.tanggalLahir = CustomDate.sqlToDate(tanggalLahir);
         this.jenisKelamin = jenisKelamin;
         this.golonganDarah = golonganDarah;
         this.agama = agama;
@@ -135,7 +135,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
         this.password = password;
         this.alamat = alamat;
         this.idTempatLahir = idTempatLahir;
-        this.tanggalLahir = CustomDate.stringToDate(tanggalLahir);
+        this.tanggalLahir = CustomDate.sqlToDate(tanggalLahir);
         this.jenisKelamin = jenisKelamin;
         this.golonganDarah = golonganDarah;
         this.agama = agama;

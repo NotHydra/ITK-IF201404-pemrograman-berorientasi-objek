@@ -3,6 +3,7 @@ package services;
 import java.sql.*;
 
 import providers.Database;
+import utilities.CustomDate;
 import models.MahasiswaModel;
 
 public class MahasiswaService extends BaseService<MahasiswaModel> {
@@ -142,8 +143,53 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
 
     @Override
     public void add(MahasiswaModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        try {
+            final Database database = new Database();
+            database.executeUpdate(""
+                    + "INSERT INTO " + table + " ("
+                    + "nik, "
+                    + "nim, "
+                    + "nama, "
+                    + "email, "
+                    + "password, "
+                    + "alamat, "
+                    + "id_tempat_lahir , "
+                    + "tanggal_lahir, "
+                    + "jenis_kelamin, "
+                    + "golongan_darah, "
+                    + "agama, "
+                    + "nomor_telepon, "
+                    + "id_tahun_ajaran , "
+                    + "id_tahun_masuk , "
+                    + "id_program_studi , "
+                    + "id_dosen_wali , "
+                    + "aktif, "
+                    + "keterangan"
+                    + ") VALUES ("
+                    + "'" + model.getNIK() + "', "
+                    + "'" + model.getNIM() + "', "
+                    + "'" + model.getNama() + "', "
+                    + "'" + model.getEmail() + "', "
+                    + "'" + model.getPassword() + "', "
+                    + "'" + model.getAlamat() + "', "
+                    + "'" + model.getIdTempatLahir() + "', "
+                    + "'" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
+                    + "'" + model.getJenisKelamin() + "', "
+                    + "'" + model.getGolonganDarah() + "', "
+                    + "'" + model.getAgama() + "', "
+                    + "'" + model.getNomorTelepon() + "', "
+                    + "'" + model.getIdTahunAjaran() + "', "
+                    + "'" + model.getIdTahunMasuk() + "', "
+                    + "'" + model.getIdProgramStudi() + "', "
+                    + "'" + model.getIdDosenWali() + "', "
+                    + "'" + (model.getAktif() ? 1 : 0) + "', "
+                    + "'" + model.getKeterangan() + "'"
+                    + ");");
+
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -163,27 +209,6 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
-
-    // @Override
-    // public void add(ProgramStudiModel model) {
-    // try {
-    // final Database database = new Database();
-    // database.executeUpdate(""
-    // + "INSERT INTO " + table + " ("
-    // + "id_jurusan, "
-    // + "program_studi, "
-    // + "deskripsi"
-    // + ") VALUES ("
-    // + "'" + model.getIdJurusan() + "', "
-    // + "'" + model.getProgramStudi() + "', "
-    // + "'" + model.getDeskripsi() + "'"
-    // + ");");
-
-    // database.close();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
 
     // @Override
     // public void add(ProgramStudiModel[] models) {
