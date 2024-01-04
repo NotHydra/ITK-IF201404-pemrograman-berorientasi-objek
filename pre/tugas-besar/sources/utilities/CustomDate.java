@@ -4,13 +4,23 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class CustomDate {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat sqlFormat = new SimpleDateFormat("yyyy-MM-dd");
     private static final SimpleDateFormat stringFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public static Date stringToDate(String date) {
+    public static Date sqlToDate(String date) {
         try {
 
-            return dateFormat.parse(date);
+            return sqlFormat.parse(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static String dateToSQL(Date date) {
+        try {
+            return sqlFormat.format(date);
         } catch (Exception e) {
             e.printStackTrace();
         }
