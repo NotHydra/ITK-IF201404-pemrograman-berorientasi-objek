@@ -5,8 +5,11 @@ import java.sql.*;
 import providers.Database;
 import utilities.CustomDate;
 import models.MahasiswaModel;
+import models.MahasiswaExtendModel;
 
-public class MahasiswaService extends BaseService<MahasiswaModel> {
+public class MahasiswaService
+        extends BaseService<MahasiswaModel>
+        implements ExtendService<MahasiswaExtendModel> {
     private final String table = "mahasiswa";
 
     @Override
@@ -134,6 +137,91 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
             database.close();
 
             return mahasiswa;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public MahasiswaExtendModel[] getExtend() {
+        try {
+            final Database database = new Database();
+            final int total = database.tableTotal(table);
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "mahasiswa.id, "
+                            + "mahasiswa.nik, "
+                            + "mahasiswa.nim, "
+                            + "mahasiswa.nama, "
+                            + "mahasiswa.email, "
+                            + "mahasiswa.password, "
+                            + "mahasiswa.alamat, "
+                            + "mahasiswa.id_tempat_lahir, "
+                            + "mahasiswa.tanggal_lahir, "
+                            + "mahasiswa.jenis_kelamin, "
+                            + "mahasiswa.golongan_darah, "
+                            + "mahasiswa.agama, "
+                            + "mahasiswa.nomor_telepon, "
+                            + "mahasiswa.id_tahun_ajaran, "
+                            + "mahasiswa.id_tahun_masuk, "
+                            + "mahasiswa.id_program_studi, "
+                            + "mahasiswa.id_dosen_wali, "
+                            + "mahasiswa.aktif, "
+                            + "mahasiswa.keterangan, "
+                            + "tempat_lahir.tempat_lahir, "
+                            + "tahun_ajaran.tahun_ajaran, "
+                            + "program_studi.id_jurusan, "
+                            + "program_studi.program_studi, "
+                            + "program_studi.deskripsi, "
+                            + "jurusan.jurusan, "
+                            + "jurusan.deskripsi "
+                            + "FROM mahasiswa "
+                            + "INNER JOIN tempat_lahir ON mahasiswa.id_tempat_lahir=tempat_lahir.id "
+                            + "INNER JOIN tahun_ajaran ON mahasiswa.id_tahun_ajaran=tahun_ajaran.id "
+                            + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
+                            + ";");
+
+            final MahasiswaExtendModel[] mahasiswaList = new MahasiswaExtendModel[total];
+            int i = 0;
+            while (result.next()) {
+                mahasiswaList[i] = new MahasiswaExtendModel(
+                        result.getInt("mahasiswa.id"),
+                        result.getString("mahasiswa.nik"),
+                        result.getString("mahasiswa.nim"),
+                        result.getString("mahasiswa.nama"),
+                        result.getString("mahasiswa.email"),
+                        result.getString("mahasiswa.password"),
+                        result.getString("mahasiswa.alamat"),
+                        result.getInt("mahasiswa.id_tempat_lahir"),
+                        result.getString("mahasiswa.tanggal_lahir"),
+                        result.getString("mahasiswa.jenis_kelamin"),
+                        result.getString("mahasiswa.golongan_darah"),
+                        result.getString("mahasiswa.agama"),
+                        result.getString("mahasiswa.nomor_telepon"),
+                        result.getInt("mahasiswa.id_tahun_ajaran"),
+                        result.getInt("mahasiswa.id_tahun_masuk"),
+                        result.getInt("mahasiswa.id_program_studi"),
+                        result.getInt("mahasiswa.id_dosen_wali"),
+                        result.getBoolean("mahasiswa.aktif"),
+                        result.getString("mahasiswa.keterangan"),
+                        result.getString("tempat_lahir.tempat_lahir"),
+                        result.getString("tahun_ajaran.tahun_ajaran"),
+                        result.getInt("program_studi.id_jurusan"),
+                        result.getString("program_studi.program_studi"),
+                        result.getString("program_studi.deskripsi"),
+                        result.getString("jurusan.jurusan"),
+                        result.getString("jurusan.deskripsi"));
+
+                i++;
+            }
+
+            database.close();
+
+            return mahasiswaList;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -299,5 +387,11 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public MahasiswaExtendModel getOneExtend(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getOneExtend'");
     }
 }

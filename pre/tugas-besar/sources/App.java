@@ -1,6 +1,6 @@
 import controllers.MainController;
-import services.ProgramStudiService;
-import models.ProgramStudiExtendModel;
+import models.MahasiswaExtendModel;
+import services.MahasiswaService;
 
 public class App {
     public static void main(String[] args) {
@@ -10,9 +10,9 @@ public class App {
         // e.printStackTrace();
         // }
 
-        ProgramStudiService programStudiService = new ProgramStudiService();
-        for (ProgramStudiExtendModel programStudi : programStudiService.getExtend()) {
-            System.out.println(programStudi);
+        MahasiswaService mahasiswaService = new MahasiswaService();
+        for (MahasiswaExtendModel mahasiswa : mahasiswaService.getExtend()) {
+            System.out.println(mahasiswa);
         }
     };
 }
