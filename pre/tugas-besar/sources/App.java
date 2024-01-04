@@ -10,11 +10,6 @@ public class App {
         // e.printStackTrace();
         // }
 
-        ProgramStudiService programStudiService = new ProgramStudiService();
-        for (ProgramStudiModel programStudi : programStudiService.getExtend()) {
-            System.out.println(programStudi);
-        }
-
-        System.out.println(programStudiService.getOneExtend(1));
+        
     };
 }
