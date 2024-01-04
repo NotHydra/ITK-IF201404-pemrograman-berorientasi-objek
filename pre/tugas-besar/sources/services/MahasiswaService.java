@@ -24,16 +24,16 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
                             + "email, "
                             + "password, "
                             + "alamat, "
-                            + "id_tempat_lahir , "
+                            + "id_tempat_lahir, "
                             + "tanggal_lahir, "
                             + "jenis_kelamin, "
                             + "golongan_darah, "
                             + "agama, "
                             + "nomor_telepon, "
-                            + "id_tahun_ajaran , "
-                            + "id_tahun_masuk , "
-                            + "id_program_studi , "
-                            + "id_dosen_wali , "
+                            + "id_tahun_ajaran, "
+                            + "id_tahun_masuk, "
+                            + "id_program_studi, "
+                            + "id_dosen_wali, "
                             + "aktif, "
                             + "keterangan "
                             + "FROM " + table
@@ -90,16 +90,16 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
                             + "email, "
                             + "password, "
                             + "alamat, "
-                            + "id_tempat_lahir , "
+                            + "id_tempat_lahir, "
                             + "tanggal_lahir, "
                             + "jenis_kelamin, "
                             + "golongan_darah, "
                             + "agama, "
                             + "nomor_telepon, "
-                            + "id_tahun_ajaran , "
-                            + "id_tahun_masuk , "
-                            + "id_program_studi , "
-                            + "id_dosen_wali , "
+                            + "id_tahun_ajaran, "
+                            + "id_tahun_masuk, "
+                            + "id_program_studi, "
+                            + "id_dosen_wali, "
                             + "aktif, "
                             + "keterangan "
                             + "FROM " + table + " "
@@ -153,16 +153,16 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
                     + "email, "
                     + "password, "
                     + "alamat, "
-                    + "id_tempat_lahir , "
+                    + "id_tempat_lahir, "
                     + "tanggal_lahir, "
                     + "jenis_kelamin, "
                     + "golongan_darah, "
                     + "agama, "
                     + "nomor_telepon, "
-                    + "id_tahun_ajaran , "
-                    + "id_tahun_masuk , "
-                    + "id_program_studi , "
-                    + "id_dosen_wali , "
+                    + "id_tahun_ajaran, "
+                    + "id_tahun_masuk, "
+                    + "id_program_studi, "
+                    + "id_dosen_wali, "
                     + "aktif, "
                     + "keterangan"
                     + ") VALUES ("
@@ -205,16 +205,16 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
                     + "email, "
                     + "password, "
                     + "alamat, "
-                    + "id_tempat_lahir , "
+                    + "id_tempat_lahir, "
                     + "tanggal_lahir, "
                     + "jenis_kelamin, "
                     + "golongan_darah, "
                     + "agama, "
                     + "nomor_telepon, "
-                    + "id_tahun_ajaran , "
-                    + "id_tahun_masuk , "
-                    + "id_program_studi , "
-                    + "id_dosen_wali , "
+                    + "id_tahun_ajaran, "
+                    + "id_tahun_masuk, "
+                    + "id_program_studi, "
+                    + "id_dosen_wali, "
                     + "aktif, "
                     + "keterangan"
                     + ") VALUES ";
@@ -257,8 +257,36 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
 
     @Override
     public void change(int id, MahasiswaModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'change'");
+        try {
+            final Database database = new Database();
+            database.executeUpdate(""
+                    + "UPDATE " + table + " SET "
+                    + "nik='" + model.getNIK() + "', "
+                    + "nim='" + model.getNIM() + "', "
+                    + "nama='" + model.getNama() + "', "
+                    + "email='" + model.getEmail() + "', "
+                    + "password='" + model.getPassword() + "', "
+                    + "alamat='" + model.getAlamat() + "', "
+                    + "id_tempat_lahir='" + model.getIdTempatLahir() + "', "
+                    + "tanggal_lahir='" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
+                    + "jenis_kelamin='" + model.getJenisKelamin() + "', "
+                    + "golongan_darah='" + model.getGolonganDarah() + "', "
+                    + "agama='" + model.getAgama() + "', "
+                    + "nomor_telepon='" + model.getNomorTelepon() + "', "
+                    + "id_tahun_ajaran='" + model.getIdTahunAjaran() + "', "
+                    + "id_tahun_masuk='" + model.getIdTahunMasuk() + "', "
+                    + "id_program_studi='" + model.getIdProgramStudi() + "', "
+                    + "id_dosen_wali='" + model.getIdDosenWali() + "', "
+                    + "aktif='" + (model.getAktif() ? 1 : 0) + "', "
+                    + "keterangan='" + model.getKeterangan() + "'"
+                    + "WHERE "
+                    + "id='" + id + "'"
+                    + ";");
+
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -272,24 +300,4 @@ public class MahasiswaService extends BaseService<MahasiswaModel> {
             e.printStackTrace();
         }
     }
-
-    // @Override
-    // public void change(int id, ProgramStudiModel model) {
-    // try {
-    // final Database database = new Database();
-    // database.executeUpdate(""
-    // + "UPDATE " + table + " SET "
-    // + "id_jurusan='" + model.getIdJurusan() + "', "
-    // + "program_studi='" + model.getProgramStudi() + "', "
-    // + "deskripsi='" + model.getDeskripsi() + "' "
-    // + "WHERE "
-    // + "id='" + id + "'"
-    // + ";");
-
-    // database.close();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
-
 }

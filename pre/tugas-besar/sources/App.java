@@ -12,7 +12,11 @@ public class App {
 
         MahasiswaService mahasiswaService = new MahasiswaService();
 
-        mahasiswaService.remove(7);
+        mahasiswaService.change(1,
+                new MahasiswaModel("NIK 3", "NIM 3", "Nama 3", "Email 3", "Password 3", "Alamat 3", 1,
+                        "2024-01-02", "Laki-Laki",
+                        "B+", "Katolik", "Nomor Telepon 3",
+                        1, 1, 1, 1, true, "Keterangan 3"));
 
         for (MahasiswaModel mahasiswa : mahasiswaService.get()) {
             System.out.println(mahasiswa);
