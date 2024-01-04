@@ -6,6 +6,7 @@ import utilities.CustomDate;
 public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExtendInterface {
     private final TempatLahirModel tempatLahirExtend;
     private final TahunAjaranModel tahunAjaranExtend;
+    private final TahunMasukModel tahunMasukExtend;
     private final ProgramStudiExtendModel programStudiExtend;
 
     public MahasiswaExtendModel(
@@ -30,6 +31,7 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
             String keterangan,
             String tempatLahirTempatLahir,
             String tahunAjaranTahunAjaran,
+            String tahunMasukTahunMasuk,
             int programStudiIdJurusan,
             String programStudiProgramStudi,
             String programStudiDeskripsi,
@@ -58,6 +60,7 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
 
         this.tempatLahirExtend = new TempatLahirModel(idTempatLahir, tempatLahirTempatLahir);
         this.tahunAjaranExtend = new TahunAjaranModel(idTahunAjaran, tahunAjaranTahunAjaran);
+        this.tahunMasukExtend = new TahunMasukModel(idTahunMasuk, tahunMasukTahunMasuk);
         this.programStudiExtend = new ProgramStudiExtendModel(
                 idProgramStudi,
                 programStudiIdJurusan,
@@ -73,6 +76,10 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
 
     public TahunAjaranModel getTahunAjaranExtend() {
         return this.tahunAjaranExtend;
+    }
+
+    public TahunMasukModel getTahunMasukExtend() {
+        return this.tahunMasukExtend;
     }
 
     public ProgramStudiExtendModel getProgramStudiExtend() {
@@ -103,6 +110,7 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
                 + "keterangan=" + this.getKeterangan() + ", "
                 + this.getTempatLahirExtend().toString() + ", "
                 + this.getTahunAjaranExtend().toString() + ", "
+                + this.getTahunMasukExtend().toString() + ", "
                 + this.getProgramStudiExtend().toString()
                 + ")";
     }
