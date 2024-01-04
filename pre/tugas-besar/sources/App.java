@@ -1,5 +1,5 @@
 import controllers.MainController;
-import services.TahunMasukService;
+import services.RuanganService;
 
 public class App {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class App {
         // e.printStackTrace();
         // }
 
-        TahunMasukService tahunMasukService = new TahunMasukService();
-        System.out.println(tahunMasukService.getOne(1));
+        RuanganService ruanganService = new RuanganService();
+        System.out.println(ruanganService.getOne(1));
     };
 }
