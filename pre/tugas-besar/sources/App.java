@@ -16,7 +16,7 @@ public class App {
 
         mahasiswaService
                 .add(new MahasiswaModel("NIK 2", "NIM 2", "Nama 2", "Email 2", "Password 2", "Alamat 2", 1,
-                        "03-01-2024", "Wanita",
+                        "2024-01-03", "Wanita",
                         "AB-", "Kristen", "Nomor Telepon 2",
                         1, 1, 1, 1, false, "Keterangan 2"));
 
