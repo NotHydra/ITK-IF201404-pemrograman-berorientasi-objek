@@ -11,8 +11,6 @@ public class App {
         // }
 
         DosenService dosenService = new DosenService();
-        for (DosenModel dosen : dosenService.get()) {
-            System.out.println(dosen);
-        }
+        System.out.println(dosenService.getOne(1));
     };
 }

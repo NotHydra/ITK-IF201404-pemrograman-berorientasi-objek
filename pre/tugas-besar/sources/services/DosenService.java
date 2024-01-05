@@ -74,8 +74,63 @@ public class DosenService extends BaseService<DosenModel> {
 
     @Override
     public DosenModel getOne(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOne'");
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "id, "
+                            + "nik, "
+                            + "nip, "
+                            + "nama, "
+                            + "email, "
+                            + "password, "
+                            + "alamat, "
+                            + "id_tempat_lahir, "
+                            + "tanggal_lahir, "
+                            + "jenis_kelamin, "
+                            + "golongan_darah, "
+                            + "agama, "
+                            + "nomor_telepon, "
+                            + "id_pendidikan, "
+                            + "id_program_studi, "
+                            + "aktif, "
+                            + "keterangan "
+                            + "FROM " + table + " "
+                            + "WHERE id='" + id + "'"
+                            + ";");
+
+            DosenModel dosen = null;
+
+            if (result.next()) {
+                dosen = new DosenModel(
+                        result.getInt("id"),
+                        result.getString("nik"),
+                        result.getString("nip"),
+                        result.getString("nama"),
+                        result.getString("email"),
+                        result.getString("password"),
+                        result.getString("alamat"),
+                        result.getInt("id_tempat_lahir"),
+                        result.getString("tanggal_lahir"),
+                        result.getString("jenis_kelamin"),
+                        result.getString("golongan_darah"),
+                        result.getString("agama"),
+                        result.getString("nomor_telepon"),
+                        result.getInt("id_pendidikan"),
+                        result.getInt("id_program_studi"),
+                        result.getBoolean("aktif"),
+                        result.getString("keterangan"));
+            }
+
+            database.close();
+
+            return dosen;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override
@@ -101,71 +156,6 @@ public class DosenService extends BaseService<DosenModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
-
-    // @Override
-    // public MahasiswaModel getOne(int id) {
-    // try {
-    // final Database database = new Database();
-    // final ResultSet result = database
-    // .executeQuery(""
-    // + "SELECT "
-    // + "id, "
-    // + "nik, "
-    // + "nim, "
-    // + "nama, "
-    // + "email, "
-    // + "password, "
-    // + "alamat, "
-    // + "id_tempat_lahir, "
-    // + "tanggal_lahir, "
-    // + "jenis_kelamin, "
-    // + "golongan_darah, "
-    // + "agama, "
-    // + "nomor_telepon, "
-    // + "id_tahun_ajaran, "
-    // + "id_tahun_masuk, "
-    // + "id_program_studi, "
-    // + "id_dosen_wali, "
-    // + "aktif, "
-    // + "keterangan "
-    // + "FROM " + table + " "
-    // + "WHERE id='" + id + "'"
-    // + ";");
-
-    // MahasiswaModel mahasiswa = null;
-
-    // if (result.next()) {
-    // mahasiswa = new MahasiswaModel(
-    // result.getInt("id"),
-    // result.getString("nik"),
-    // result.getString("nim"),
-    // result.getString("nama"),
-    // result.getString("email"),
-    // result.getString("password"),
-    // result.getString("alamat"),
-    // result.getInt("id_tempat_lahir"),
-    // result.getString("tanggal_lahir"),
-    // result.getString("jenis_kelamin"),
-    // result.getString("golongan_darah"),
-    // result.getString("agama"),
-    // result.getString("nomor_telepon"),
-    // result.getInt("id_tahun_ajaran"),
-    // result.getInt("id_tahun_masuk"),
-    // result.getInt("id_program_studi"),
-    // result.getInt("id_dosen_wali"),
-    // result.getBoolean("aktif"),
-    // result.getString("keterangan"));
-    // }
-
-    // database.close();
-
-    // return mahasiswa;
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-
-    // return null;
-    // }
 
     // @Override
     // public void add(MahasiswaModel model) {
