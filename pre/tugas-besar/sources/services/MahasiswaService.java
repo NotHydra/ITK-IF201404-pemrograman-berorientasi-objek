@@ -233,6 +233,92 @@ public class MahasiswaService
     }
 
     @Override
+    public MahasiswaExtendModel getOneExtend(int id) {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "mahasiswa.id, "
+                            + "mahasiswa.nik, "
+                            + "mahasiswa.nim, "
+                            + "mahasiswa.nama, "
+                            + "mahasiswa.email, "
+                            + "mahasiswa.password, "
+                            + "mahasiswa.alamat, "
+                            + "mahasiswa.id_tempat_lahir, "
+                            + "mahasiswa.tanggal_lahir, "
+                            + "mahasiswa.jenis_kelamin, "
+                            + "mahasiswa.golongan_darah, "
+                            + "mahasiswa.agama, "
+                            + "mahasiswa.nomor_telepon, "
+                            + "mahasiswa.id_tahun_ajaran, "
+                            + "mahasiswa.id_tahun_masuk, "
+                            + "mahasiswa.id_program_studi, "
+                            + "mahasiswa.id_dosen_wali, "
+                            + "mahasiswa.aktif, "
+                            + "mahasiswa.keterangan, "
+                            + "tempat_lahir.tempat_lahir, "
+                            + "tahun_ajaran.tahun_ajaran, "
+                            + "tahun_masuk.tahun_masuk, "
+                            + "program_studi.id_jurusan, "
+                            + "program_studi.program_studi, "
+                            + "program_studi.deskripsi, "
+                            + "jurusan.jurusan, "
+                            + "jurusan.deskripsi "
+                            + "FROM mahasiswa "
+                            + "INNER JOIN tempat_lahir ON mahasiswa.id_tempat_lahir=tempat_lahir.id "
+                            + "INNER JOIN tahun_ajaran ON mahasiswa.id_tahun_ajaran=tahun_ajaran.id "
+                            + "INNER JOIN tahun_masuk ON mahasiswa.id_tahun_masuk=tahun_masuk.id "
+                            + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
+                            + "WHERE id='" + id + "'"
+                            + ";");
+
+            MahasiswaExtendModel mahasiswa = null;
+
+            if (result.next()) {
+                mahasiswa = new MahasiswaExtendModel(
+                        result.getInt("mahasiswa.id"),
+                        result.getString("mahasiswa.nik"),
+                        result.getString("mahasiswa.nim"),
+                        result.getString("mahasiswa.nama"),
+                        result.getString("mahasiswa.email"),
+                        result.getString("mahasiswa.password"),
+                        result.getString("mahasiswa.alamat"),
+                        result.getInt("mahasiswa.id_tempat_lahir"),
+                        result.getString("mahasiswa.tanggal_lahir"),
+                        result.getString("mahasiswa.jenis_kelamin"),
+                        result.getString("mahasiswa.golongan_darah"),
+                        result.getString("mahasiswa.agama"),
+                        result.getString("mahasiswa.nomor_telepon"),
+                        result.getInt("mahasiswa.id_tahun_ajaran"),
+                        result.getInt("mahasiswa.id_tahun_masuk"),
+                        result.getInt("mahasiswa.id_program_studi"),
+                        result.getInt("mahasiswa.id_dosen_wali"),
+                        result.getBoolean("mahasiswa.aktif"),
+                        result.getString("mahasiswa.keterangan"),
+                        result.getString("tempat_lahir.tempat_lahir"),
+                        result.getString("tahun_ajaran.tahun_ajaran"),
+                        result.getString("tahun_masuk.tahun_masuk"),
+                        result.getInt("program_studi.id_jurusan"),
+                        result.getString("program_studi.program_studi"),
+                        result.getString("program_studi.deskripsi"),
+                        result.getString("jurusan.jurusan"),
+                        result.getString("jurusan.deskripsi"));
+            }
+
+            database.close();
+
+            return mahasiswa;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public void add(MahasiswaModel model) {
         try {
             final Database database = new Database();
@@ -390,11 +476,5 @@ public class MahasiswaService
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public MahasiswaExtendModel getOneExtend(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOneExtend'");
     }
 }
