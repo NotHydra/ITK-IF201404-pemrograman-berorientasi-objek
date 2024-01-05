@@ -241,8 +241,34 @@ public class DosenService extends BaseService<DosenModel> {
 
     @Override
     public void change(int id, DosenModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'change'");
+        try {
+            final Database database = new Database();
+            database.executeUpdate(""
+                    + "UPDATE " + table + " SET "
+                    + "nik='" + model.getNIK() + "', "
+                    + "nip='" + model.getNIP() + "', "
+                    + "nama='" + model.getNama() + "', "
+                    + "email='" + model.getEmail() + "', "
+                    + "password='" + model.getPassword() + "', "
+                    + "alamat='" + model.getAlamat() + "', "
+                    + "id_tempat_lahir='" + model.getIdTempatLahir() + "', "
+                    + "tanggal_lahir='" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
+                    + "jenis_kelamin='" + model.getJenisKelamin() + "', "
+                    + "golongan_darah='" + model.getGolonganDarah() + "', "
+                    + "agama='" + model.getAgama() + "', "
+                    + "nomor_telepon='" + model.getNomorTelepon() + "', "
+                    + "id_program_studi='" + model.getIdPendidikan() + "', "
+                    + "id_program_studi='" + model.getIdProgramStudi() + "', "
+                    + "aktif='" + (model.getAktif() ? 1 : 0) + "', "
+                    + "keterangan=" + (model.getKeterangan() == null ? "NULL " : "'" + model.getKeterangan() + "' ")
+                    + "WHERE "
+                    + "id='" + id + "'"
+                    + ";");
+
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -250,40 +276,6 @@ public class DosenService extends BaseService<DosenModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
-
-    // @Override
-    // public void change(int id, MahasiswaModel model) {
-    // try {
-    // final Database database = new Database();
-    // database.executeUpdate(""
-    // + "UPDATE " + table + " SET "
-    // + "nik='" + model.getNIK() + "', "
-    // + "nim='" + model.getNIM() + "', "
-    // + "nama='" + model.getNama() + "', "
-    // + "email='" + model.getEmail() + "', "
-    // + "password='" + model.getPassword() + "', "
-    // + "alamat='" + model.getAlamat() + "', "
-    // + "id_tempat_lahir='" + model.getIdTempatLahir() + "', "
-    // + "tanggal_lahir='" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
-    // + "jenis_kelamin='" + model.getJenisKelamin() + "', "
-    // + "golongan_darah='" + model.getGolonganDarah() + "', "
-    // + "agama='" + model.getAgama() + "', "
-    // + "nomor_telepon='" + model.getNomorTelepon() + "', "
-    // + "id_tahun_ajaran='" + model.getIdTahunAjaran() + "', "
-    // + "id_tahun_masuk='" + model.getIdTahunMasuk() + "', "
-    // + "id_program_studi='" + model.getIdProgramStudi() + "', "
-    // + "id_dosen_wali='" + model.getIdDosenWali() + "', "
-    // + "aktif='" + (model.getAktif() ? 1 : 0) + "', "
-    // + "keterangan='" + model.getKeterangan() + "'"
-    // + "WHERE "
-    // + "id='" + id + "'"
-    // + ";");
-
-    // database.close();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
 
     // @Override
     // public void remove(int id) {
