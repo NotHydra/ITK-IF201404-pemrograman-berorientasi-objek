@@ -74,7 +74,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
         this.idPendidikan = idPendidikan;
         this.idProgramStudi = idProgramStudi;
         this.aktif = aktif;
-        this.keterangan = keterangan;
+        this.keterangan = (keterangan == null || keterangan.trim().isEmpty()) ? null : keterangan;
     }
 
     public DosenModel(
@@ -131,7 +131,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
         this.idPendidikan = idPendidikan;
         this.idProgramStudi = idProgramStudi;
         this.aktif = aktif;
-        this.keterangan = keterangan;
+        this.keterangan = (keterangan == null || keterangan.trim().isEmpty()) ? null : keterangan;
     }
 
     private void validate(
