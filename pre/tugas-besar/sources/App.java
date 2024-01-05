@@ -1,6 +1,6 @@
 import controllers.MainController;
-import models.DosenModel;
-import services.DosenService;
+import models.MahasiswaModel;
+import services.MahasiswaService;
 
 public class App {
     public static void main(String[] args) {
@@ -10,14 +10,19 @@ public class App {
         // e.printStackTrace();
         // }
 
-        DosenService dosenService = new DosenService();
-        dosenService.add(
-                new DosenModel("NIK 2", "NIP 2", "Nama 2", "Email 2", "Password 2", "Alamat 2", 1, "2024-01-01",
-                        "Perempuan",
-                        "O+", "Buddha", "Nomor Telepon 2", 1, 1, true, null));
+        MahasiswaService mahasiswaService = new MahasiswaService();
 
-        for (DosenModel dosen : dosenService.get()) {
-            System.out.println(dosen.getKeterangan() == null);
+        mahasiswaService.add(new MahasiswaModel[] {
+                new MahasiswaModel("NIK 2", "NIM 2", "Nama 2", "Email 2", "Password 2", "Alamat 2", 1,
+                        "2024-01-01", "Laki-Laki", "O-", "Khonghucu", "Nomor Telepon 2", 1, 1, 1, 1, true,
+                        "    "),
+                new MahasiswaModel("NIK 3", "NIM 3", "Nama 3", "Email 3", "Password 3", "Alamat 3", 1,
+                        "2024-01-01", "Laki-Laki", "O-", "Khonghucu", "Nomor Telepon 3", 1, 1, 1, 1, true,
+                        "    ")
+        });
+
+        for (MahasiswaModel mahasiswa : mahasiswaService.get()) {
+            System.out.println(mahasiswa);
         }
     };
 }

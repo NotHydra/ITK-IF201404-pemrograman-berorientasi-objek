@@ -82,7 +82,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
         this.idProgramStudi = idProgramStudi;
         this.idDosenWali = idDosenWali;
         this.aktif = aktif;
-        this.keterangan = keterangan;
+        this.keterangan = (keterangan == null || keterangan.trim().isEmpty()) ? null : keterangan;
     }
 
     public MahasiswaModel(
@@ -145,7 +145,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
         this.idProgramStudi = idProgramStudi;
         this.idDosenWali = idDosenWali;
         this.aktif = aktif;
-        this.keterangan = keterangan;
+        this.keterangan = (keterangan == null || keterangan.trim().isEmpty()) ? null : keterangan;
     }
 
     private void validate(

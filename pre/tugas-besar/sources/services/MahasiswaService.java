@@ -360,7 +360,7 @@ public class MahasiswaService
                     + "'" + model.getIdProgramStudi() + "', "
                     + "'" + model.getIdDosenWali() + "', "
                     + "'" + (model.getAktif() ? 1 : 0) + "', "
-                    + "'" + model.getKeterangan() + "'"
+                    + (model.getKeterangan() == null ? "NULL" : "'" + model.getKeterangan() + "'")
                     + ");");
 
             database.close();
@@ -414,7 +414,7 @@ public class MahasiswaService
                         + "'" + models[i].getIdProgramStudi() + "', "
                         + "'" + models[i].getIdDosenWali() + "', "
                         + "'" + (models[i].getAktif() ? 1 : 0) + "', "
-                        + "'" + models[i].getKeterangan() + "'"
+                        + (models[i].getKeterangan() == null ? "NULL" : "'" + models[i].getKeterangan() + "'")
                         + ")";
 
                 if (i != (models.length - 1)) {
