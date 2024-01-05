@@ -169,6 +169,10 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
             throw new IllegalArgumentException("NIK cannot be empty");
         }
 
+        if (nim == null || nim.trim().isEmpty()) {
+            throw new IllegalArgumentException("NIM cannot be empty");
+        }
+
         if (nama == null || nama.trim().isEmpty()) {
             throw new IllegalArgumentException("Nama cannot be empty");
         }
