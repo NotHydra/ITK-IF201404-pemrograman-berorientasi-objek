@@ -12,9 +12,7 @@ public class App {
 
                 DosenService dosenService = new DosenService();
 
-                dosenService.change(1, new DosenModel("NIK 3", "NIP 3", "Nama 3", "Email 3", "Password 3", "Alamat 3",
-                                1, "2024-01-01", "Perempuan", "O+", "Islam", "Nomor Telepon 3", 1, 1, true,
-                                "Keterangan 3"));
+                dosenService.remove(21);
 
                 for (DosenModel dosen : dosenService.get()) {
                         System.out.println(dosen);
