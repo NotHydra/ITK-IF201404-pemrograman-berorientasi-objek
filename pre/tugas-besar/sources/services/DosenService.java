@@ -135,8 +135,49 @@ public class DosenService extends BaseService<DosenModel> {
 
     @Override
     public void add(DosenModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        try {
+            final Database database = new Database();
+            database.executeUpdate(""
+                    + "INSERT INTO " + table + " ("
+                    + "nik, "
+                    + "nip, "
+                    + "nama, "
+                    + "email, "
+                    + "password, "
+                    + "alamat, "
+                    + "id_tempat_lahir, "
+                    + "tanggal_lahir, "
+                    + "jenis_kelamin, "
+                    + "golongan_darah, "
+                    + "agama, "
+                    + "nomor_telepon, "
+                    + "id_pendidikan, "
+                    + "id_program_studi, "
+                    + "aktif, "
+                    + "keterangan"
+                    + ") VALUES ("
+                    + "'" + model.getNIK() + "', "
+                    + "'" + model.getNIP() + "', "
+                    + "'" + model.getNama() + "', "
+                    + "'" + model.getEmail() + "', "
+                    + "'" + model.getPassword() + "', "
+                    + "'" + model.getAlamat() + "', "
+                    + "'" + model.getIdTempatLahir() + "', "
+                    + "'" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
+                    + "'" + model.getJenisKelamin() + "', "
+                    + "'" + model.getGolonganDarah() + "', "
+                    + "'" + model.getAgama() + "', "
+                    + "'" + model.getNomorTelepon() + "', "
+                    + "'" + model.getIdPendidikan() + "', "
+                    + "'" + model.getIdProgramStudi() + "', "
+                    + "'" + (model.getAktif() ? 1 : 0) + "', "
+                    + (model.getKeterangan() == null ? "NULL" : "'" + model.getKeterangan() + "'")
+                    + ");");
+
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -156,57 +197,6 @@ public class DosenService extends BaseService<DosenModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
-
-    // @Override
-    // public void add(MahasiswaModel model) {
-    // try {
-    // final Database database = new Database();
-    // database.executeUpdate(""
-    // + "INSERT INTO " + table + " ("
-    // + "nik, "
-    // + "nim, "
-    // + "nama, "
-    // + "email, "
-    // + "password, "
-    // + "alamat, "
-    // + "id_tempat_lahir, "
-    // + "tanggal_lahir, "
-    // + "jenis_kelamin, "
-    // + "golongan_darah, "
-    // + "agama, "
-    // + "nomor_telepon, "
-    // + "id_tahun_ajaran, "
-    // + "id_tahun_masuk, "
-    // + "id_program_studi, "
-    // + "id_dosen_wali, "
-    // + "aktif, "
-    // + "keterangan"
-    // + ") VALUES ("
-    // + "'" + model.getNIK() + "', "
-    // + "'" + model.getNIM() + "', "
-    // + "'" + model.getNama() + "', "
-    // + "'" + model.getEmail() + "', "
-    // + "'" + model.getPassword() + "', "
-    // + "'" + model.getAlamat() + "', "
-    // + "'" + model.getIdTempatLahir() + "', "
-    // + "'" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
-    // + "'" + model.getJenisKelamin() + "', "
-    // + "'" + model.getGolonganDarah() + "', "
-    // + "'" + model.getAgama() + "', "
-    // + "'" + model.getNomorTelepon() + "', "
-    // + "'" + model.getIdTahunAjaran() + "', "
-    // + "'" + model.getIdTahunMasuk() + "', "
-    // + "'" + model.getIdProgramStudi() + "', "
-    // + "'" + model.getIdDosenWali() + "', "
-    // + "'" + (model.getAktif() ? 1 : 0) + "', "
-    // + "'" + model.getKeterangan() + "'"
-    // + ");");
-
-    // database.close();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
 
     // @Override
     // public void add(MahasiswaModel[] models) {
