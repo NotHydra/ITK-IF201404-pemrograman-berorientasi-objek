@@ -455,7 +455,7 @@ public class MahasiswaService
                     + "id_program_studi='" + model.getIdProgramStudi() + "', "
                     + "id_dosen_wali='" + model.getIdDosenWali() + "', "
                     + "aktif='" + (model.getAktif() ? 1 : 0) + "', "
-                    + "keterangan='" + model.getKeterangan() + "'"
+                    + "keterangan=" + (model.getKeterangan() == null ? "NULL " : "'" + model.getKeterangan() + "' ")
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
