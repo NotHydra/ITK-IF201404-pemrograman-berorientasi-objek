@@ -271,7 +271,7 @@ public class MahasiswaService
                             + "INNER JOIN tahun_ajaran ON mahasiswa.id_tahun_ajaran=tahun_ajaran.id "
                             + "INNER JOIN tahun_masuk ON mahasiswa.id_tahun_masuk=tahun_masuk.id "
                             + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
-                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
                             + "WHERE id='" + id + "'"
                             + ";");
 

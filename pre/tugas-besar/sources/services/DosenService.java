@@ -5,8 +5,9 @@ import java.sql.*;
 import providers.Database;
 import utilities.CustomDate;
 import models.DosenModel;
+import models.DosenExtendModel;
 
-public class DosenService extends BaseService<DosenModel> {
+public class DosenService extends BaseService<DosenModel> implements ExtendService<DosenExtendModel> {
     private final String table = "dosen";
 
     @Override
@@ -121,6 +122,170 @@ public class DosenService extends BaseService<DosenModel> {
                         result.getInt("id_program_studi"),
                         result.getBoolean("aktif"),
                         result.getString("keterangan"));
+            }
+
+            database.close();
+
+            return dosen;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public DosenExtendModel[] getExtend() {
+        try {
+            final Database database = new Database();
+            final int total = database.tableTotal(table);
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "dosen.id, "
+                            + "dosen.nik, "
+                            + "dosen.nip, "
+                            + "dosen.nama, "
+                            + "dosen.email, "
+                            + "dosen.password, "
+                            + "dosen.alamat, "
+                            + "dosen.id_tempat_lahir, "
+                            + "dosen.tanggal_lahir, "
+                            + "dosen.jenis_kelamin, "
+                            + "dosen.golongan_darah, "
+                            + "dosen.agama, "
+                            + "dosen.nomor_telepon, "
+                            + "dosen.id_pendidikan, "
+                            + "dosen.id_program_studi, "
+                            + "dosen.aktif, "
+                            + "dosen.keterangan, "
+                            + "tempat_lahir.tempat_lahir, "
+                            + "pendidikan.pendidikan, "
+                            + "pendidikan.singkatan, "
+                            + "program_studi.id_jurusan, "
+                            + "program_studi.program_studi, "
+                            + "program_studi.deskripsi, "
+                            + "jurusan.jurusan, "
+                            + "jurusan.deskripsi "
+                            + "FROM dosen "
+                            + "INNER JOIN tempat_lahir ON dosen.id_tempat_lahir=tempat_lahir.id "
+                            + "INNER JOIN pendidikan ON dosen.id_pendidikan=pendidikan.id "
+                            + "INNER JOIN program_studi ON dosen.id_program_studi=program_studi.id "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id"
+                            + ";");
+
+            final DosenExtendModel[] dosenList = new DosenExtendModel[total];
+            int i = 0;
+            while (result.next()) {
+                dosenList[i] = new DosenExtendModel(
+                        result.getInt("dosen.id"),
+                        result.getString("dosen.nik"),
+                        result.getString("dosen.nip"),
+                        result.getString("dosen.nama"),
+                        result.getString("dosen.email"),
+                        result.getString("dosen.password"),
+                        result.getString("dosen.alamat"),
+                        result.getInt("dosen.id_tempat_lahir"),
+                        result.getString("dosen.tanggal_lahir"),
+                        result.getString("dosen.jenis_kelamin"),
+                        result.getString("dosen.golongan_darah"),
+                        result.getString("dosen.agama"),
+                        result.getString("dosen.nomor_telepon"),
+                        result.getInt("dosen.id_pendidikan"),
+                        result.getInt("dosen.id_program_studi"),
+                        result.getBoolean("dosen.aktif"),
+                        result.getString("dosen.keterangan"),
+                        result.getString("tempat_lahir.tempat_lahir"),
+                        result.getString("pendidikan.pendidikan"),
+                        result.getString("pendidikan.singkatan"),
+                        result.getInt("program_studi.id_jurusan"),
+                        result.getString("program_studi.program_studi"),
+                        result.getString("program_studi.deskripsi"),
+                        result.getString("jurusan.jurusan"),
+                        result.getString("jurusan.deskripsi"));
+
+                i++;
+            }
+
+            database.close();
+
+            return dosenList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public DosenExtendModel getOneExtend(int id) {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "dosen.id, "
+                            + "dosen.nik, "
+                            + "dosen.nip, "
+                            + "dosen.nama, "
+                            + "dosen.email, "
+                            + "dosen.password, "
+                            + "dosen.alamat, "
+                            + "dosen.id_tempat_lahir, "
+                            + "dosen.tanggal_lahir, "
+                            + "dosen.jenis_kelamin, "
+                            + "dosen.golongan_darah, "
+                            + "dosen.agama, "
+                            + "dosen.nomor_telepon, "
+                            + "dosen.id_pendidikan, "
+                            + "dosen.id_program_studi, "
+                            + "dosen.aktif, "
+                            + "dosen.keterangan, "
+                            + "tempat_lahir.tempat_lahir, "
+                            + "pendidikan.pendidikan, "
+                            + "pendidikan.singkatan, "
+                            + "program_studi.id_jurusan, "
+                            + "program_studi.program_studi, "
+                            + "program_studi.deskripsi, "
+                            + "jurusan.jurusan, "
+                            + "jurusan.deskripsi "
+                            + "FROM dosen "
+                            + "INNER JOIN tempat_lahir ON dosen.id_tempat_lahir=tempat_lahir.id "
+                            + "INNER JOIN pendidikan ON dosen.id_pendidikan=pendidikan.id "
+                            + "INNER JOIN program_studi ON dosen.id_program_studi=program_studi.id "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
+                            + "WHERE id='" + id + "'"
+                            + ";");
+
+            DosenExtendModel dosen = null;
+
+            if (result.next()) {
+                dosen = new DosenExtendModel(
+                        result.getInt("dosen.id"),
+                        result.getString("dosen.nik"),
+                        result.getString("dosen.nip"),
+                        result.getString("dosen.nama"),
+                        result.getString("dosen.email"),
+                        result.getString("dosen.password"),
+                        result.getString("dosen.alamat"),
+                        result.getInt("dosen.id_tempat_lahir"),
+                        result.getString("dosen.tanggal_lahir"),
+                        result.getString("dosen.jenis_kelamin"),
+                        result.getString("dosen.golongan_darah"),
+                        result.getString("dosen.agama"),
+                        result.getString("dosen.nomor_telepon"),
+                        result.getInt("dosen.id_pendidikan"),
+                        result.getInt("dosen.id_program_studi"),
+                        result.getBoolean("dosen.aktif"),
+                        result.getString("dosen.keterangan"),
+                        result.getString("tempat_lahir.tempat_lahir"),
+                        result.getString("pendidikan.pendidikan"),
+                        result.getString("pendidikan.singkatan"),
+                        result.getInt("program_studi.id_jurusan"),
+                        result.getString("program_studi.program_studi"),
+                        result.getString("program_studi.deskripsi"),
+                        result.getString("jurusan.jurusan"),
+                        result.getString("jurusan.deskripsi"));
             }
 
             database.close();

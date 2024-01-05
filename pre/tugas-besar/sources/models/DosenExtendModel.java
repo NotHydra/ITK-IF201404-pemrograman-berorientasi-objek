@@ -78,7 +78,7 @@ public class DosenExtendModel extends DosenModel implements DosenExtendInterface
 
     @Override
     public String toString() {
-        return "Mahasiswa("
+        return "Dosen("
                 + "id=" + this.getId() + ", "
                 + "nik=" + this.getNIK() + ", "
                 + "nim=" + this.getNIP() + ", "

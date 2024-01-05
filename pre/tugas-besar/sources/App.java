@@ -1,6 +1,6 @@
 import controllers.MainController;
-import models.DosenModel;
 import services.DosenService;
+import models.DosenExtendModel;
 
 public class App {
         public static void main(String[] args) {
@@ -12,9 +12,7 @@ public class App {
 
                 DosenService dosenService = new DosenService();
 
-                dosenService.remove(21);
-
-                for (DosenModel dosen : dosenService.get()) {
+                for (DosenExtendModel dosen : dosenService.getExtend()) {
                         System.out.println(dosen);
                 }
         };
