@@ -254,7 +254,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                             + "INNER JOIN pendidikan ON dosen.id_pendidikan=pendidikan.id "
                             + "INNER JOIN program_studi ON dosen.id_program_studi=program_studi.id "
                             + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
-                            + "WHERE id='" + id + "'"
+                            + "WHERE dosen.id='" + id + "'"
                             + ";");
 
             DosenExtendModel dosen = null;

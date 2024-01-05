@@ -12,8 +12,10 @@ public class App {
 
                 DosenService dosenService = new DosenService();
 
-                for (DosenExtendModel dosen : dosenService.getExtend()) {
-                        System.out.println(dosen);
-                }
+                // for (DosenExtendModel dosen : dosenService.getExtend()) {
+                // System.out.println(dosen);
+                // }
+
+                System.out.println(dosenService.getOneExtend(22));
         };
 }
