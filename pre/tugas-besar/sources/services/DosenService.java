@@ -52,7 +52,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                         result.getString("alamat"),
                         result.getInt("id_tempat_lahir"),
                         result.getString("tanggal_lahir"),
-                        result.getString("jenis_kelamin"),
+                        JenisKelaminEnum.valueToEnum(result.getString("jenis_kelamin")),
                         result.getString("golongan_darah"),
                         result.getString("agama"),
                         result.getString("nomor_telepon"),
@@ -188,7 +188,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                         result.getString("dosen.alamat"),
                         result.getInt("dosen.id_tempat_lahir"),
                         result.getString("dosen.tanggal_lahir"),
-                        result.getString("dosen.jenis_kelamin"),
+                        JenisKelaminEnum.valueToEnum(result.getString("dosen.jenis_kelamin")),
                         result.getString("dosen.golongan_darah"),
                         result.getString("dosen.agama"),
                         result.getString("dosen.nomor_telepon"),
@@ -271,7 +271,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                         result.getString("dosen.alamat"),
                         result.getInt("dosen.id_tempat_lahir"),
                         result.getString("dosen.tanggal_lahir"),
-                        result.getString("dosen.jenis_kelamin"),
+                        JenisKelaminEnum.valueToEnum(result.getString("dosen.jenis_kelamin")),
                         result.getString("dosen.golongan_darah"),
                         result.getString("dosen.agama"),
                         result.getString("dosen.nomor_telepon"),
@@ -330,7 +330,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                     + "'" + model.getAlamat() + "', "
                     + "'" + model.getIdTempatLahir() + "', "
                     + "'" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
-                    + "'" + model.getJenisKelamin() + "', "
+                    + "'" + model.getJenisKelamin().value + "', "
                     + "'" + model.getGolonganDarah() + "', "
                     + "'" + model.getAgama() + "', "
                     + "'" + model.getNomorTelepon() + "', "
@@ -380,7 +380,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                         + "'" + models[i].getAlamat() + "', "
                         + "'" + models[i].getIdTempatLahir() + "', "
                         + "'" + CustomDate.dateToSQL(models[i].getTanggalLahir()) + "', "
-                        + "'" + models[i].getJenisKelamin() + "', "
+                        + "'" + models[i].getJenisKelamin().value + "', "
                         + "'" + models[i].getGolonganDarah() + "', "
                         + "'" + models[i].getAgama() + "', "
                         + "'" + models[i].getNomorTelepon() + "', "
@@ -419,7 +419,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                     + "alamat='" + model.getAlamat() + "', "
                     + "id_tempat_lahir='" + model.getIdTempatLahir() + "', "
                     + "tanggal_lahir='" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
-                    + "jenis_kelamin='" + model.getJenisKelamin() + "', "
+                    + "jenis_kelamin='" + model.getJenisKelamin().value + "', "
                     + "golongan_darah='" + model.getGolonganDarah() + "', "
                     + "agama='" + model.getAgama() + "', "
                     + "nomor_telepon='" + model.getNomorTelepon() + "', "

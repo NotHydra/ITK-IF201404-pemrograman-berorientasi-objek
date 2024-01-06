@@ -1,5 +1,6 @@
 package models;
 
+import enums.JenisKelaminEnum;
 import utilities.CustomDate;
 
 public class DosenWaliExtendModel extends DosenExtendModel {
@@ -14,7 +15,7 @@ public class DosenWaliExtendModel extends DosenExtendModel {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
+            JenisKelaminEnum jenisKelamin,
             String golonganDarah,
             String agama,
             String nomorTelepon,
@@ -70,7 +71,7 @@ public class DosenWaliExtendModel extends DosenExtendModel {
                 + "alamat=" + this.getAlamat() + ", "
                 + "idTempatLahir=" + this.getIdTempatLahir() + ", "
                 + "tanggalLahir=" + CustomDate.dateToString(this.getTanggalLahir()) + ", "
-                + "jenisKelamin=" + this.getJenisKelamin() + ", "
+                + "jenisKelamin=" + this.getJenisKelamin().value + ", "
                 + "golonganDarah=" + this.getGolonganDarah() + ", "
                 + "agama=" + this.getAgama() + ", "
                 + "nomorTelepon=" + this.getNomorTelepon() + ", "

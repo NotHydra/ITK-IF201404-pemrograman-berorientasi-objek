@@ -3,9 +3,7 @@ package models;
 import java.util.Date;
 
 import interfaces.DosenInterface;
-
 import enums.JenisKelaminEnum;
-
 import utilities.CustomDate;
 
 public class DosenModel extends BaseModel implements DosenInterface {
