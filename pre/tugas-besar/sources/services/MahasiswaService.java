@@ -4,6 +4,9 @@ import java.sql.*;
 
 import providers.Database;
 import utilities.CustomDate;
+import enums.JenisKelaminEnum;
+import enums.GolonganDarahEnum;
+import enums.AgamaEnum;
 import models.MahasiswaModel;
 import models.MahasiswaExtendModel;
 
@@ -55,9 +58,9 @@ public class MahasiswaService
                         result.getString("alamat"),
                         result.getInt("id_tempat_lahir"),
                         result.getString("tanggal_lahir"),
-                        result.getString("jenis_kelamin"),
-                        result.getString("golongan_darah"),
-                        result.getString("agama"),
+                        JenisKelaminEnum.valueToEnum(result.getString("jenis_kelamin")),
+                        GolonganDarahEnum.valueToEnum(result.getString("golongan_darah")),
+                        AgamaEnum.valueToEnum(result.getString("agama")),
                         result.getString("nomor_telepon"),
                         result.getInt("id_tahun_ajaran"),
                         result.getInt("id_tahun_masuk"),
@@ -122,9 +125,9 @@ public class MahasiswaService
                         result.getString("alamat"),
                         result.getInt("id_tempat_lahir"),
                         result.getString("tanggal_lahir"),
-                        result.getString("jenis_kelamin"),
-                        result.getString("golongan_darah"),
-                        result.getString("agama"),
+                        JenisKelaminEnum.valueToEnum(result.getString("jenis_kelamin")),
+                        GolonganDarahEnum.valueToEnum(result.getString("golongan_darah")),
+                        AgamaEnum.valueToEnum(result.getString("agama")),
                         result.getString("nomor_telepon"),
                         result.getInt("id_tahun_ajaran"),
                         result.getInt("id_tahun_masuk"),
@@ -229,9 +232,9 @@ public class MahasiswaService
                         result.getString("mahasiswa.alamat"),
                         result.getInt("mahasiswa.id_tempat_lahir"),
                         result.getString("mahasiswa.tanggal_lahir"),
-                        result.getString("mahasiswa.jenis_kelamin"),
-                        result.getString("mahasiswa.golongan_darah"),
-                        result.getString("mahasiswa.agama"),
+                        JenisKelaminEnum.valueToEnum(result.getString("mahasiswa.jenis_kelamin")),
+                        GolonganDarahEnum.valueToEnum(result.getString("mahasiswa.golongan_darah")),
+                        AgamaEnum.valueToEnum(result.getString("mahasiswa.agama")),
                         result.getString("mahasiswa.nomor_telepon"),
                         result.getInt("mahasiswa.id_tahun_ajaran"),
                         result.getInt("mahasiswa.id_tahun_masuk"),
@@ -255,9 +258,9 @@ public class MahasiswaService
                         result.getString("dosen_wali.alamat"),
                         result.getInt("dosen_wali.id_tempat_lahir"),
                         result.getString("dosen_wali.tanggal_lahir"),
-                        result.getString("dosen_wali.jenis_kelamin"),
-                        result.getString("dosen_wali.golongan_darah"),
-                        result.getString("dosen_wali.agama"),
+                        JenisKelaminEnum.valueToEnum(result.getString("dosen_wali.jenis_kelamin")),
+                        GolonganDarahEnum.valueToEnum(result.getString("dosen_wali.golongan_darah")),
+                        AgamaEnum.valueToEnum(result.getString("dosen_wali.agama")),
                         result.getString("dosen_wali.nomor_telepon"),
                         result.getInt("dosen_wali.id_pendidikan"),
                         result.getInt("dosen_wali.id_program_studi"),
@@ -370,9 +373,9 @@ public class MahasiswaService
                         result.getString("mahasiswa.alamat"),
                         result.getInt("mahasiswa.id_tempat_lahir"),
                         result.getString("mahasiswa.tanggal_lahir"),
-                        result.getString("mahasiswa.jenis_kelamin"),
-                        result.getString("mahasiswa.golongan_darah"),
-                        result.getString("mahasiswa.agama"),
+                        JenisKelaminEnum.valueToEnum(result.getString("mahasiswa.jenis_kelamin")),
+                        GolonganDarahEnum.valueToEnum(result.getString("mahasiswa.golongan_darah")),
+                        AgamaEnum.valueToEnum(result.getString("mahasiswa.agama")),
                         result.getString("mahasiswa.nomor_telepon"),
                         result.getInt("mahasiswa.id_tahun_ajaran"),
                         result.getInt("mahasiswa.id_tahun_masuk"),
@@ -396,9 +399,9 @@ public class MahasiswaService
                         result.getString("dosen_wali.alamat"),
                         result.getInt("dosen_wali.id_tempat_lahir"),
                         result.getString("dosen_wali.tanggal_lahir"),
-                        result.getString("dosen_wali.jenis_kelamin"),
-                        result.getString("dosen_wali.golongan_darah"),
-                        result.getString("dosen_wali.agama"),
+                        JenisKelaminEnum.valueToEnum(result.getString("dosen_wali.jenis_kelamin")),
+                        GolonganDarahEnum.valueToEnum(result.getString("dosen_wali.golongan_darah")),
+                        AgamaEnum.valueToEnum(result.getString("dosen_wali.agama")),
                         result.getString("dosen_wali.nomor_telepon"),
                         result.getInt("dosen_wali.id_pendidikan"),
                         result.getInt("dosen_wali.id_program_studi"),
@@ -457,9 +460,9 @@ public class MahasiswaService
                     + "'" + model.getAlamat() + "', "
                     + "'" + model.getIdTempatLahir() + "', "
                     + "'" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
-                    + "'" + model.getJenisKelamin() + "', "
-                    + "'" + model.getGolonganDarah() + "', "
-                    + "'" + model.getAgama() + "', "
+                    + "'" + model.getJenisKelamin().value + "', "
+                    + "'" + model.getGolonganDarah().value + "', "
+                    + "'" + model.getAgama().value + "', "
                     + "'" + model.getNomorTelepon() + "', "
                     + "'" + model.getIdTahunAjaran() + "', "
                     + "'" + model.getIdTahunMasuk() + "', "
@@ -511,9 +514,9 @@ public class MahasiswaService
                         + "'" + models[i].getAlamat() + "', "
                         + "'" + models[i].getIdTempatLahir() + "', "
                         + "'" + CustomDate.dateToSQL(models[i].getTanggalLahir()) + "', "
-                        + "'" + models[i].getJenisKelamin() + "', "
-                        + "'" + models[i].getGolonganDarah() + "', "
-                        + "'" + models[i].getAgama() + "', "
+                        + "'" + models[i].getJenisKelamin().value + "', "
+                        + "'" + models[i].getGolonganDarah().value + "', "
+                        + "'" + models[i].getAgama().value + "', "
                         + "'" + models[i].getNomorTelepon() + "', "
                         + "'" + models[i].getIdTahunAjaran() + "', "
                         + "'" + models[i].getIdTahunMasuk() + "', "
@@ -552,9 +555,9 @@ public class MahasiswaService
                     + "alamat='" + model.getAlamat() + "', "
                     + "id_tempat_lahir='" + model.getIdTempatLahir() + "', "
                     + "tanggal_lahir='" + CustomDate.dateToSQL(model.getTanggalLahir()) + "', "
-                    + "jenis_kelamin='" + model.getJenisKelamin() + "', "
-                    + "golongan_darah='" + model.getGolonganDarah() + "', "
-                    + "agama='" + model.getAgama() + "', "
+                    + "jenis_kelamin='" + model.getJenisKelamin().value + "', "
+                    + "golongan_darah='" + model.getGolonganDarah().value + "', "
+                    + "agama='" + model.getAgama().value + "', "
                     + "nomor_telepon='" + model.getNomorTelepon() + "', "
                     + "id_tahun_ajaran='" + model.getIdTahunAjaran() + "', "
                     + "id_tahun_masuk='" + model.getIdTahunMasuk() + "', "

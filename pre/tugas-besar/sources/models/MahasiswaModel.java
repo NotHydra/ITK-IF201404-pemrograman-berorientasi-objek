@@ -2,6 +2,9 @@ package models;
 
 import java.util.Date;
 
+import enums.JenisKelaminEnum;
+import enums.GolonganDarahEnum;
+import enums.AgamaEnum;
 import interfaces.MahasiswaInterface;
 
 import utilities.CustomDate;
@@ -16,9 +19,9 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
     private final String alamat;
     private final int idTempatLahir;
     private final Date tanggalLahir;
-    private final String jenisKelamin;
-    private final String golonganDarah;
-    private final String agama;
+    private final JenisKelaminEnum jenisKelamin;
+    private final GolonganDarahEnum golonganDarah;
+    private final AgamaEnum agama;
     private final String nomorTelepon;
     private final int idTahunAjaran;
     private final int idTahunMasuk;
@@ -36,9 +39,9 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
-            String golonganDarah,
-            String agama,
+            JenisKelaminEnum jenisKelamin,
+            GolonganDarahEnum golonganDarah,
+            AgamaEnum agama,
             String nomorTelepon,
             int idTahunAjaran,
             int idTahunMasuk,
@@ -55,9 +58,6 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
                 alamat,
                 idTempatLahir,
                 tanggalLahir,
-                jenisKelamin,
-                golonganDarah,
-                agama,
                 nomorTelepon,
                 idTahunAjaran,
                 idTahunMasuk,
@@ -95,9 +95,9 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
-            String golonganDarah,
-            String agama,
+            JenisKelaminEnum jenisKelamin,
+            GolonganDarahEnum golonganDarah,
+            AgamaEnum agama,
             String nomorTelepon,
             int idTahunAjaran,
             int idTahunMasuk,
@@ -118,9 +118,6 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
                 alamat,
                 idTempatLahir,
                 tanggalLahir,
-                jenisKelamin,
-                golonganDarah,
-                agama,
                 nomorTelepon,
                 idTahunAjaran,
                 idTahunMasuk,
@@ -157,9 +154,6 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
-            String golonganDarah,
-            String agama,
             String nomorTelepon,
             int idTahunAjaran,
             int idTahunMasuk,
@@ -199,18 +193,6 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
 
         if (!tanggalLahir.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw new IllegalArgumentException("Tanggal lahir invalid date format.");
-        }
-
-        if (jenisKelamin == null || jenisKelamin.trim().isEmpty()) {
-            throw new IllegalArgumentException("Jenis kelamin cannot be empty");
-        }
-
-        if (golonganDarah == null || golonganDarah.trim().isEmpty()) {
-            throw new IllegalArgumentException("Golongan darah cannot be empty");
-        }
-
-        if (agama == null || agama.trim().isEmpty()) {
-            throw new IllegalArgumentException("Agama cannot be empty");
         }
 
         if (nomorTelepon == null || nomorTelepon.trim().isEmpty()) {
@@ -280,17 +262,17 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
     }
 
     @Override
-    public String getJenisKelamin() {
+    public JenisKelaminEnum getJenisKelamin() {
         return jenisKelamin;
     }
 
     @Override
-    public String getGolonganDarah() {
+    public GolonganDarahEnum getGolonganDarah() {
         return golonganDarah;
     }
 
     @Override
-    public String getAgama() {
+    public AgamaEnum getAgama() {
         return agama;
     }
 
@@ -341,9 +323,9 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
                 + "alamat=" + alamat + ", "
                 + "idTempatLahir=" + idTempatLahir + ", "
                 + "tanggalLahir=" + CustomDate.dateToString(tanggalLahir) + ", "
-                + "jenisKelamin=" + jenisKelamin + ", "
-                + "golonganDarah=" + golonganDarah + ", "
-                + "agama=" + agama + ", "
+                + "jenisKelamin=" + jenisKelamin.value + ", "
+                + "golonganDarah=" + golonganDarah.value + ", "
+                + "agama=" + agama.value + ", "
                 + "nomorTelepon=" + nomorTelepon + ", "
                 + "idTahunAjaran=" + idTahunAjaran + ", "
                 + "idTahunMasuk=" + idTahunMasuk + ", "

@@ -1,5 +1,8 @@
 package models;
 
+import enums.JenisKelaminEnum;
+import enums.GolonganDarahEnum;
+import enums.AgamaEnum;
 import interfaces.MahasiswaExtendInterface;
 import utilities.CustomDate;
 
@@ -20,9 +23,9 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
-            String golonganDarah,
-            String agama,
+            JenisKelaminEnum jenisKelamin,
+            GolonganDarahEnum golonganDarah,
+            AgamaEnum agama,
             String nomorTelepon,
             int idTahunAjaran,
             int idTahunMasuk,
@@ -46,9 +49,9 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
             String dosenAlamat,
             int dosenIdTempatLahir,
             String dosenTanggalLahir,
-            String dosenJenisKelamin,
-            String dosenGolonganDarah,
-            String dosenAgama,
+            JenisKelaminEnum dosenJenisKelamin,
+            GolonganDarahEnum dosenGolonganDarah,
+            AgamaEnum dosenAgama,
             String dosenNomorTelepon,
             int dosenIdPendidikan,
             int dosenIdProgramStudi,
@@ -154,9 +157,9 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
                 + "alamat=" + this.getAlamat() + ", "
                 + "idTempatLahir=" + this.getIdTempatLahir() + ", "
                 + "tanggalLahir=" + CustomDate.dateToString(this.getTanggalLahir()) + ", "
-                + "jenisKelamin=" + this.getJenisKelamin() + ", "
-                + "golonganDarah=" + this.getGolonganDarah() + ", "
-                + "agama=" + this.getAgama() + ", "
+                + "jenisKelamin=" + this.getJenisKelamin().value + ", "
+                + "golonganDarah=" + this.getGolonganDarah().value + ", "
+                + "agama=" + this.getAgama().value + ", "
                 + "nomorTelepon=" + this.getNomorTelepon() + ", "
                 + "idTahunAjaran=" + this.getIdTahunAjaran() + ", "
                 + "idTahunMasuk=" + this.getIdTahunMasuk() + ", "
