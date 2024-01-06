@@ -8,6 +8,7 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
     private final TahunAjaranModel tahunAjaranExtend;
     private final TahunMasukModel tahunMasukExtend;
     private final ProgramStudiExtendModel programStudiExtend;
+    private final DosenWaliExtendModel dosenWaliExtend;
 
     public MahasiswaExtendModel(
             int id,
@@ -36,7 +37,31 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
             String programStudiProgramStudi,
             String programStudiDeskripsi,
             String jurusanJurusan,
-            String jurusanDeskripsi) {
+            String jurusanDeskripsi,
+            String dosenNIK,
+            String dosenNIP,
+            String dosenNama,
+            String dosenEmail,
+            String dosenPassword,
+            String dosenAlamat,
+            int dosenIdTempatLahir,
+            String dosenTanggalLahir,
+            String dosenJenisKelamin,
+            String dosenGolonganDarah,
+            String dosenAgama,
+            String dosenNomorTelepon,
+            int dosenIdPendidikan,
+            int dosenIdProgramStudi,
+            boolean dosenAktif,
+            String dosenKeterangan,
+            String dosenTempatLahirTempatLahir,
+            String dosenPendidikanPendidikan,
+            String dosenPendidikanSingkatan,
+            int dosenProgramStudiIdJurusan,
+            String dosenProgramStudiProgramStudi,
+            String dosenProgramStudiDeskripsi,
+            String dosenJurusanJurusan,
+            String dosenJurusanDeskripsi) {
         super(
                 id,
                 nik,
@@ -68,6 +93,33 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
                 programStudiDeskripsi,
                 jurusanJurusan,
                 jurusanDeskripsi);
+
+        this.dosenWaliExtend = new DosenWaliExtendModel(
+                idDosenWali,
+                dosenNIK,
+                dosenNIP,
+                dosenNama,
+                dosenEmail,
+                dosenPassword,
+                dosenAlamat,
+                dosenIdTempatLahir,
+                dosenTanggalLahir,
+                dosenJenisKelamin,
+                dosenGolonganDarah,
+                dosenAgama,
+                dosenNomorTelepon,
+                dosenIdPendidikan,
+                dosenIdProgramStudi,
+                dosenAktif,
+                dosenKeterangan,
+                dosenTempatLahirTempatLahir,
+                dosenPendidikanPendidikan,
+                dosenPendidikanSingkatan,
+                dosenProgramStudiIdJurusan,
+                dosenProgramStudiProgramStudi,
+                dosenProgramStudiDeskripsi,
+                dosenJurusanJurusan,
+                dosenJurusanDeskripsi);
     }
 
     public TempatLahirModel getTempatLahirExtend() {
@@ -84,6 +136,10 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
 
     public ProgramStudiExtendModel getProgramStudiExtend() {
         return this.programStudiExtend;
+    }
+
+    public DosenWaliExtendModel getDosenWaliExtend() {
+        return this.dosenWaliExtend;
     }
 
     @Override
@@ -111,7 +167,8 @@ public class MahasiswaExtendModel extends MahasiswaModel implements MahasiswaExt
                 + this.getTempatLahirExtend().toString() + ", "
                 + this.getTahunAjaranExtend().toString() + ", "
                 + this.getTahunMasukExtend().toString() + ", "
-                + this.getProgramStudiExtend().toString()
+                + this.getProgramStudiExtend().toString() + ", "
+                + this.getDosenWaliExtend().toString()
                 + ")";
     }
 }

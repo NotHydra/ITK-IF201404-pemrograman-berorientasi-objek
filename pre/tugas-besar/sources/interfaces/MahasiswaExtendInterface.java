@@ -3,6 +3,7 @@ package interfaces;
 import models.TempatLahirModel;
 import models.TahunAjaranModel;
 import models.TahunMasukModel;
+import models.DosenWaliExtendModel;
 import models.ProgramStudiExtendModel;
 
 public interface MahasiswaExtendInterface {
@@ -13,4 +14,7 @@ public interface MahasiswaExtendInterface {
     public TahunMasukModel getTahunMasukExtend();
 
     public ProgramStudiExtendModel getProgramStudiExtend();
+
+    public DosenWaliExtendModel getDosenWaliExtend();
+
 }

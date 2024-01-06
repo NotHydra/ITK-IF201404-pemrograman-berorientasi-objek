@@ -1,6 +1,8 @@
 import controllers.MainController;
-import services.DosenService;
-import models.DosenExtendModel;
+
+import services.MahasiswaService;
+
+import models.MahasiswaExtendModel;
 
 public class App {
         public static void main(String[] args) {
@@ -10,12 +12,10 @@ public class App {
                 // e.printStackTrace();
                 // }
 
-                DosenService dosenService = new DosenService();
+                MahasiswaService mahasiswaService = new MahasiswaService();
 
-                // for (DosenExtendModel dosen : dosenService.getExtend()) {
-                // System.out.println(dosen);
-                // }
-
-                System.out.println(dosenService.getOneExtend(22));
+                for (MahasiswaExtendModel mahasiswa : mahasiswaService.getExtend()) {
+                        System.out.println(mahasiswa);
+                }
         };
 }
