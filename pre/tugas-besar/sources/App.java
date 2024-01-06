@@ -1,6 +1,6 @@
 import controllers.MainController;
-import enums.SesiEnum;
 import models.KelasModel;
+import services.KelasService;
 
 public class App {
         public static void main(String[] args) {
@@ -10,7 +10,9 @@ public class App {
                 // e.printStackTrace();
                 // }
 
-                KelasModel kelasModel = new KelasModel(1, 1, 'A', 1, SesiEnum.SATU, "2023");
-                System.out.println(kelasModel);
+                KelasService kelasService = new KelasService();
+                for (KelasModel kelas : kelasService.get()) {
+                        System.out.println(kelas);
+                }
         };
 }
