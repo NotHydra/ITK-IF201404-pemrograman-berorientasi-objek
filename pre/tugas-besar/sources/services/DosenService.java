@@ -2,6 +2,7 @@ package services;
 
 import java.sql.*;
 
+import enums.JenisKelaminEnum;
 import providers.Database;
 import utilities.CustomDate;
 import models.DosenModel;
@@ -114,7 +115,7 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                         result.getString("alamat"),
                         result.getInt("id_tempat_lahir"),
                         result.getString("tanggal_lahir"),
-                        result.getString("jenis_kelamin"),
+                        JenisKelaminEnum.valueToEnum(result.getString("jenis_kelamin")),
                         result.getString("golongan_darah"),
                         result.getString("agama"),
                         result.getString("nomor_telepon"),

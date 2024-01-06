@@ -1,8 +1,8 @@
 import controllers.MainController;
-
-import services.MahasiswaService;
+import enums.JenisKelaminEnum;
 import utilities.Format;
-import models.MahasiswaExtendModel;
+import services.DosenService;
+import services.MahasiswaService;
 
 public class App {
         public static void main(String[] args) {
@@ -12,12 +12,7 @@ public class App {
                 // e.printStackTrace();
                 // }
 
-                MahasiswaService mahasiswaService = new MahasiswaService();
-
-                // for (MahasiswaExtendModel mahasiswa : mahasiswaService.getExtend()) {
-                // System.out.println(mahasiswa);
-                // }
-
-                System.out.println(Format.pretty(mahasiswaService.getOneExtend(21).toString()));
+                DosenService dosenService = new DosenService();
+                System.out.println(Format.pretty(dosenService.getOne(22).toString()));
         };
 }

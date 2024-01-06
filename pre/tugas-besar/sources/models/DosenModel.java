@@ -4,6 +4,8 @@ import java.util.Date;
 
 import interfaces.DosenInterface;
 
+import enums.JenisKelaminEnum;
+
 import utilities.CustomDate;
 
 public class DosenModel extends BaseModel implements DosenInterface {
@@ -16,7 +18,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
     private final String alamat;
     private final int idTempatLahir;
     private final Date tanggalLahir;
-    private final String jenisKelamin;
+    private final JenisKelaminEnum jenisKelamin;
     private final String golonganDarah;
     private final String agama;
     private final String nomorTelepon;
@@ -34,7 +36,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
+            JenisKelaminEnum jenisKelamin,
             String golonganDarah,
             String agama,
             String nomorTelepon,
@@ -51,7 +53,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
                 alamat,
                 idTempatLahir,
                 tanggalLahir,
-                jenisKelamin,
                 golonganDarah,
                 agama,
                 nomorTelepon,
@@ -87,7 +88,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
+            JenisKelaminEnum jenisKelamin,
             String golonganDarah,
             String agama,
             String nomorTelepon,
@@ -108,7 +109,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
                 alamat,
                 idTempatLahir,
                 tanggalLahir,
-                jenisKelamin,
                 golonganDarah,
                 agama,
                 nomorTelepon,
@@ -143,7 +143,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String jenisKelamin,
             String golonganDarah,
             String agama,
             String nomorTelepon,
@@ -183,10 +182,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
 
         if (!tanggalLahir.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw new IllegalArgumentException("Tanggal lahir invalid date format.");
-        }
-
-        if (jenisKelamin == null || jenisKelamin.trim().isEmpty()) {
-            throw new IllegalArgumentException("Jenis kelamin cannot be empty");
         }
 
         if (golonganDarah == null || golonganDarah.trim().isEmpty()) {
@@ -256,7 +251,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
     }
 
     @Override
-    public String getJenisKelamin() {
+    public JenisKelaminEnum getJenisKelamin() {
         return jenisKelamin;
     }
 
@@ -307,7 +302,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
                 + "alamat=" + alamat + ", "
                 + "idTempatLahir=" + idTempatLahir + ", "
                 + "tanggalLahir=" + CustomDate.dateToString(tanggalLahir) + ", "
-                + "jenisKelamin=" + jenisKelamin + ", "
+                + "jenisKelamin=" + jenisKelamin.value + ", "
                 + "golonganDarah=" + golonganDarah + ", "
                 + "agama=" + agama + ", "
                 + "nomorTelepon=" + nomorTelepon + ", "
