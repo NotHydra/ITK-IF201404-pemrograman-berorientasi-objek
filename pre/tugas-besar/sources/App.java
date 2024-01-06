@@ -1,8 +1,6 @@
 import controllers.MainController;
-import utilities.Format;
-import models.MahasiswaExtendModel;
-import models.MahasiswaModel;
-import services.MahasiswaService;
+import enums.SesiEnum;
+import models.KelasModel;
 
 public class App {
         public static void main(String[] args) {
@@ -12,9 +10,7 @@ public class App {
                 // e.printStackTrace();
                 // }
 
-                MahasiswaService mahasiswaService = new MahasiswaService();
-                for (MahasiswaExtendModel mahasiswa : mahasiswaService.getExtend()) {
-                        System.out.println(Format.pretty(mahasiswa.toString()));
-                }
+                KelasModel kelasModel = new KelasModel(1, 1, 'A', 1, SesiEnum.SATU, "2023");
+                System.out.println(kelasModel);
         };
 }
