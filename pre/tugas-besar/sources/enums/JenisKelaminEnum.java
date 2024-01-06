@@ -6,7 +6,7 @@ public enum JenisKelaminEnum {
 
     public final String value;
 
-    JenisKelaminEnum(String value) {
+    private JenisKelaminEnum(String value) {
         this.value = value;
     }
 
