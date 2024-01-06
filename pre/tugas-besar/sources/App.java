@@ -1,7 +1,7 @@
 import controllers.MainController;
 
 import services.MahasiswaService;
-
+import utilities.Format;
 import models.MahasiswaExtendModel;
 
 public class App {
@@ -18,6 +18,6 @@ public class App {
                 // System.out.println(mahasiswa);
                 // }
 
-                System.out.println(mahasiswaService.getOneExtend(21));
+                System.out.println(Format.pretty(mahasiswaService.getOneExtend(21).toString()));
         };
 }
