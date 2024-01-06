@@ -4,6 +4,8 @@ import java.util.Date;
 
 import interfaces.DosenInterface;
 import enums.JenisKelaminEnum;
+import enums.GolonganDarahEnum;
+import enums.AgamaEnum;
 import utilities.CustomDate;
 
 public class DosenModel extends BaseModel implements DosenInterface {
@@ -17,8 +19,8 @@ public class DosenModel extends BaseModel implements DosenInterface {
     private final int idTempatLahir;
     private final Date tanggalLahir;
     private final JenisKelaminEnum jenisKelamin;
-    private final String golonganDarah;
-    private final String agama;
+    private final GolonganDarahEnum golonganDarah;
+    private final AgamaEnum agama;
     private final String nomorTelepon;
     private final int idPendidikan;
     private final int idProgramStudi;
@@ -35,8 +37,8 @@ public class DosenModel extends BaseModel implements DosenInterface {
             int idTempatLahir,
             String tanggalLahir,
             JenisKelaminEnum jenisKelamin,
-            String golonganDarah,
-            String agama,
+            GolonganDarahEnum golonganDarah,
+            AgamaEnum agama,
             String nomorTelepon,
             int idPendidikan,
             int idProgramStudi,
@@ -51,8 +53,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
                 alamat,
                 idTempatLahir,
                 tanggalLahir,
-                golonganDarah,
-                agama,
                 nomorTelepon,
                 idPendidikan,
                 idProgramStudi);
@@ -87,8 +87,8 @@ public class DosenModel extends BaseModel implements DosenInterface {
             int idTempatLahir,
             String tanggalLahir,
             JenisKelaminEnum jenisKelamin,
-            String golonganDarah,
-            String agama,
+            GolonganDarahEnum golonganDarah,
+            AgamaEnum agama,
             String nomorTelepon,
             int idPendidikan,
             int idProgramStudi,
@@ -107,8 +107,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
                 alamat,
                 idTempatLahir,
                 tanggalLahir,
-                golonganDarah,
-                agama,
                 nomorTelepon,
                 idPendidikan,
                 idProgramStudi);
@@ -141,8 +139,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
             String alamat,
             int idTempatLahir,
             String tanggalLahir,
-            String golonganDarah,
-            String agama,
             String nomorTelepon,
             int idPendidikan,
             int idProgramStudi) {
@@ -180,14 +176,6 @@ public class DosenModel extends BaseModel implements DosenInterface {
 
         if (!tanggalLahir.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw new IllegalArgumentException("Tanggal lahir invalid date format.");
-        }
-
-        if (golonganDarah == null || golonganDarah.trim().isEmpty()) {
-            throw new IllegalArgumentException("Golongan darah cannot be empty");
-        }
-
-        if (agama == null || agama.trim().isEmpty()) {
-            throw new IllegalArgumentException("Agama cannot be empty");
         }
 
         if (nomorTelepon == null || nomorTelepon.trim().isEmpty()) {
@@ -254,12 +242,12 @@ public class DosenModel extends BaseModel implements DosenInterface {
     }
 
     @Override
-    public String getGolonganDarah() {
+    public GolonganDarahEnum getGolonganDarah() {
         return golonganDarah;
     }
 
     @Override
-    public String getAgama() {
+    public AgamaEnum getAgama() {
         return agama;
     }
 
@@ -301,8 +289,8 @@ public class DosenModel extends BaseModel implements DosenInterface {
                 + "idTempatLahir=" + idTempatLahir + ", "
                 + "tanggalLahir=" + CustomDate.dateToString(tanggalLahir) + ", "
                 + "jenisKelamin=" + jenisKelamin.value + ", "
-                + "golonganDarah=" + golonganDarah + ", "
-                + "agama=" + agama + ", "
+                + "golonganDarah=" + golonganDarah.value + ", "
+                + "agama=" + agama.value + ", "
                 + "nomorTelepon=" + nomorTelepon + ", "
                 + "idPendidikan=" + idPendidikan + ", "
                 + "idProgramStudi=" + idProgramStudi + ", "

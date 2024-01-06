@@ -3,6 +3,8 @@ package interfaces;
 import java.util.Date;
 
 import enums.JenisKelaminEnum;
+import enums.GolonganDarahEnum;
+import enums.AgamaEnum;
 
 public interface DosenInterface {
     public String getNIK();
@@ -23,9 +25,9 @@ public interface DosenInterface {
 
     public JenisKelaminEnum getJenisKelamin();
 
-    public String getGolonganDarah();
+    public GolonganDarahEnum getGolonganDarah();
 
-    public String getAgama();
+    public AgamaEnum getAgama();
 
     public String getNomorTelepon();
 
