@@ -14,8 +14,10 @@ public class App {
 
                 MahasiswaService mahasiswaService = new MahasiswaService();
 
-                for (MahasiswaExtendModel mahasiswa : mahasiswaService.getExtend()) {
-                        System.out.println(mahasiswa);
-                }
+                // for (MahasiswaExtendModel mahasiswa : mahasiswaService.getExtend()) {
+                // System.out.println(mahasiswa);
+                // }
+
+                System.out.println(mahasiswaService.getOneExtend(21));
         };
 }

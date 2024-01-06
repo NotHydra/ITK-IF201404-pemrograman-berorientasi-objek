@@ -285,91 +285,144 @@ public class MahasiswaService
         return null;
     }
 
-    // @Override
-    // public MahasiswaExtendModel getOneExtend(int id) {
-    // try {
-    // final Database database = new Database();
-    // final ResultSet result = database
-    // .executeQuery(""
-    // + "SELECT "
-    // + "mahasiswa.id, "
-    // + "mahasiswa.nik, "
-    // + "mahasiswa.nim, "
-    // + "mahasiswa.nama, "
-    // + "mahasiswa.email, "
-    // + "mahasiswa.password, "
-    // + "mahasiswa.alamat, "
-    // + "mahasiswa.id_tempat_lahir, "
-    // + "mahasiswa.tanggal_lahir, "
-    // + "mahasiswa.jenis_kelamin, "
-    // + "mahasiswa.golongan_darah, "
-    // + "mahasiswa.agama, "
-    // + "mahasiswa.nomor_telepon, "
-    // + "mahasiswa.id_tahun_ajaran, "
-    // + "mahasiswa.id_tahun_masuk, "
-    // + "mahasiswa.id_program_studi, "
-    // + "mahasiswa.id_dosen_wali, "
-    // + "mahasiswa.aktif, "
-    // + "mahasiswa.keterangan, "
-    // + "tempat_lahir.tempat_lahir, "
-    // + "tahun_ajaran.tahun_ajaran, "
-    // + "tahun_masuk.tahun_masuk, "
-    // + "program_studi.id_jurusan, "
-    // + "program_studi.program_studi, "
-    // + "program_studi.deskripsi, "
-    // + "jurusan.jurusan, "
-    // + "jurusan.deskripsi "
-    // + "FROM mahasiswa "
-    // + "INNER JOIN tempat_lahir ON mahasiswa.id_tempat_lahir=tempat_lahir.id "
-    // + "INNER JOIN tahun_ajaran ON mahasiswa.id_tahun_ajaran=tahun_ajaran.id "
-    // + "INNER JOIN tahun_masuk ON mahasiswa.id_tahun_masuk=tahun_masuk.id "
-    // + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
-    // + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
-    // + "WHERE id='" + id + "'"
-    // + ";");
+    @Override
+    public MahasiswaExtendModel getOneExtend(int id) {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "mahasiswa.id, "
+                            + "mahasiswa.nik, "
+                            + "mahasiswa.nim, "
+                            + "mahasiswa.nama, "
+                            + "mahasiswa.email, "
+                            + "mahasiswa.password, "
+                            + "mahasiswa.alamat, "
+                            + "mahasiswa.id_tempat_lahir, "
+                            + "mahasiswa.tanggal_lahir, "
+                            + "mahasiswa.jenis_kelamin, "
+                            + "mahasiswa.golongan_darah, "
+                            + "mahasiswa.agama, "
+                            + "mahasiswa.nomor_telepon, "
+                            + "mahasiswa.id_tahun_ajaran, "
+                            + "mahasiswa.id_tahun_masuk, "
+                            + "mahasiswa.id_program_studi, "
+                            + "mahasiswa.id_dosen_wali, "
+                            + "mahasiswa.aktif, "
+                            + "mahasiswa.keterangan, "
+                            + "tempat_lahir.tempat_lahir, "
+                            + "tahun_ajaran.tahun_ajaran, "
+                            + "tahun_masuk.tahun_masuk, "
+                            + "program_studi.id_jurusan, "
+                            + "program_studi.program_studi, "
+                            + "program_studi.deskripsi, "
+                            + "jurusan.jurusan, "
+                            + "jurusan.deskripsi, "
+                            + "dosen_wali.nik, "
+                            + "dosen_wali.nip, "
+                            + "dosen_wali.nama, "
+                            + "dosen_wali.email, "
+                            + "dosen_wali.password, "
+                            + "dosen_wali.alamat, "
+                            + "dosen_wali.id_tempat_lahir, "
+                            + "dosen_wali.tanggal_lahir, "
+                            + "dosen_wali.jenis_kelamin, "
+                            + "dosen_wali.golongan_darah, "
+                            + "dosen_wali.agama, "
+                            + "dosen_wali.nomor_telepon, "
+                            + "dosen_wali.id_pendidikan, "
+                            + "dosen_wali.id_program_studi, "
+                            + "dosen_wali.aktif, "
+                            + "dosen_wali.keterangan, "
+                            + "dosen_wali_tempat_lahir.tempat_lahir, "
+                            + "dosen_wali_pendidikan.pendidikan, "
+                            + "dosen_wali_pendidikan.singkatan, "
+                            + "dosen_wali_program_studi.id_jurusan, "
+                            + "dosen_wali_program_studi.program_studi, "
+                            + "dosen_wali_program_studi.deskripsi, "
+                            + "dosen_wali_jurusan.jurusan, "
+                            + "dosen_wali_jurusan.deskripsi "
+                            + "FROM mahasiswa "
+                            + "INNER JOIN tempat_lahir ON mahasiswa.id_tempat_lahir=tempat_lahir.id "
+                            + "INNER JOIN tahun_ajaran ON mahasiswa.id_tahun_ajaran=tahun_ajaran.id "
+                            + "INNER JOIN tahun_masuk ON mahasiswa.id_tahun_masuk=tahun_masuk.id "
+                            + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
+                            + "INNER JOIN dosen AS `dosen_wali` ON mahasiswa.id_dosen_wali=dosen_wali.id "
+                            + "INNER JOIN tempat_lahir AS `dosen_wali_tempat_lahir` ON dosen_wali.id_tempat_lahir=dosen_wali_tempat_lahir.id "
+                            + "INNER JOIN pendidikan AS `dosen_wali_pendidikan` ON dosen_wali.id_pendidikan=dosen_wali_pendidikan.id "
+                            + "INNER JOIN program_studi AS `dosen_wali_program_studi` ON dosen_wali.id_program_studi=dosen_wali_program_studi.id "
+                            + "INNER JOIN jurusan AS `dosen_wali_jurusan` ON dosen_wali_program_studi.id_jurusan=dosen_wali_jurusan.id "
+                            + "WHERE mahasiswa.id='" + id + "'"
+                            + ";");
 
-    // MahasiswaExtendModel mahasiswa = null;
+            MahasiswaExtendModel mahasiswa = null;
 
-    // if (result.next()) {
-    // mahasiswa = new MahasiswaExtendModel(
-    // result.getInt("mahasiswa.id"),
-    // result.getString("mahasiswa.nik"),
-    // result.getString("mahasiswa.nim"),
-    // result.getString("mahasiswa.nama"),
-    // result.getString("mahasiswa.email"),
-    // result.getString("mahasiswa.password"),
-    // result.getString("mahasiswa.alamat"),
-    // result.getInt("mahasiswa.id_tempat_lahir"),
-    // result.getString("mahasiswa.tanggal_lahir"),
-    // result.getString("mahasiswa.jenis_kelamin"),
-    // result.getString("mahasiswa.golongan_darah"),
-    // result.getString("mahasiswa.agama"),
-    // result.getString("mahasiswa.nomor_telepon"),
-    // result.getInt("mahasiswa.id_tahun_ajaran"),
-    // result.getInt("mahasiswa.id_tahun_masuk"),
-    // result.getInt("mahasiswa.id_program_studi"),
-    // result.getInt("mahasiswa.id_dosen_wali"),
-    // result.getBoolean("mahasiswa.aktif"),
-    // result.getString("mahasiswa.keterangan"),
-    // result.getString("tempat_lahir.tempat_lahir"),
-    // result.getString("tahun_ajaran.tahun_ajaran"),
-    // result.getString("tahun_masuk.tahun_masuk"),
-    // result.getInt("program_studi.id_jurusan"),
-    // result.getString("program_studi.program_studi"),
-    // result.getString("program_studi.deskripsi"),
-    // result.getString("jurusan.jurusan"),
-    // result.getString("jurusan.deskripsi"));
-    // }
+            if (result.next()) {
+                mahasiswa = new MahasiswaExtendModel(
+                        result.getInt("mahasiswa.id"),
+                        result.getString("mahasiswa.nik"),
+                        result.getString("mahasiswa.nim"),
+                        result.getString("mahasiswa.nama"),
+                        result.getString("mahasiswa.email"),
+                        result.getString("mahasiswa.password"),
+                        result.getString("mahasiswa.alamat"),
+                        result.getInt("mahasiswa.id_tempat_lahir"),
+                        result.getString("mahasiswa.tanggal_lahir"),
+                        result.getString("mahasiswa.jenis_kelamin"),
+                        result.getString("mahasiswa.golongan_darah"),
+                        result.getString("mahasiswa.agama"),
+                        result.getString("mahasiswa.nomor_telepon"),
+                        result.getInt("mahasiswa.id_tahun_ajaran"),
+                        result.getInt("mahasiswa.id_tahun_masuk"),
+                        result.getInt("mahasiswa.id_program_studi"),
+                        result.getInt("mahasiswa.id_dosen_wali"),
+                        result.getBoolean("mahasiswa.aktif"),
+                        result.getString("mahasiswa.keterangan"),
+                        result.getString("tempat_lahir.tempat_lahir"),
+                        result.getString("tahun_ajaran.tahun_ajaran"),
+                        result.getString("tahun_masuk.tahun_masuk"),
+                        result.getInt("program_studi.id_jurusan"),
+                        result.getString("program_studi.program_studi"),
+                        result.getString("program_studi.deskripsi"),
+                        result.getString("jurusan.jurusan"),
+                        result.getString("jurusan.deskripsi"),
+                        result.getString("dosen_wali.nik"),
+                        result.getString("dosen_wali.nip"),
+                        result.getString("dosen_wali.nama"),
+                        result.getString("dosen_wali.email"),
+                        result.getString("dosen_wali.password"),
+                        result.getString("dosen_wali.alamat"),
+                        result.getInt("dosen_wali.id_tempat_lahir"),
+                        result.getString("dosen_wali.tanggal_lahir"),
+                        result.getString("dosen_wali.jenis_kelamin"),
+                        result.getString("dosen_wali.golongan_darah"),
+                        result.getString("dosen_wali.agama"),
+                        result.getString("dosen_wali.nomor_telepon"),
+                        result.getInt("dosen_wali.id_pendidikan"),
+                        result.getInt("dosen_wali.id_program_studi"),
+                        result.getBoolean("dosen_wali.aktif"),
+                        result.getString("dosen_wali.keterangan"),
+                        result.getString("dosen_wali_tempat_lahir.tempat_lahir"),
+                        result.getString("dosen_wali_pendidikan.pendidikan"),
+                        result.getString("dosen_wali_pendidikan.singkatan"),
+                        result.getInt("dosen_wali_program_studi.id_jurusan"),
+                        result.getString("dosen_wali_program_studi.program_studi"),
+                        result.getString("dosen_wali_program_studi.deskripsi"),
+                        result.getString("dosen_wali_jurusan.jurusan"),
+                        result.getString("dosen_wali_jurusan.deskripsi"));
+            }
 
-    // database.close();
+            database.close();
 
-    // return mahasiswa;
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
+            return mahasiswa;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    // return null;
-    // }
+        return null;
+    }
 
     @Override
     public void add(MahasiswaModel model) {
@@ -529,11 +582,5 @@ public class MahasiswaService
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public MahasiswaExtendModel getOneExtend(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOneExtend'");
     }
 }
