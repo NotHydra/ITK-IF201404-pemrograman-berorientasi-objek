@@ -13,9 +13,10 @@ public class App {
                 // }
 
                 MahasiswaKelasService mahasiswaKelasService = new MahasiswaKelasService();
-                for (MahasiswaKelasModel mahasiswaKelas : mahasiswaKelasService.getExtend()) {
-                        System.out.println(Format.pretty(mahasiswaKelas.toString()));
-                }
-                // System.out.println(Format.pretty(mahasiswaKelasService.getOne(1).toString()));
+                // for (MahasiswaKelasModel mahasiswaKelas : mahasiswaKelasService.getExtend())
+                // {
+                // System.out.println(Format.pretty(mahasiswaKelas.toString()));
+                // }
+                System.out.println(Format.pretty(mahasiswaKelasService.getOneExtend(1).toString()));
         };
 }
