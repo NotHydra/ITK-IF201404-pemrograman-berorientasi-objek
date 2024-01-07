@@ -13,10 +13,7 @@ public class App {
                 // }
 
                 MahasiswaKelasService mahasiswaKelasService = new MahasiswaKelasService();
-
-                mahasiswaKelasService.add(new MahasiswaKelasModel(1, 21, IndeksEnum.A));
-
-                for (MahasiswaKelasModel mahasiswaKelas : mahasiswaKelasService.get()) {
+                for (MahasiswaKelasModel mahasiswaKelas : mahasiswaKelasService.getExtend()) {
                         System.out.println(Format.pretty(mahasiswaKelas.toString()));
                 }
                 // System.out.println(Format.pretty(mahasiswaKelasService.getOne(1).toString()));
