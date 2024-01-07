@@ -1,6 +1,7 @@
 import controllers.MainController;
-import models.KelasExtendModel;
-import services.KelasService;
+import enums.IndeksEnum;
+import models.MahasiswaKelasModel;
+import services.MahasiswaKelasService;
 import utilities.Format;
 
 public class App {
@@ -11,11 +12,13 @@ public class App {
                 // e.printStackTrace();
                 // }
 
-                KelasService kelasService = new KelasService();
-                // for (KelasExtendModel kelas : kelasService.getExtend()) {
-                // System.out.println(Format.pretty(kelas.toString()));
-                // }
+                MahasiswaKelasService mahasiswaKelasService = new MahasiswaKelasService();
 
-                System.out.println(Format.pretty(kelasService.getOneExtend(1).toString()));
+                mahasiswaKelasService.add(new MahasiswaKelasModel(1, 21, IndeksEnum.A));
+
+                for (MahasiswaKelasModel mahasiswaKelas : mahasiswaKelasService.get()) {
+                        System.out.println(Format.pretty(mahasiswaKelas.toString()));
+                }
+                // System.out.println(Format.pretty(mahasiswaKelasService.getOne(1).toString()));
         };
 }
