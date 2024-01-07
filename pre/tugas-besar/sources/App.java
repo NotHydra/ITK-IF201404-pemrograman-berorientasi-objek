@@ -1,6 +1,7 @@
 import controllers.MainController;
-import models.KelasModel;
+import models.KelasExtendModel;
 import services.KelasService;
+import utilities.Format;
 
 public class App {
         public static void main(String[] args) {
@@ -11,8 +12,8 @@ public class App {
                 // }
 
                 KelasService kelasService = new KelasService();
-                for (KelasModel kelas : kelasService.get()) {
-                        System.out.println(kelas);
+                for (KelasExtendModel kelas : kelasService.getExtend()) {
+                        System.out.println(Format.pretty(kelas.toString()));
                 }
         };
 }
