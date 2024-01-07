@@ -207,6 +207,111 @@ public class KelasService
     }
 
     @Override
+    public KelasExtendModel getOneExtend(int id) {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "kelas.id, "
+                            + "kelas.id_dosen, "
+                            + "kelas.id_mata_kuliah, "
+                            + "kelas.tipe_kelas, "
+                            + "kelas.id_ruangan, "
+                            + "kelas.sesi, "
+                            + "kelas.tahun_ajaran, "
+                            + "dosen.nik, "
+                            + "dosen.nip, "
+                            + "dosen.nama, "
+                            + "dosen.email, "
+                            + "dosen.password, "
+                            + "dosen.alamat, "
+                            + "dosen.id_tempat_lahir, "
+                            + "dosen.tanggal_lahir, "
+                            + "dosen.jenis_kelamin, "
+                            + "dosen.golongan_darah, "
+                            + "dosen.agama, "
+                            + "dosen.nomor_telepon, "
+                            + "dosen.id_pendidikan, "
+                            + "dosen.id_program_studi, "
+                            + "dosen.aktif, "
+                            + "dosen.keterangan, "
+                            + "dosen_tempat_lahir.tempat_lahir, "
+                            + "dosen_pendidikan.pendidikan, "
+                            + "dosen_pendidikan.singkatan, "
+                            + "dosen_program_studi.id_jurusan, "
+                            + "dosen_program_studi.program_studi, "
+                            + "dosen_program_studi.deskripsi, "
+                            + "dosen_jurusan.jurusan, "
+                            + "dosen_jurusan.deskripsi, "
+                            + "mata_kuliah.kode, "
+                            + "mata_kuliah.mata_kuliah, "
+                            + "mata_kuliah.deskripsi, "
+                            + "mata_kuliah.sks, "
+                            + "ruangan.ruangan "
+                            + "FROM kelas "
+                            + "INNER JOIN dosen ON kelas.id_dosen=dosen.id "
+                            + "INNER JOIN tempat_lahir AS `dosen_tempat_lahir` ON dosen.id_tempat_lahir=dosen_tempat_lahir.id "
+                            + "INNER JOIN pendidikan AS `dosen_pendidikan` ON dosen.id_pendidikan=dosen_pendidikan.id "
+                            + "INNER JOIN program_studi AS `dosen_program_studi` ON dosen.id_program_studi=dosen_program_studi.id "
+                            + "INNER JOIN jurusan AS `dosen_jurusan` ON dosen_program_studi.id_jurusan=dosen_jurusan.id "
+                            + "INNER JOIN mata_kuliah ON kelas.id_mata_kuliah=mata_kuliah.id "
+                            + "INNER JOIN ruangan ON kelas.id_ruangan=ruangan.id "
+                            + "WHERE kelas.id='" + id + "'"
+                            + ";");
+
+            KelasExtendModel kelas = null;
+
+            if (result.next()) {
+                kelas = new KelasExtendModel(
+                        result.getInt("kelas.id"),
+                        result.getInt("kelas.id_dosen"),
+                        result.getInt("kelas.id_mata_kuliah"),
+                        result.getString("kelas.tipe_kelas").charAt(0),
+                        result.getInt("kelas.id_ruangan"),
+                        SesiEnum.valueToEnum(result.getString("kelas.sesi")),
+                        result.getString("kelas.tahun_ajaran"), result.getString("dosen.nik"),
+                        result.getString("dosen.nip"),
+                        result.getString("dosen.nama"),
+                        result.getString("dosen.email"),
+                        result.getString("dosen.password"),
+                        result.getString("dosen.alamat"),
+                        result.getInt("dosen.id_tempat_lahir"),
+                        result.getString("dosen.tanggal_lahir"),
+                        JenisKelaminEnum.valueToEnum(result.getString("dosen.jenis_kelamin")),
+                        GolonganDarahEnum.valueToEnum(result.getString("dosen.golongan_darah")),
+                        AgamaEnum.valueToEnum(result.getString("dosen.agama")),
+                        result.getString("dosen.nomor_telepon"),
+                        result.getInt("dosen.id_pendidikan"),
+                        result.getInt("dosen.id_program_studi"),
+                        result.getBoolean("dosen.aktif"),
+                        result.getString("dosen.keterangan"),
+                        result.getString("dosen_tempat_lahir.tempat_lahir"),
+                        result.getString("dosen_pendidikan.pendidikan"),
+                        result.getString("dosen_pendidikan.singkatan"),
+                        result.getInt("dosen_program_studi.id_jurusan"),
+                        result.getString("dosen_program_studi.program_studi"),
+                        result.getString("dosen_program_studi.deskripsi"),
+                        result.getString("dosen_jurusan.jurusan"),
+                        result.getString("dosen_jurusan.deskripsi"),
+                        result.getString("mata_kuliah.kode"),
+                        result.getString("mata_kuliah.mata_kuliah"),
+                        result.getString("mata_kuliah.deskripsi"),
+                        result.getInt("mata_kuliah.sks"),
+                        result.getString("ruangan.ruangan"));
+            }
+
+            database.close();
+
+            return kelas;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public void add(KelasModel model) {
         try {
             final Database database = new Database();
@@ -306,9 +411,4 @@ public class KelasService
         }
     }
 
-    @Override
-    public KelasExtendModel getOneExtend(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOneExtend'");
-    }
 }

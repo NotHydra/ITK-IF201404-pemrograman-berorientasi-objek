@@ -12,8 +12,10 @@ public class App {
                 // }
 
                 KelasService kelasService = new KelasService();
-                for (KelasExtendModel kelas : kelasService.getExtend()) {
-                        System.out.println(Format.pretty(kelas.toString()));
-                }
+                // for (KelasExtendModel kelas : kelasService.getExtend()) {
+                // System.out.println(Format.pretty(kelas.toString()));
+                // }
+
+                System.out.println(Format.pretty(kelasService.getOneExtend(1).toString()));
         };
 }
