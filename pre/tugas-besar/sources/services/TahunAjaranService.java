@@ -6,7 +6,11 @@ import providers.Database;
 import models.TahunAjaranModel;
 
 public class TahunAjaranService extends BaseService<TahunAjaranModel> {
-    private final String table = "tahun_ajaran";
+    private static final String table = "tahun_ajaran";
+
+    public TahunAjaranService() {
+        super(table);
+    }
 
     @Override
     public TahunAjaranModel[] get() {
@@ -127,18 +131,6 @@ public class TahunAjaranService extends BaseService<TahunAjaranModel> {
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
 
             database.close();
         } catch (Exception e) {

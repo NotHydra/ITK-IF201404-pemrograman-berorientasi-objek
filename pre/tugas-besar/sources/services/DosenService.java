@@ -11,7 +11,11 @@ import models.DosenModel;
 import models.DosenExtendModel;
 
 public class DosenService extends BaseService<DosenModel> implements ExtendService<DosenExtendModel> {
-    private final String table = "dosen";
+    private static final String table = "dosen";
+
+    public DosenService() {
+        super(table);
+    }
 
     @Override
     public DosenModel[] get() {
@@ -432,18 +436,6 @@ public class DosenService extends BaseService<DosenModel> implements ExtendServi
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
 
             database.close();
         } catch (Exception e) {

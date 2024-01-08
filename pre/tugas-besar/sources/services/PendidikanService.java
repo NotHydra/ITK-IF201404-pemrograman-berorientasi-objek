@@ -6,7 +6,11 @@ import providers.Database;
 import models.PendidikanModel;
 
 public class PendidikanService extends BaseService<PendidikanModel> {
-    private final String table = "pendidikan";
+    private static final String table = "pendidikan";
+
+    public PendidikanService() {
+        super(table);
+    }
 
     @Override
     public PendidikanModel[] get() {
@@ -136,18 +140,6 @@ public class PendidikanService extends BaseService<PendidikanModel> {
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
 
             database.close();
         } catch (Exception e) {

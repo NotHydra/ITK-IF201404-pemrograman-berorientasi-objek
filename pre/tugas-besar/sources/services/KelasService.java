@@ -13,7 +13,11 @@ import models.KelasModel;
 public class KelasService
         extends BaseService<KelasModel>
         implements ExtendService<KelasExtendModel> {
-    private final String table = "kelas";
+    private static final String table = "kelas";
+
+    public KelasService() {
+        super(table);
+    }
 
     @Override
     public KelasModel[] get() {
@@ -398,17 +402,4 @@ public class KelasService
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }

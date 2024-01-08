@@ -6,7 +6,11 @@ import providers.Database;
 import models.MataKuliahModel;
 
 public class MataKuliahService extends BaseService<MataKuliahModel> {
-    private final String table = "mata_kuliah";
+    private static final String table = "mata_kuliah";
+
+    public MataKuliahService() {
+        super(table);
+    }
 
     @Override
     public MataKuliahModel[] get() {
@@ -155,18 +159,6 @@ public class MataKuliahService extends BaseService<MataKuliahModel> {
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
 
             database.close();
         } catch (Exception e) {

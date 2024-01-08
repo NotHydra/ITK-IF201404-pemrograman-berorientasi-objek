@@ -9,7 +9,6 @@ import models.ProgramStudiExtendModel;
 public class ProgramStudiService
         extends BaseService<ProgramStudiModel>
         implements ExtendService<ProgramStudiExtendModel> {
-
     private static final String table = "program_studi";
 
     public ProgramStudiService() {

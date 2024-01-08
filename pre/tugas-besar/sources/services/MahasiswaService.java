@@ -13,7 +13,11 @@ import models.MahasiswaExtendModel;
 public class MahasiswaService
         extends BaseService<MahasiswaModel>
         implements ExtendService<MahasiswaExtendModel> {
-    private final String table = "mahasiswa";
+    private static final String table = "mahasiswa";
+
+    public MahasiswaService() {
+        super(table);
+    }
 
     @Override
     public MahasiswaModel[] get() {
@@ -568,18 +572,6 @@ public class MahasiswaService
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
 
             database.close();
         } catch (Exception e) {

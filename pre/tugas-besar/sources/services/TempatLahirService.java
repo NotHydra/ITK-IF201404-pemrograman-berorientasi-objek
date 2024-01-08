@@ -6,7 +6,11 @@ import providers.Database;
 import models.TempatLahirModel;
 
 public class TempatLahirService extends BaseService<TempatLahirModel> {
-    private final String table = "tempat_lahir";
+    private static final String table = "tempat_lahir";
+
+    public TempatLahirService() {
+        super(table);
+    }
 
     @Override
     public TempatLahirModel[] get() {
@@ -127,18 +131,6 @@ public class TempatLahirService extends BaseService<TempatLahirModel> {
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
 
             database.close();
         } catch (Exception e) {
