@@ -17,7 +17,7 @@ public class Generate {
 
 		int jurusanIndex = 0;
 		int programStudiIndex = 0;
-		for (Object[] jurusanRaw : JurusanRaw.getData()) {
+		for (Object[] jurusanRaw : Raw.getJurusan()) {
 			jurusanIndex++;
 
 			for (Object[] programStudiRaw : (Object[][]) jurusanRaw[2]) {
