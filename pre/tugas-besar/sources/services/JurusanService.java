@@ -6,7 +6,11 @@ import providers.Database;
 import models.JurusanModel;
 
 public class JurusanService extends BaseService<JurusanModel> {
-    private final String table = "jurusan";
+    private static final String table = "jurusan";
+
+    public JurusanService() {
+        super(table);
+    }
 
     @Override
     public JurusanModel[] get() {
@@ -136,30 +140,6 @@ public class JurusanService extends BaseService<JurusanModel> {
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void clear() {
-        try {
-            final Database database = new Database();
-            database.disableForeignKey();
-            database.executeUpdate("TRUNCATE TABLE " + table + ";");
 
             database.close();
         } catch (Exception e) {
