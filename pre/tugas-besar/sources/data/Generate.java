@@ -5,17 +5,20 @@ import java.util.ArrayList;
 import models.JurusanModel;
 import models.PendidikanModel;
 import models.ProgramStudiModel;
+import models.TahunAjaranModel;
 import models.TempatLahirModel;
 import services.JurusanService;
 import services.PendidikanService;
 import services.ProgramStudiService;
+import services.TahunAjaranService;
 import services.TempatLahirService;
 
 public class Generate {
 	public static void start() {
 		// jurusan();
 		// pendidikan();
-		tempatLahir();
+		// tempatLahir();
+		tahunAjaran();
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
@@ -94,4 +97,24 @@ public class Generate {
 		tempatLahirService.add(tempatLahir.toArray(new TempatLahirModel[0]));
 		tempatLahirService.display();
 	}
+
+	private static final ArrayList<TahunAjaranModel> tahunAjaran = new ArrayList<TahunAjaranModel>();
+
+	public static void tahunAjaran() {
+		final TahunAjaranService tahunAjaranService = new TahunAjaranService();
+
+		int tahunAjaranIndex = 0;
+		for (String tahunAjaranRaw : Raw.getTahunAjaran()) {
+			tahunAjaranIndex++;
+
+			tahunAjaran.add(new TahunAjaranModel(
+					tahunAjaranIndex,
+					tahunAjaranRaw));
+		}
+
+		tahunAjaranService.clear();
+		tahunAjaranService.add(tahunAjaran.toArray(new TahunAjaranModel[0]));
+		tahunAjaranService.display();
+	}
+
 }
