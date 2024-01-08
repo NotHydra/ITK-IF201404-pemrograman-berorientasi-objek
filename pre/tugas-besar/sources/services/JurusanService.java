@@ -154,4 +154,16 @@ public class JurusanService extends BaseService<JurusanModel> {
             e.printStackTrace();
         }
     }
+
+    public void clear() {
+        try {
+            final Database database = new Database();
+            database.disableForeignKey();
+            database.executeUpdate("TRUNCATE TABLE " + table + ";");
+
+            database.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
