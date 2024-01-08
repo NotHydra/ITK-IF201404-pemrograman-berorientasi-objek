@@ -377,6 +377,41 @@ public class Raw {
 
 	public static String[] getTahunAjaran() {
 		return new String[] {
+				"2009 Ganjil",
+				"2009 Genap",
+				"2010 Ganjil",
+				"2010 Genap",
+				"2011 Ganjil",
+				"2011 Genap",
+				"2012 Ganjil",
+				"2012 Genap",
+				"2013 Ganjil",
+				"2013 Genap",
+				"2014 Ganjil",
+				"2014 Genap",
+				"2015 Ganjil",
+				"2015 Genap",
+				"2016 Ganjil",
+				"2016 Genap",
+				"2017 Ganjil",
+				"2017 Genap",
+				"2018 Ganjil",
+				"2018 Genap",
+				"2019 Ganjil",
+				"2019 Genap",
+				"2020 Ganjil",
+				"2020 Genap",
+				"2021 Ganjil",
+				"2021 Genap",
+				"2022 Ganjil",
+				"2022 Genap",
+				"2023 Ganjil",
+				"2023 Genap"
+		};
+	}
+
+	public static String[] getTahunMasuk() {
+		return new String[] {
 				"2009",
 				"2010",
 				"2011",

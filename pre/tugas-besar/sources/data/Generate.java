@@ -6,11 +6,13 @@ import models.JurusanModel;
 import models.PendidikanModel;
 import models.ProgramStudiModel;
 import models.TahunAjaranModel;
+import models.TahunMasukModel;
 import models.TempatLahirModel;
 import services.JurusanService;
 import services.PendidikanService;
 import services.ProgramStudiService;
 import services.TahunAjaranService;
+import services.TahunMasukService;
 import services.TempatLahirService;
 
 public class Generate {
@@ -18,7 +20,8 @@ public class Generate {
 		// jurusan();
 		// pendidikan();
 		// tempatLahir();
-		tahunAjaran();
+		// tahunAjaran();
+		tahunMasuk();
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
@@ -115,6 +118,25 @@ public class Generate {
 		tahunAjaranService.clear();
 		tahunAjaranService.add(tahunAjaran.toArray(new TahunAjaranModel[0]));
 		tahunAjaranService.display();
+	}
+
+	private static final ArrayList<TahunMasukModel> tahunMasuk = new ArrayList<TahunMasukModel>();
+
+	public static void tahunMasuk() {
+		final TahunMasukService tahunMasukService = new TahunMasukService();
+
+		int tahunMasukIndex = 0;
+		for (String tahunMasukRaw : Raw.getTahunMasuk()) {
+			tahunMasukIndex++;
+
+			tahunMasuk.add(new TahunMasukModel(
+					tahunMasukIndex,
+					tahunMasukRaw));
+		}
+
+		tahunMasukService.clear();
+		tahunMasukService.add(tahunMasuk.toArray(new TahunMasukModel[0]));
+		tahunMasukService.display();
 	}
 
 }
