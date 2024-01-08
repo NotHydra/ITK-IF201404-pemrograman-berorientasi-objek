@@ -28,15 +28,20 @@ public class Database {
         }
     }
 
-    private boolean tableExist(String table) {
-        try {
-            return this.connection.getMetaData().getTables(null, null, table, null).next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
+    public void disableForeignKey() {
+        this.executeUpdate("SET FOREIGN_KEY_CHECKS = 0;");
     }
+
+    // private boolean tableExist(String table) {
+    // try {
+    // return this.connection.getMetaData().getTables(null, null, table,
+    // null).next();
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
+
+    // return false;
+    // }
 
     public int tableTotal(String table) {
         try {
