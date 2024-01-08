@@ -9,7 +9,12 @@ import models.ProgramStudiExtendModel;
 public class ProgramStudiService
         extends BaseService<ProgramStudiModel>
         implements ExtendService<ProgramStudiExtendModel> {
-    private final String table = "program_studi";
+
+    private static final String table = "program_studi";
+
+    public ProgramStudiService() {
+        super(table);
+    }
 
     @Override
     public ProgramStudiModel[] get() {
@@ -231,18 +236,6 @@ public class ProgramStudiService
                     + "WHERE "
                     + "id='" + id + "'"
                     + ";");
-
-            database.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void remove(int id) {
-        try {
-            final Database database = new Database();
-            database.executeUpdate("DELETE FROM " + table + " WHERE id='" + id + "'");
 
             database.close();
         } catch (Exception e) {
