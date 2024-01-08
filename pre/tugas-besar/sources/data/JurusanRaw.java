@@ -1,7 +1,7 @@
 package data;
 
-public class Raw {
-	private static final Object[][] jurusanRaw = new Object[][] {
+public class JurusanRaw {
+	private static final Object[][] data = new Object[][] {
 			new Object[] {
 					"Jurusan Matematika dan Teknologi Informasi",
 					"Jurusan Matematika dan Teknologi Informasi (JMTI) sebagai salah satu dari lima jurusan yang ada di Institut Teknologi Kalimantan yang didirikan pada tahun 2015. JMTI merupakan jurusan terbesar yang memiliki lima program studi yaitu, Matematika, Sistem Informasi, Informatika, Statistika, dan Ilmu Aktuaria dengan jumlah keseluruhan 803 mahasiswa. Pada tahun 2021, JMTI menginisiasi pendirian program studi baru Bisnis Digital. Saat ini, JMTI ITK memiliki 44 dosen tetap, dengan 10 dosen Asisten Ahli dan 3 dosen sedang melaksanakan studi lanjut program doctor di kampus dalam negeri dan luar negeri. Dalam rangka melaksanakan penelitian berkualitas dan terdepan dalam pengembangan matematika, pengolahan data, teknologi informasi, dan penerapannya, JMTI ITK diperkuat dengan kelompok keilmuan, yakni: Analisis dan Aljabar, Matematika Terapan, Digital Enterpreneur, Audit IT, Project Management, Business Analytic, Artificial Intelligence, Software Engineering, Statistika Komputasi, Statistika Pemodelan Untuk mewujudkan visi misi sebagai pusat pengembangan matematika, pengolahan data, teknologi informasi, dan penerapannya, JMTI ITK telah melakukan kerjasama pendidikan dan penelitian dengan universitas dan instansi di tingkat regional dan nasional.",
@@ -123,7 +123,7 @@ public class Raw {
 
 	};
 
-	public static Object[][] getJurusanRaw() {
-		return jurusanRaw;
+	public static Object[][] getData() {
+		return data;
 	}
 }
