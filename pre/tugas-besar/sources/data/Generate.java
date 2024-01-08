@@ -17,10 +17,10 @@ import services.TempatLahirService;
 
 public class Generate {
 	public static void start() {
-		// jurusan();
-		// pendidikan();
-		// tempatLahir();
-		// tahunAjaran();
+		jurusan();
+		pendidikan();
+		tempatLahir();
+		tahunAjaran();
 		tahunMasuk();
 	}
 
@@ -112,7 +112,11 @@ public class Generate {
 
 			tahunAjaran.add(new TahunAjaranModel(
 					tahunAjaranIndex,
-					tahunAjaranRaw));
+					tahunAjaranRaw + " Ganjil"));
+
+			tahunAjaran.add(new TahunAjaranModel(
+					tahunAjaranIndex,
+					tahunAjaranRaw + " Genap"));
 		}
 
 		tahunAjaranService.clear();
