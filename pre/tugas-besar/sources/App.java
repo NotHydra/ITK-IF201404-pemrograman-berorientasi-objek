@@ -1,8 +1,6 @@
-import controllers.MainController;
-import enums.IndeksEnum;
-import models.MahasiswaKelasModel;
-import services.MahasiswaKelasService;
-import utilities.Format;
+
+// import controllers.MainController;
+import data.Generate;
 
 public class App {
         public static void main(String[] args) {
@@ -12,11 +10,7 @@ public class App {
                 // e.printStackTrace();
                 // }
 
-                MahasiswaKelasService mahasiswaKelasService = new MahasiswaKelasService();
-                // for (MahasiswaKelasModel mahasiswaKelas : mahasiswaKelasService.getExtend())
-                // {
-                // System.out.println(Format.pretty(mahasiswaKelas.toString()));
-                // }
-                System.out.println(Format.pretty(mahasiswaKelasService.getOneExtend(1).toString()));
+                Generate.start();
+
         };
 }
