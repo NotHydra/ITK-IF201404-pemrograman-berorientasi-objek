@@ -414,4 +414,12 @@ public class Raw {
 				"2023"
 		};
 	}
+
+	public static String[] getRuangan() {
+		return new String[] {
+				"G",
+				"E",
+				"F",
+		};
+	}
 }

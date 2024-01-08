@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import models.JurusanModel;
 import models.PendidikanModel;
 import models.ProgramStudiModel;
+import models.RuanganModel;
 import models.TahunAjaranModel;
 import models.TahunMasukModel;
 import models.TempatLahirModel;
 import services.JurusanService;
 import services.PendidikanService;
 import services.ProgramStudiService;
+import services.RuanganService;
 import services.TahunAjaranService;
 import services.TahunMasukService;
 import services.TempatLahirService;
@@ -22,6 +24,7 @@ public class Generate {
 		tempatLahir();
 		tahunAjaran();
 		tahunMasuk();
+		ruangan();
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
@@ -141,6 +144,29 @@ public class Generate {
 		tahunMasukService.clear();
 		tahunMasukService.add(tahunMasuk.toArray(new TahunMasukModel[0]));
 		tahunMasukService.display();
+	}
+
+	private static final ArrayList<RuanganModel> ruangan = new ArrayList<RuanganModel>();
+
+	public static void ruangan() {
+		final RuanganService ruanganService = new RuanganService();
+
+		int ruanganIndex = 0;
+		for (String ruanganRaw : Raw.getRuangan()) {
+			for (int firstIndex = 1; firstIndex <= 3; firstIndex++) {
+				for (int thirdIndex = 1; thirdIndex <= 7; thirdIndex++) {
+					ruanganIndex++;
+
+					ruangan.add(new RuanganModel(
+							ruanganIndex,
+							ruanganRaw + firstIndex + "0" + thirdIndex));
+				}
+			}
+		}
+
+		ruanganService.clear();
+		ruanganService.add(ruangan.toArray(new RuanganModel[0]));
+		ruanganService.display();
 	}
 
 }
