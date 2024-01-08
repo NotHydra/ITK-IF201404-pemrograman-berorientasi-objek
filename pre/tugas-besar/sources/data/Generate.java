@@ -3,15 +3,22 @@ package data;
 import java.util.ArrayList;
 
 import models.JurusanModel;
+import models.PendidikanModel;
 import models.ProgramStudiModel;
 import services.JurusanService;
+import services.PendidikanService;
 import services.ProgramStudiService;
 
 public class Generate {
+	public static void start() {
+		// jurusan();
+		pendidikan();
+	}
+
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
 	private static final ArrayList<ProgramStudiModel> programStudi = new ArrayList<ProgramStudiModel>();
 
-	public static void start() {
+	public static void jurusan() {
 		final JurusanService jurusanService = new JurusanService();
 		final ProgramStudiService programStudiService = new ProgramStudiService();
 
@@ -44,5 +51,25 @@ public class Generate {
 		programStudiService.clear();
 		programStudiService.add(programStudi.toArray(new ProgramStudiModel[0]));
 		programStudiService.displayExtend();
+	}
+
+	private static final ArrayList<PendidikanModel> pendidikan = new ArrayList<PendidikanModel>();
+
+	public static void pendidikan() {
+		final PendidikanService pendidikanService = new PendidikanService();
+
+		int pendidikanIndex = 0;
+		for (String[] pendidikanRaw : Raw.getPendidikan()) {
+			pendidikanIndex++;
+
+			pendidikan.add(new PendidikanModel(
+					pendidikanIndex,
+					pendidikanRaw[0],
+					pendidikanRaw[1]));
+		}
+
+		pendidikanService.clear();
+		pendidikanService.add(pendidikan.toArray(new PendidikanModel[0]));
+		pendidikanService.display();
 	}
 }
