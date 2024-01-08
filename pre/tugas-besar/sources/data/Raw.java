@@ -422,4 +422,266 @@ public class Raw {
 				"F",
 		};
 	}
+
+	public static Object[][] getMataKuliah() {
+		return new Object[][] {
+				{
+						"CSC101",
+						"Pemrograman Dasar",
+						"Konsep dasar pemrograman",
+						3
+				},
+				{
+						"MAT202",
+						"Kalkulus II",
+						"Topik kalkulus lanjutan",
+						4
+				},
+				{
+						"ENG105",
+						"Komposisi Bahasa Inggris",
+						"Meningkatkan keterampilan menulis",
+						3
+				},
+				{
+						"BIO301",
+						"Biologi Molekuler",
+						"Studi tentang biologi molekuler",
+						4
+				},
+				{
+						"CHEM201",
+						"Kimia Organik",
+						"Aspek-aspek kimia organik",
+						3
+				},
+				{
+						"PHY204",
+						"Fisika Modern",
+						"Teori dan aplikasi fisika modern",
+						4
+				},
+				{
+						"ECO401",
+						"Ekonomi Mikro",
+						"Studi tentang ekonomi tingkat mikro",
+						3
+				},
+				{
+						"PSY301",
+						"Psikologi Kognitif",
+						"Pemahaman tentang psikologi kognitif",
+						4
+				},
+				{
+						"SOC202",
+						"Sosiologi Perubahan Sosial",
+						"Analisis perubahan sosial dalam masyarakat",
+						3
+				},
+				{
+						"ART101",
+						"Seni Rupa",
+						"Eksplorasi berbagai bentuk seni visual",
+						3
+				},
+				{
+						"HIS202",
+						"Sejarah Dunia Modern",
+						"Perkembangan sejarah dunia pada era modern",
+						3
+				},
+				{
+						"POL301",
+						"Ilmu Politik Kontemporer",
+						"Analisis ilmu politik dalam konteks saat ini",
+						4
+				},
+				{
+						"MKT401",
+						"Pemasaran Strategis",
+						"Strategi pemasaran dalam dunia bisnis",
+						3
+				},
+				{
+						"ITD201",
+						"Desain Antarmuka Pengguna",
+						"Prinsip-prinsip desain antarmuka pengguna",
+						3
+				},
+				{
+						"PHI301",
+						"Etika Profesional",
+						"Pertimbangan etika dalam profesi",
+						3
+				},
+				{
+						"AST101",
+						"Astronomi Dasar",
+						"Konsep dasar astronomi dan benda langit",
+						4
+				},
+				{
+						"GEO202",
+						"Geografi Lingkungan",
+						"Studi tentang pengaruh manusia terhadap lingkungan",
+						3
+				},
+				{
+						"MUS101",
+						"Teori Musik",
+						"Dasar-dasar teori musik",
+						3
+				},
+				{
+						"EDU401",
+						"Pendidikan Inklusif",
+						"Mendukung keberagaman dalam pendidikan",
+						4
+				},
+				{
+						"LAW301",
+						"Hukum Bisnis",
+						"Aspek hukum dalam dunia bisnis",
+						3
+				},
+				{
+						"ENG201",
+						"Sastra Inggris Klasik",
+						"Kajian sastra Inggris pada era klasik",
+						4
+				},
+				{
+						"COM301",
+						"Komunikasi Organisasi",
+						"Strategi komunikasi dalam organisasi",
+						3
+				},
+				{
+						"FIN401",
+						"Manajemen Keuangan",
+						"Prinsip manajemen keuangan perusahaan",
+						4
+				},
+				{
+						"ENV202",
+						"Konservasi Sumber Daya Alam",
+						"Upaya pelestarian sumber daya alam",
+						3
+				},
+				{
+						"ANT101",
+						"Antropologi Budaya",
+						"Studi tentang kebudayaan manusia",
+						3
+				},
+				{
+						"ARC301",
+						"Arsitektur Modern",
+						"Desain dan konsep dalam arsitektur modern",
+						4
+				},
+				{
+						"PSI201",
+						"Psikologi Sosial",
+						"Interaksi sosial dan perilaku manusia",
+						3
+				},
+				{
+						"ECE401",
+						"Rekayasa Perangkat Lunak",
+						"Pengembangan perangkat lunak",
+						4
+				},
+				{
+						"PHI201",
+						"Filsafat Barat",
+						"Pemahaman filsafat Barat klasik",
+						3
+				},
+				{
+						"SWE301",
+						"Rekayasa Perangkat Lunak Lanjutan",
+						"Konsep-konsep lanjutan dalam pengembangan perangkat lunak",
+						4
+				},
+				{
+						"THA101",
+						"Teater dan Drama",
+						"Ekspresi seni melalui teater dan drama",
+						3
+				},
+				{
+						"EDU201",
+						"Psikologi Pendidikan",
+						"Aspek psikologi dalam konteks pendidikan",
+						3
+				},
+				{
+						"BIZ401",
+						"Strategi Bisnis",
+						"Pengembangan strategi dalam bisnis",
+						4
+				},
+				{
+						"PHY201",
+						"Fisika Klasik",
+						"Prinsip-prinsip fisika klasik",
+						3
+				},
+				{
+						"CIV202",
+						"Teknik Sipil",
+						"Prinsip-prinsip dasar teknik sipil",
+						4
+				},
+				{
+						"SOC101",
+						"Sosiologi Umum",
+						"Dasar-dasar sosiologi",
+						3
+				},
+				{
+						"HUM301",
+						"Humaniora Kontemporer",
+						"Kajian humaniora dalam konteks modern",
+						4
+				},
+				{
+						"MKT201",
+						"Prinsip Pemasaran",
+						"Konsep dasar dalam pemasaran",
+						3
+				},
+				{
+						"PHI401",
+						"Etika Bisnis",
+						"Pertimbangan etika dalam konteks bisnis",
+						4
+				},
+				{
+						"ECO201",
+						"Ekonomi Makro",
+						"Studi tentang ekonomi tingkat makro",
+						3
+				},
+				{
+						"SCI301",
+						"Metode Penelitian Ilmiah",
+						"Teknik penelitian ilmiah",
+						4
+				},
+				{
+						"EDU301",
+						"Kurikulum dan Pengajaran",
+						"Perancangan kurikulum dan pengajaran",
+						3
+				},
+				{
+						"CSC201",
+						"Struktur Data",
+						"Pengenalan struktur data",
+						3
+				} };
+	}
 }

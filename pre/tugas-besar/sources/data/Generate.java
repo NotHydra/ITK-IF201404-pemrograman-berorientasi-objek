@@ -3,6 +3,7 @@ package data;
 import java.util.ArrayList;
 
 import models.JurusanModel;
+import models.MataKuliahModel;
 import models.PendidikanModel;
 import models.ProgramStudiModel;
 import models.RuanganModel;
@@ -10,6 +11,7 @@ import models.TahunAjaranModel;
 import models.TahunMasukModel;
 import models.TempatLahirModel;
 import services.JurusanService;
+import services.MataKuliahService;
 import services.PendidikanService;
 import services.ProgramStudiService;
 import services.RuanganService;
@@ -19,12 +21,13 @@ import services.TempatLahirService;
 
 public class Generate {
 	public static void start() {
-		jurusan();
-		pendidikan();
-		tempatLahir();
-		tahunAjaran();
-		tahunMasuk();
-		ruangan();
+		// jurusan();
+		// pendidikan();
+		// tempatLahir();
+		// tahunAjaran();
+		// tahunMasuk();
+		// ruangan();
+		mataKuliah();
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
@@ -169,4 +172,25 @@ public class Generate {
 		ruanganService.display();
 	}
 
+	private static final ArrayList<MataKuliahModel> mataKuliah = new ArrayList<MataKuliahModel>();
+
+	public static void mataKuliah() {
+		final MataKuliahService mataKuliahService = new MataKuliahService();
+
+		int mataKuliahIndex = 0;
+		for (Object[] mataKuliahRaw : Raw.getMataKuliah()) {
+			mataKuliahIndex++;
+
+			mataKuliah.add(new MataKuliahModel(
+					mataKuliahIndex,
+					(String) mataKuliahRaw[0],
+					(String) mataKuliahRaw[1],
+					(String) mataKuliahRaw[2],
+					(int) mataKuliahRaw[3]));
+		}
+
+		mataKuliahService.clear();
+		mataKuliahService.add(mataKuliah.toArray(new MataKuliahModel[0]));
+		mataKuliahService.display();
+	};
 }
