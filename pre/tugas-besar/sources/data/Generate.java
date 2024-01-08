@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import models.JurusanModel;
 import models.PendidikanModel;
 import models.ProgramStudiModel;
+import models.TempatLahirModel;
 import services.JurusanService;
 import services.PendidikanService;
 import services.ProgramStudiService;
+import services.TempatLahirService;
 
 public class Generate {
 	public static void start() {
 		// jurusan();
-		pendidikan();
+		// pendidikan();
+		tempatLahir();
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
@@ -71,5 +74,24 @@ public class Generate {
 		pendidikanService.clear();
 		pendidikanService.add(pendidikan.toArray(new PendidikanModel[0]));
 		pendidikanService.display();
+	}
+
+	private static final ArrayList<TempatLahirModel> tempatLahir = new ArrayList<TempatLahirModel>();
+
+	public static void tempatLahir() {
+		final TempatLahirService tempatLahirService = new TempatLahirService();
+
+		int tempatLahirIndex = 0;
+		for (String tempatLahirRaw : Raw.getTempatLahir()) {
+			tempatLahirIndex++;
+
+			tempatLahir.add(new TempatLahirModel(
+					tempatLahirIndex,
+					tempatLahirRaw));
+		}
+
+		tempatLahirService.clear();
+		tempatLahirService.add(tempatLahir.toArray(new TempatLahirModel[0]));
+		tempatLahirService.display();
 	}
 }
