@@ -28,6 +28,17 @@ public class CustomDate {
         return null;
     }
 
+    public static Date stringToDate(String date) {
+        try {
+
+            return stringFormat.parse(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public static String dateToString(Date date) {
         try {
             return stringFormat.format(date);
