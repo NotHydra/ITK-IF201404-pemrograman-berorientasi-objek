@@ -222,7 +222,7 @@ public class Generate {
 					"Password " + i,
 					"Alamat " + i,
 					Randomizer.pickArray(idTempatLahir),
-					"1980-01-01",
+					Randomizer.date("1965-01-01", "2000-01-01"),
 					Randomizer.pickEnum(JenisKelaminEnum.class),
 					Randomizer.pickEnum(GolonganDarahEnum.class),
 					Randomizer.pickEnum(AgamaEnum.class),
