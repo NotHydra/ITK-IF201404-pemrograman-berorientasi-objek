@@ -3,6 +3,8 @@ package data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import enums.AgamaEnum;
 import enums.GolonganDarahEnum;
@@ -238,13 +240,19 @@ public class Generate {
 			baseCount.put(base, baseCount.getOrDefault(base, 0) + 1);
 
 			final String nik = base + Format.zfill(String.valueOf(baseCount.get(base)), '0', 4);
+			final String nama = Randomizer.pickArray(Raw.getNama());
 
 			dosen.add(new DosenModel(
 					i,
 					nik,
 					Format.reverse(nik),
-					"Nama " + i,
-					"Email " + i,
+					nama,
+					Pattern
+							.compile("[^a-z]")
+							.matcher(nama.toLowerCase())
+							.replaceAll("")
+							+ tanggalLahir.substring(2, 4)
+							+ "@gmail.com",
 					tanggalLahir.substring(2, 4) + tanggalLahir.substring(5, 7) + tanggalLahir.substring(8, 10),
 					"Alamat " + i,
 					tempatLahir,
