@@ -23,4 +23,14 @@ public class Format {
 
         return result.toString();
     }
+
+    public static String zfill(String text, char fill, int length) {
+        StringBuilder result = new StringBuilder(text);
+
+        while (result.length() < length) {
+            result.insert(0, fill);
+        }
+
+        return result.toString();
+    }
 }
