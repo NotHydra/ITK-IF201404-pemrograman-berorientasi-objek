@@ -11,5 +11,7 @@ public class Randomizer {
         return array[randomIndex];
     }
 
-    
+    public static <Type> Type pickEnum(Class<Type> enumClass) {
+        return enumClass.getEnumConstants()[random.nextInt(enumClass.getEnumConstants().length)];
+    }
 }
