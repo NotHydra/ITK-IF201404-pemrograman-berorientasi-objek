@@ -10,9 +10,7 @@ public class Randomizer {
     private static final Random random = new Random();
 
     public static <Type> Type pickArray(Type[] array) {
-        final int randomIndex = random.nextInt(array.length);
-
-        return array[randomIndex];
+        return array[random.nextInt(array.length)];
     }
 
     public static <Type> Type pickEnum(Class<Type> enumClass) {
