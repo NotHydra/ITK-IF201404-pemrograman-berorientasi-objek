@@ -1,5 +1,7 @@
 package services;
 
+import java.sql.ResultSet;
+
 import providers.Database;
 
 public abstract class BaseService<ModelType> {
@@ -19,6 +21,34 @@ public abstract class BaseService<ModelType> {
     public abstract ModelType[] get();
 
     public abstract ModelType getOne(int id);
+
+    public Integer[] getId() {
+        try {
+            final Database database = new Database();
+            final int total = database.tableTotal(table);
+            final ResultSet result = database.executeQuery(""
+                    + "SELECT "
+                    + "id "
+                    + "FROM " + table + ""
+                    + ";");
+
+            final Integer[] idList = new Integer[total];
+            int i = 0;
+            while (result.next()) {
+                idList[i] = result.getInt("id");
+
+                i++;
+            }
+
+            database.close();
+
+            return idList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     public abstract void add(ModelType model);
 
