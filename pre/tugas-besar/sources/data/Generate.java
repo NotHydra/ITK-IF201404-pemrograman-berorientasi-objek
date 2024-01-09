@@ -2,6 +2,10 @@ package data;
 
 import java.util.ArrayList;
 
+import enums.AgamaEnum;
+import enums.GolonganDarahEnum;
+import enums.JenisKelaminEnum;
+import models.DosenModel;
 import models.JurusanModel;
 import models.MataKuliahModel;
 import models.PendidikanModel;
@@ -10,6 +14,7 @@ import models.RuanganModel;
 import models.TahunAjaranModel;
 import models.TahunMasukModel;
 import models.TempatLahirModel;
+import services.DosenService;
 import services.JurusanService;
 import services.MataKuliahService;
 import services.PendidikanService;
@@ -18,6 +23,7 @@ import services.RuanganService;
 import services.TahunAjaranService;
 import services.TahunMasukService;
 import services.TempatLahirService;
+import utilities.Randomizer;
 
 public class Generate {
 	public static void start() {
@@ -27,7 +33,8 @@ public class Generate {
 		// tahunAjaran();
 		// tahunMasuk();
 		// ruangan();
-		mataKuliah();
+		// mataKuliah();
+		dosen();
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
@@ -193,4 +200,42 @@ public class Generate {
 		mataKuliahService.add(mataKuliah.toArray(new MataKuliahModel[0]));
 		mataKuliahService.display();
 	};
+
+	private static final ArrayList<DosenModel> dosen = new ArrayList<DosenModel>();
+
+	public static void dosen() {
+		final DosenService dosenService = new DosenService();
+		final TempatLahirService tempatLahirService = new TempatLahirService();
+		final PendidikanService pendidikanService = new PendidikanService();
+		final ProgramStudiService programStudiService = new ProgramStudiService();
+
+		final Integer[] idTempatLahir = tempatLahirService.getId();
+		final Integer[] idPendidikan = pendidikanService.getId();
+		final Integer[] idProgramStudi = programStudiService.getId();
+
+		for (int i = 1; i <= 50; i++) {
+			dosen.add(new DosenModel(i,
+					"NIK " + i,
+					"NIP " + i,
+					"Nama " + i,
+					"Email " + i,
+					"Password " + i,
+					"Alamat " + i,
+					Randomizer.pickArray(idTempatLahir),
+					"1980-01-01",
+					Randomizer.pickEnum(JenisKelaminEnum.class),
+					Randomizer.pickEnum(GolonganDarahEnum.class),
+					Randomizer.pickEnum(AgamaEnum.class),
+					"Nomor Telepon " + i,
+					Randomizer.pickArray(idPendidikan),
+					Randomizer.pickArray(idProgramStudi),
+					true,
+					null));
+		}
+
+		dosenService.clear();
+		dosenService.add(dosen.toArray(new DosenModel[0]));
+		dosenService.display();
+	};
+
 }

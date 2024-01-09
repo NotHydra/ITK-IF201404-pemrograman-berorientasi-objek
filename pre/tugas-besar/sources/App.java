@@ -1,6 +1,7 @@
 
 // import controllers.MainController;
 import data.Generate;
+import enums.GolonganDarahEnum;
 import utilities.Password;
 
 public class App {
@@ -12,8 +13,5 @@ public class App {
 		// }
 
 		Generate.start();
-
-		String hashedPassword = Password.hash("123");
-		System.out.println(Password.match("123", hashedPassword));
 	};
 }
