@@ -1,6 +1,8 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import enums.AgamaEnum;
 import enums.GolonganDarahEnum;
@@ -23,6 +25,7 @@ import services.RuanganService;
 import services.TahunAjaranService;
 import services.TahunMasukService;
 import services.TempatLahirService;
+import utilities.Format;
 import utilities.Randomizer;
 
 public class Generate {
@@ -213,22 +216,45 @@ public class Generate {
 		final Integer[] idPendidikan = pendidikanService.getId();
 		final Integer[] idProgramStudi = programStudiService.getId();
 
+		final Map<String, Integer> nikCount = new HashMap<>();
+
 		for (int i = 1; i <= 50; i++) {
-			dosen.add(new DosenModel(i,
-					"NIK " + i,
-					"NIP " + i,
+			final Integer tempatLahir = Randomizer.pickArray(idTempatLahir);
+			final String tanggalLahir = Randomizer.date("1965-01-01", "2000-01-01");
+			final JenisKelaminEnum jenisKelamin = Randomizer.pickEnum(JenisKelaminEnum.class);
+			final GolonganDarahEnum golonganDarah = Randomizer.pickEnum(GolonganDarahEnum.class);
+			final AgamaEnum agama = Randomizer.pickEnum(AgamaEnum.class);
+			final Integer pendidikan = Randomizer.pickArray(idPendidikan);
+			final Integer programStudi = Randomizer.pickArray(idProgramStudi);
+
+			final String baseNIK = ""
+					+ Format.zfill(tempatLahir.toString(), '0', 2)
+					+ Format.zfill(String.valueOf(programStudiService.getOne(programStudi).getIdJurusan()), '0', 2)
+					+ Format.zfill(programStudi.toString(), '0', 2)
+					+ tanggalLahir.substring(2, 4)
+					+ tanggalLahir.substring(5, 7)
+					+ tanggalLahir.substring(8, 10);
+
+			nikCount.put(baseNIK, nikCount.getOrDefault(baseNIK, 0) + 1);
+
+			final String extendNIK = Format.zfill(String.valueOf(nikCount.get(baseNIK)), '0', 4);
+
+			dosen.add(new DosenModel(
+					i,
+					baseNIK + extendNIK,
+					Format.reverse(baseNIK + extendNIK),
 					"Nama " + i,
 					"Email " + i,
 					"Password " + i,
 					"Alamat " + i,
-					Randomizer.pickArray(idTempatLahir),
-					Randomizer.date("1965-01-01", "2000-01-01"),
-					Randomizer.pickEnum(JenisKelaminEnum.class),
-					Randomizer.pickEnum(GolonganDarahEnum.class),
-					Randomizer.pickEnum(AgamaEnum.class),
+					tempatLahir,
+					tanggalLahir,
+					jenisKelamin,
+					golonganDarah,
+					agama,
 					"Nomor Telepon " + i,
-					Randomizer.pickArray(idPendidikan),
-					Randomizer.pickArray(idProgramStudi),
+					pendidikan,
+					programStudi,
 					true,
 					null));
 		}

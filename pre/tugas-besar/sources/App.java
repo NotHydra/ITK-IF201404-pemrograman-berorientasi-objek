@@ -2,7 +2,6 @@
 // import controllers.MainController;
 
 import data.Generate;
-import utilities.Format;
 
 public class App {
 	public static void main(String[] args) {
@@ -12,7 +11,6 @@ public class App {
 		// e.printStackTrace();
 		// }
 
-		// Generate.start();
-		System.out.println(Format.zfill("ABC", '0', 5));
+		Generate.start();
 	};
 }
