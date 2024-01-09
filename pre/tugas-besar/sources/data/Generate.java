@@ -254,7 +254,10 @@ public class Generate {
 							+ tanggalLahir.substring(2, 4)
 							+ "@gmail.com",
 					tanggalLahir.substring(2, 4) + tanggalLahir.substring(5, 7) + tanggalLahir.substring(8, 10),
-					"Alamat " + i,
+					""
+							+ "Jl. " + tempatLahirService.getOne(tempatLahir).getTempatLahir() + " "
+							+ "No. " + tanggalLahir.substring(2, 4) + " "
+							+ "RT. " + tanggalLahir.substring(5, 7),
 					tempatLahir,
 					tanggalLahir,
 					jenisKelamin,
