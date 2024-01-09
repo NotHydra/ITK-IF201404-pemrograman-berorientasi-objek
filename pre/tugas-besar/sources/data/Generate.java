@@ -216,7 +216,7 @@ public class Generate {
 		final Integer[] idPendidikan = pendidikanService.getId();
 		final Integer[] idProgramStudi = programStudiService.getId();
 
-		final Map<String, Integer> nikCount = new HashMap<>();
+		final Map<String, Integer> baseCount = new HashMap<>();
 
 		for (int i = 1; i <= 50; i++) {
 			final Integer tempatLahir = Randomizer.pickArray(idTempatLahir);
@@ -227,7 +227,7 @@ public class Generate {
 			final Integer pendidikan = Randomizer.pickArray(idPendidikan);
 			final Integer programStudi = Randomizer.pickArray(idProgramStudi);
 
-			final String baseNIK = ""
+			final String base = ""
 					+ Format.zfill(tempatLahir.toString(), '0', 2)
 					+ Format.zfill(String.valueOf(programStudiService.getOne(programStudi).getIdJurusan()), '0', 2)
 					+ Format.zfill(programStudi.toString(), '0', 2)
@@ -235,24 +235,24 @@ public class Generate {
 					+ tanggalLahir.substring(5, 7)
 					+ tanggalLahir.substring(8, 10);
 
-			nikCount.put(baseNIK, nikCount.getOrDefault(baseNIK, 0) + 1);
+			baseCount.put(base, baseCount.getOrDefault(base, 0) + 1);
 
-			final String extendNIK = Format.zfill(String.valueOf(nikCount.get(baseNIK)), '0', 4);
+			final String nik = base + Format.zfill(String.valueOf(baseCount.get(base)), '0', 4);
 
 			dosen.add(new DosenModel(
 					i,
-					baseNIK + extendNIK,
-					Format.reverse(baseNIK + extendNIK),
+					nik,
+					Format.reverse(nik),
 					"Nama " + i,
 					"Email " + i,
-					"Password " + i,
+					tanggalLahir.substring(2, 4) + tanggalLahir.substring(5, 7) + tanggalLahir.substring(8, 10),
 					"Alamat " + i,
 					tempatLahir,
 					tanggalLahir,
 					jenisKelamin,
 					golonganDarah,
 					agama,
-					"Nomor Telepon " + i,
+					"+628" + Format.reverse(base),
 					pendidikan,
 					programStudi,
 					true,
