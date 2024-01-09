@@ -33,4 +33,8 @@ public class Format {
 
         return result.toString();
     }
+
+    public static String reverse(String text) {
+        return new StringBuilder(text).reverse().toString();
+    }
 }
