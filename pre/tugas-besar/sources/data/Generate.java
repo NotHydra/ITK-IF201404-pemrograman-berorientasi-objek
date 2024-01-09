@@ -3,7 +3,6 @@ package data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import enums.AgamaEnum;
@@ -31,30 +30,59 @@ import utilities.Format;
 import utilities.Randomizer;
 
 public class Generate {
+	private static final Map<String, Integer> count = new HashMap<>();
+
 	public static void start() {
-		// jurusan();
-		// pendidikan();
-		// tempatLahir();
-		// tahunAjaran();
-		// tahunMasuk();
-		// ruangan();
-		// mataKuliah();
+		count.put("jurusan", 0);
+		count.put("programStudi", 0);
+		count.put("pendidikan", 0);
+		count.put("tempatLahir", 0);
+		count.put("tahunAjaran", 0);
+		count.put("tahunMasuk", 0);
+		count.put("ruangan", 0);
+		count.put("mataKuliah", 0);
+		count.put("dosen", 0);
+
+		jurusan();
+		pendidikan();
+		tempatLahir();
+		tahunAjaran();
+		tahunMasuk();
+		ruangan();
+		mataKuliah();
 		dosen();
+	}
+
+	private static void increment(String key) {
+		count.put(key, count.getOrDefault(key, 0) + 1);
+
+		System.out.println(""
+				+ "Jurusan : " + count.get("jurusan") + " | "
+				+ "Program Studi : " + count.get("programStudi") + " | "
+				+ "Pendidikan : " + count.get("pendidikan") + " | "
+				+ "Tempat Lahir : " + count.get("tempatLahir") + " | "
+				+ "Tahun Ajaran : " + count.get("tahunAjaran") + " | "
+				+ "Tahun Masuk : " + count.get("tahunMasuk") + " | "
+				+ "Ruangan : " + count.get("ruangan") + " | "
+				+ "Mata Kuliah : " + count.get("mataKuliah") + " | "
+				+ "Dosen : " + count.get("dosen"));
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
 	private static final ArrayList<ProgramStudiModel> programStudi = new ArrayList<ProgramStudiModel>();
 
-	public static void jurusan() {
+	private static void jurusan() {
 		final JurusanService jurusanService = new JurusanService();
 		final ProgramStudiService programStudiService = new ProgramStudiService();
 
 		int jurusanIndex = 0;
 		int programStudiIndex = 0;
 		for (Object[] jurusanRaw : Raw.getJurusan()) {
+			increment("jurusan");
 			jurusanIndex++;
 
 			for (Object[] programStudiRaw : (Object[][]) jurusanRaw[2]) {
+				increment("programStudi");
 				programStudiIndex++;
 
 				programStudi.add(
@@ -73,20 +101,19 @@ public class Generate {
 
 		jurusanService.clear();
 		jurusanService.add(jurusan.toArray(new JurusanModel[0]));
-		jurusanService.display();
 
 		programStudiService.clear();
 		programStudiService.add(programStudi.toArray(new ProgramStudiModel[0]));
-		programStudiService.displayExtend();
 	}
 
 	private static final ArrayList<PendidikanModel> pendidikan = new ArrayList<PendidikanModel>();
 
-	public static void pendidikan() {
+	private static void pendidikan() {
 		final PendidikanService pendidikanService = new PendidikanService();
 
 		int pendidikanIndex = 0;
 		for (String[] pendidikanRaw : Raw.getPendidikan()) {
+			increment("pendidikan");
 			pendidikanIndex++;
 
 			pendidikan.add(new PendidikanModel(
@@ -97,16 +124,16 @@ public class Generate {
 
 		pendidikanService.clear();
 		pendidikanService.add(pendidikan.toArray(new PendidikanModel[0]));
-		pendidikanService.display();
 	}
 
 	private static final ArrayList<TempatLahirModel> tempatLahir = new ArrayList<TempatLahirModel>();
 
-	public static void tempatLahir() {
+	private static void tempatLahir() {
 		final TempatLahirService tempatLahirService = new TempatLahirService();
 
 		int tempatLahirIndex = 0;
 		for (String tempatLahirRaw : Raw.getTempatLahir()) {
+			increment("tempatLahir");
 			tempatLahirIndex++;
 
 			tempatLahir.add(new TempatLahirModel(
@@ -116,22 +143,23 @@ public class Generate {
 
 		tempatLahirService.clear();
 		tempatLahirService.add(tempatLahir.toArray(new TempatLahirModel[0]));
-		tempatLahirService.display();
 	}
 
 	private static final ArrayList<TahunAjaranModel> tahunAjaran = new ArrayList<TahunAjaranModel>();
 
-	public static void tahunAjaran() {
+	private static void tahunAjaran() {
 		final TahunAjaranService tahunAjaranService = new TahunAjaranService();
 
 		int tahunAjaranIndex = 0;
 		for (String tahunAjaranRaw : Raw.getTahunAjaran()) {
 			tahunAjaranIndex++;
 
+			increment("tahunAjaran");
 			tahunAjaran.add(new TahunAjaranModel(
 					tahunAjaranIndex,
 					tahunAjaranRaw + " Ganjil"));
 
+			increment("tahunAjaran");
 			tahunAjaran.add(new TahunAjaranModel(
 					tahunAjaranIndex,
 					tahunAjaranRaw + " Genap"));
@@ -139,16 +167,16 @@ public class Generate {
 
 		tahunAjaranService.clear();
 		tahunAjaranService.add(tahunAjaran.toArray(new TahunAjaranModel[0]));
-		tahunAjaranService.display();
 	}
 
 	private static final ArrayList<TahunMasukModel> tahunMasuk = new ArrayList<TahunMasukModel>();
 
-	public static void tahunMasuk() {
+	private static void tahunMasuk() {
 		final TahunMasukService tahunMasukService = new TahunMasukService();
 
 		int tahunMasukIndex = 0;
 		for (String tahunMasukRaw : Raw.getTahunMasuk()) {
+			increment("tahunMasuk");
 			tahunMasukIndex++;
 
 			tahunMasuk.add(new TahunMasukModel(
@@ -158,18 +186,18 @@ public class Generate {
 
 		tahunMasukService.clear();
 		tahunMasukService.add(tahunMasuk.toArray(new TahunMasukModel[0]));
-		tahunMasukService.display();
 	}
 
 	private static final ArrayList<RuanganModel> ruangan = new ArrayList<RuanganModel>();
 
-	public static void ruangan() {
+	private static void ruangan() {
 		final RuanganService ruanganService = new RuanganService();
 
 		int ruanganIndex = 0;
 		for (String ruanganRaw : Raw.getRuangan()) {
 			for (int firstIndex = 1; firstIndex <= 3; firstIndex++) {
 				for (int thirdIndex = 1; thirdIndex <= 7; thirdIndex++) {
+					increment("ruangan");
 					ruanganIndex++;
 
 					ruangan.add(new RuanganModel(
@@ -181,16 +209,16 @@ public class Generate {
 
 		ruanganService.clear();
 		ruanganService.add(ruangan.toArray(new RuanganModel[0]));
-		ruanganService.display();
 	}
 
 	private static final ArrayList<MataKuliahModel> mataKuliah = new ArrayList<MataKuliahModel>();
 
-	public static void mataKuliah() {
+	private static void mataKuliah() {
 		final MataKuliahService mataKuliahService = new MataKuliahService();
 
 		int mataKuliahIndex = 0;
 		for (Object[] mataKuliahRaw : Raw.getMataKuliah()) {
+			increment("mataKuliah");
 			mataKuliahIndex++;
 
 			mataKuliah.add(new MataKuliahModel(
@@ -203,12 +231,11 @@ public class Generate {
 
 		mataKuliahService.clear();
 		mataKuliahService.add(mataKuliah.toArray(new MataKuliahModel[0]));
-		mataKuliahService.display();
 	};
 
 	private static final ArrayList<DosenModel> dosen = new ArrayList<DosenModel>();
 
-	public static void dosen() {
+	private static void dosen() {
 		final DosenService dosenService = new DosenService();
 		final TempatLahirService tempatLahirService = new TempatLahirService();
 		final PendidikanService pendidikanService = new PendidikanService();
@@ -220,7 +247,9 @@ public class Generate {
 
 		final Map<String, Integer> baseCount = new HashMap<>();
 
-		for (int i = 1; i <= 50; i++) {
+		for (int dosenIndex = 1; dosenIndex <= 50; dosenIndex++) {
+			increment("dosen");
+
 			final Integer tempatLahir = Randomizer.pickArray(idTempatLahir);
 			final String tanggalLahir = Randomizer.date("1965-01-01", "2000-01-01");
 			final JenisKelaminEnum jenisKelamin = Randomizer.pickEnum(JenisKelaminEnum.class);
@@ -243,14 +272,15 @@ public class Generate {
 			final String nama = Randomizer.pickArray(Raw.getNama());
 
 			dosen.add(new DosenModel(
-					i,
+					dosenIndex,
 					nik,
 					Format.reverse(nik),
 					nama,
-					Pattern
-							.compile("[^a-z]")
-							.matcher(nama.toLowerCase())
-							.replaceAll("")
+					""
+							+ Pattern
+									.compile("[^a-z]")
+									.matcher(nama.toLowerCase())
+									.replaceAll("")
 							+ tanggalLahir.substring(2, 4)
 							+ "@gmail.com",
 					tanggalLahir.substring(2, 4) + tanggalLahir.substring(5, 7) + tanggalLahir.substring(8, 10),
@@ -272,7 +302,5 @@ public class Generate {
 
 		dosenService.clear();
 		dosenService.add(dosen.toArray(new DosenModel[0]));
-		dosenService.display();
 	};
-
 }
