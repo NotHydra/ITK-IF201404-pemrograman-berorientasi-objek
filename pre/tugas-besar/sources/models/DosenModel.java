@@ -7,6 +7,7 @@ import enums.JenisKelaminEnum;
 import enums.GolonganDarahEnum;
 import enums.AgamaEnum;
 import utilities.CustomDate;
+import utilities.Password;
 
 public class DosenModel extends BaseModel implements DosenInterface {
     private final int id;
@@ -62,7 +63,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
         this.nip = nip;
         this.nama = nama;
         this.email = email;
-        this.password = password;
+        this.password = Password.hash(password);
         this.alamat = alamat;
         this.idTempatLahir = idTempatLahir;
         this.tanggalLahir = CustomDate.sqlToDate(tanggalLahir);
@@ -116,7 +117,7 @@ public class DosenModel extends BaseModel implements DosenInterface {
         this.nip = nip;
         this.nama = nama;
         this.email = email;
-        this.password = password;
+        this.password = Password.hash(password);
         this.alamat = alamat;
         this.idTempatLahir = idTempatLahir;
         this.tanggalLahir = CustomDate.sqlToDate(tanggalLahir);

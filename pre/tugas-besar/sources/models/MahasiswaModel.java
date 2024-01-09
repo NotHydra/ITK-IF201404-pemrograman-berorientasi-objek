@@ -8,6 +8,7 @@ import enums.AgamaEnum;
 import interfaces.MahasiswaInterface;
 
 import utilities.CustomDate;
+import utilities.Password;
 
 public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
     private final int id;
@@ -69,7 +70,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
         this.nim = nim;
         this.nama = nama;
         this.email = email;
-        this.password = password;
+        this.password = Password.hash(password);
         this.alamat = alamat;
         this.idTempatLahir = idTempatLahir;
         this.tanggalLahir = CustomDate.sqlToDate(tanggalLahir);
@@ -129,7 +130,7 @@ public class MahasiswaModel extends BaseModel implements MahasiswaInterface {
         this.nim = nim;
         this.nama = nama;
         this.email = email;
-        this.password = password;
+        this.password = Password.hash(password);
         this.alamat = alamat;
         this.idTempatLahir = idTempatLahir;
         this.tanggalLahir = CustomDate.sqlToDate(tanggalLahir);
