@@ -332,7 +332,7 @@ public class KelasService
                     + "'" + model.getIdMataKuliah() + "', "
                     + "'" + model.getTipeKelas() + "', "
                     + "'" + model.getIdRuangan() + "', "
-                    + "'" + model.getSesi() + "', "
+                    + "'" + model.getSesi().value + "', "
                     + "'" + model.getTahunAjaran() + "'"
                     + ");");
 
@@ -362,7 +362,7 @@ public class KelasService
                         + "'" + models[i].getIdMataKuliah() + "', "
                         + "'" + models[i].getTipeKelas() + "', "
                         + "'" + models[i].getIdRuangan() + "', "
-                        + "'" + models[i].getSesi() + "', "
+                        + "'" + models[i].getSesi().value + "', "
                         + "'" + models[i].getTahunAjaran() + "'"
                         + ")";
 
