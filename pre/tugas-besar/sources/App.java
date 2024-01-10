@@ -1,7 +1,9 @@
 
 // import controllers.MainController;
 
-import data.Generate;
+import java.util.HashMap;
+
+import services.MahasiswaService;
 
 public class App {
 	public static void main(String[] args) {
@@ -11,6 +13,10 @@ public class App {
 		// e.printStackTrace();
 		// }
 
-		Generate.start();
+		MahasiswaService mahasiswaService = new MahasiswaService();
+		for (HashMap<String, Object> mahasiswa : mahasiswaService.getSKS()) {
+			System.out.println(mahasiswa);
+			System.out.println();
+		}
 	};
 }

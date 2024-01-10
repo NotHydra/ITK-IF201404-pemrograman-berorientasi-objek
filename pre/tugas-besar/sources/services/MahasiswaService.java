@@ -1,6 +1,8 @@
 package services;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import providers.Database;
 import utilities.CustomDate;
@@ -577,5 +579,50 @@ public class MahasiswaService
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<HashMap<String, Object>> getSKS() {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery("SELECT "
+                            + "mahasiswa.nim, "
+                            + "mahasiswa.nama, "
+                            + "program_studi.program_studi, "
+                            + "jurusan.jurusan, "
+                            + "SUM(mata_kuliah.sks) AS `total_sks`, "
+                            + "SUM(CASE WHEN mahasiswa_kelas.indeks IS NOT NULL THEN mata_kuliah.sks ELSE 0 END) AS `total_sks_completed`, "
+                            + "SUM(CASE WHEN mahasiswa_kelas.indeks IS NULL THEN mata_kuliah.sks ELSE 0 END) AS `total_sks_uncompleted` "
+                            + "FROM mahasiswa "
+                            + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
+                            + "INNER JOIN mahasiswa_kelas ON mahasiswa.id=mahasiswa_kelas.id_mahasiswa "
+                            + "INNER JOIN kelas ON mahasiswa_kelas.id_kelas=kelas.id "
+                            + "INNER JOIN mata_kuliah ON kelas.id_mata_kuliah=mata_kuliah.id "
+                            + "GROUP BY mahasiswa.id"
+                            + ";");
+
+            final ArrayList<HashMap<String, Object>> mahasiswaList = new ArrayList<HashMap<String, Object>>();
+            while (result.next()) {
+                final HashMap<String, Object> mahasiswa = new HashMap<String, Object>();
+                mahasiswa.put("nim", result.getString("mahasiswa.nim"));
+                mahasiswa.put("nama", result.getString("mahasiswa.nama"));
+                mahasiswa.put("program_studi", result.getString("program_studi.program_studi"));
+                mahasiswa.put("jurusan", result.getString("jurusan.jurusan"));
+                mahasiswa.put("total_sks", result.getInt("total_sks"));
+                mahasiswa.put("total_sks_completed", result.getInt("total_sks_completed"));
+                mahasiswa.put("total_sks_uncompleted", result.getInt("total_sks_uncompleted"));
+
+                mahasiswaList.add(mahasiswa);
+            }
+
+            database.close();
+
+            return mahasiswaList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
