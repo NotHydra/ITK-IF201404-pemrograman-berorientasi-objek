@@ -638,7 +638,7 @@ public class MahasiswaService
                             + "program_studi.program_studi, "
                             + "jurusan.jurusan, "
                             + "ROUND((SUM((gradeToPoint(mahasiswa_kelas.indeks) * mata_kuliah.sks)) / SUM(mata_kuliah.sks)), 2) AS `ipk`, "
-                            + "SUM(mata_kuliah.sks) AS `total_sks` "
+                            + "SUM(mata_kuliah.sks) AS `total_sks_completed` "
                             + "FROM mahasiswa "
                             + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
                             + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
@@ -657,7 +657,7 @@ public class MahasiswaService
                 mahasiswa.put("program_studi", result.getString("program_studi.program_studi"));
                 mahasiswa.put("jurusan", result.getString("jurusan.jurusan"));
                 mahasiswa.put("ipk", result.getFloat("ipk"));
-                mahasiswa.put("total_sks", result.getInt("total_sks"));
+                mahasiswa.put("total_sks_completed", result.getInt("total_sks_completed"));
 
                 mahasiswaList.add(mahasiswa);
             }
