@@ -546,6 +546,7 @@ public class MahasiswaKelasService
     public void add(MahasiswaKelasModel model) {
         try {
             final Database database = new Database();
+
             database.executeUpdate(""
                     + "INSERT INTO " + table + " ("
                     + "id_kelas, "
@@ -554,7 +555,7 @@ public class MahasiswaKelasService
                     + ") VALUES ("
                     + "'" + model.getIdKelas() + "', "
                     + "'" + model.getIdMahasiswa() + "', "
-                    + (model.getIndeks() == null ? "NULL" : "'" + model.getIndeks() + "'")
+                    + (model.getIndeks() == null ? "NULL" : "'" + model.getIndeks().value + "'")
                     + ");");
 
             database.close();
@@ -575,10 +576,12 @@ public class MahasiswaKelasService
                     + "indeks"
                     + ") VALUES ";
             for (int i = 0; i < models.length; i++) {
+                System.out.println(models[i].getIndeks().value);
+
                 query = query + "("
                         + "'" + models[i].getIdKelas() + "', "
                         + "'" + models[i].getIdMahasiswa() + "', "
-                        + (models[i].getIndeks() == null ? "NULL" : "'" + models[i].getIndeks() + "'")
+                        + (models[i].getIndeks().value == null ? "NULL" : "'" + models[i].getIndeks().value + "'")
                         + ")";
 
                 if (i != (models.length - 1)) {
