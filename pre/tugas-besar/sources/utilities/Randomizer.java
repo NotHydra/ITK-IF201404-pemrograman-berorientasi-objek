@@ -36,4 +36,8 @@ public class Randomizer {
     public static char character() {
         return (char) ('A' + random.nextInt(26));
     }
+
+    public static int integerRange(int start, int end) {
+        return random.nextInt(end - start + 1) + start;
+    }
 }
