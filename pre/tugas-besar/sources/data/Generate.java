@@ -450,17 +450,19 @@ public class Generate {
 
 		int mahasiswaKelasIndex = 0;
 		for (int mahasiswaIndex = 0; mahasiswaIndex < idMahasiswa.length; mahasiswaIndex++) {
-			increment("mahasiswaKelas");
-			mahasiswaKelasIndex++;
+			for (int i = 0; i < Randomizer.integerRange(5, 7); i++) {
+				increment("mahasiswaKelas");
+				mahasiswaKelasIndex++;
 
-			final Integer kelas = Randomizer.pickArray(idKelas);
-			final IndeksEnum indeks = Randomizer.pickEnum(IndeksEnum.class);
+				final Integer kelas = Randomizer.pickArray(idKelas);
+				final IndeksEnum indeks = Randomizer.pickEnum(IndeksEnum.class);
 
-			mahasiswaKelas.add(new MahasiswaKelasModel(
-					mahasiswaKelasIndex,
-					kelas,
-					idMahasiswa[mahasiswaIndex],
-					indeks));
+				mahasiswaKelas.add(new MahasiswaKelasModel(
+						mahasiswaKelasIndex,
+						kelas,
+						idMahasiswa[mahasiswaIndex],
+						indeks));
+			}
 		}
 
 		mahasiswaKelasService.clear();

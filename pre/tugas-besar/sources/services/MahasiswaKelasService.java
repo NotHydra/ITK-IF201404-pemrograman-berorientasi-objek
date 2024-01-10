@@ -576,8 +576,6 @@ public class MahasiswaKelasService
                     + "indeks"
                     + ") VALUES ";
             for (int i = 0; i < models.length; i++) {
-                System.out.println(models[i].getIndeks().value);
-
                 query = query + "("
                         + "'" + models[i].getIdKelas() + "', "
                         + "'" + models[i].getIdMahasiswa() + "', "
