@@ -585,7 +585,8 @@ public class MahasiswaService
         try {
             final Database database = new Database();
             final ResultSet result = database
-                    .executeQuery("SELECT "
+                    .executeQuery(""
+                            + "SELECT "
                             + "mahasiswa.nim, "
                             + "mahasiswa.nama, "
                             + "program_studi.program_studi, "
@@ -612,6 +613,51 @@ public class MahasiswaService
                 mahasiswa.put("total_sks", result.getInt("total_sks"));
                 mahasiswa.put("total_sks_completed", result.getInt("total_sks_completed"));
                 mahasiswa.put("total_sks_uncompleted", result.getInt("total_sks_uncompleted"));
+
+                mahasiswaList.add(mahasiswa);
+            }
+
+            database.close();
+
+            return mahasiswaList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public ArrayList<HashMap<String, Object>> getIPK() {
+        try {
+            final Database database = new Database();
+            final ResultSet result = database
+                    .executeQuery(""
+                            + "SELECT "
+                            + "mahasiswa.nim, "
+                            + "mahasiswa.nama, "
+                            + "program_studi.program_studi, "
+                            + "jurusan.jurusan, "
+                            + "ROUND((SUM((gradeToPoint(mahasiswa_kelas.indeks) * mata_kuliah.sks)) / SUM(mata_kuliah.sks)), 2) AS `ipk`, "
+                            + "SUM(mata_kuliah.sks) AS `total_sks` "
+                            + "FROM mahasiswa "
+                            + "INNER JOIN program_studi ON mahasiswa.id_program_studi=program_studi.id "
+                            + "INNER JOIN jurusan ON program_studi.id_jurusan=jurusan.id "
+                            + "INNER JOIN mahasiswa_kelas ON mahasiswa.id=mahasiswa_kelas.id_mahasiswa "
+                            + "INNER JOIN kelas ON mahasiswa_kelas.id_kelas=kelas.id "
+                            + "INNER JOIN mata_kuliah ON kelas.id_mata_kuliah=mata_kuliah.id "
+                            + "WHERE mahasiswa_kelas.indeks IS NOT NULL "
+                            + "GROUP BY mahasiswa.id"
+                            + ";");
+
+            final ArrayList<HashMap<String, Object>> mahasiswaList = new ArrayList<HashMap<String, Object>>();
+            while (result.next()) {
+                final HashMap<String, Object> mahasiswa = new HashMap<String, Object>();
+                mahasiswa.put("nim", result.getString("mahasiswa.nim"));
+                mahasiswa.put("nama", result.getString("mahasiswa.nama"));
+                mahasiswa.put("program_studi", result.getString("program_studi.program_studi"));
+                mahasiswa.put("jurusan", result.getString("jurusan.jurusan"));
+                mahasiswa.put("ipk", result.getFloat("ipk"));
+                mahasiswa.put("total_sks", result.getInt("total_sks"));
 
                 mahasiswaList.add(mahasiswa);
             }
