@@ -7,11 +7,13 @@ import java.util.regex.Pattern;
 
 import enums.AgamaEnum;
 import enums.GolonganDarahEnum;
+import enums.IndeksEnum;
 import enums.JenisKelaminEnum;
 import enums.SesiEnum;
 import models.DosenModel;
 import models.JurusanModel;
 import models.KelasModel;
+import models.MahasiswaKelasModel;
 import models.MahasiswaModel;
 import models.MataKuliahModel;
 import models.PendidikanModel;
@@ -23,6 +25,7 @@ import models.TempatLahirModel;
 import services.DosenService;
 import services.JurusanService;
 import services.KelasService;
+import services.MahasiswaKelasService;
 import services.MahasiswaService;
 import services.MataKuliahService;
 import services.PendidikanService;
@@ -49,6 +52,7 @@ public class Generate {
 		count.put("dosen", 0);
 		count.put("mahasiswa", 0);
 		count.put("kelas", 0);
+		count.put("mahasiswaKelas", 0);
 
 		// jurusan();
 		// pendidikan();
@@ -59,7 +63,8 @@ public class Generate {
 		// mataKuliah();
 		// dosen();
 		// mahasiswa();
-		kelas();
+		// kelas();
+		mahasiswaKelas();
 	}
 
 	private static void increment(String key) {
@@ -75,8 +80,10 @@ public class Generate {
 				+ "R : " + count.get("ruangan") + " | "
 				+ "MK : " + count.get("mataKuliah") + " | "
 				+ "D : " + count.get("dosen") + " | "
-				+ "M : " + count.get("mahasiswa") + " | "
-				+ "K : " + count.get("kelas"));
+				+ "Mhs : " + count.get("mahasiswa") + " | "
+				+ "K : " + count.get("kelas") + " | "
+				+ "MhsK : " + count.get("mahasiswaKelas"));
+
 	}
 
 	private static final ArrayList<JurusanModel> jurusan = new ArrayList<JurusanModel>();
@@ -431,4 +438,32 @@ public class Generate {
 		kelasService.add(kelas.toArray(new KelasModel[0]));
 	};
 
+	private static final ArrayList<MahasiswaKelasModel> mahasiswaKelas = new ArrayList<MahasiswaKelasModel>();
+
+	private static void mahasiswaKelas() {
+		final MahasiswaKelasService mahasiswaKelasService = new MahasiswaKelasService();
+		final KelasService kelasService = new KelasService();
+		final MahasiswaService mahasiswaService = new MahasiswaService();
+
+		final Integer[] idMahasiswa = mahasiswaService.getId();
+		final Integer[] idKelas = kelasService.getId();
+
+		int mahasiswaKelasIndex = 0;
+		for (int mahasiswaIndex = 0; mahasiswaIndex < idMahasiswa.length; mahasiswaIndex++) {
+			increment("mahasiswaKelas");
+			mahasiswaKelasIndex++;
+
+			final Integer kelas = Randomizer.pickArray(idKelas);
+			final IndeksEnum indeks = Randomizer.pickEnum(IndeksEnum.class);
+
+			mahasiswaKelas.add(new MahasiswaKelasModel(
+					mahasiswaKelasIndex,
+					kelas,
+					idMahasiswa[mahasiswaIndex],
+					indeks));
+		}
+
+		mahasiswaKelasService.clear();
+		mahasiswaKelasService.add(mahasiswaKelas.toArray(new MahasiswaKelasModel[0]));
+	}
 }
