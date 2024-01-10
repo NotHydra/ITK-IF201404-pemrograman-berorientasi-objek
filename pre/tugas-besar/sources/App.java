@@ -14,9 +14,8 @@ public class App {
 		// }
 
 		MahasiswaService mahasiswaService = new MahasiswaService();
-		for (HashMap<String, Object> mahasiswa : mahasiswaService.getSKS()) {
-			System.out.println(mahasiswa);
-			System.out.println();
-		}
+
+		System.out.println(mahasiswaService.getOneSKS(6));
+		System.out.println(mahasiswaService.getOneIPK(6));
 	};
 }
