@@ -32,4 +32,8 @@ public class Randomizer {
 
         return null;
     }
+
+    public static char character() {
+        return (char) ('A' + random.nextInt(26));
+    }
 }
