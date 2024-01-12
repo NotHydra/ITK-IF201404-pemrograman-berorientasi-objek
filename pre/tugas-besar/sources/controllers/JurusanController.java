@@ -19,7 +19,6 @@ import services.JurusanService;
 import views.JurusanView;
 
 public class JurusanController implements Initializable {
-    private final static Modal modal = new Modal();
     private final static JurusanService service = new JurusanService();
     private final static JurusanView view = new JurusanView();
 
@@ -69,26 +68,34 @@ public class JurusanController implements Initializable {
 
     @FXML
     public void buttonAddEvent(ActionEvent event) {
-        if (modal.confirmation()) {
-            service.add(new JurusanModel(
-                    textFieldJurusan.getText(),
-                    textFieldDeskripsi.getText()));
+        if (Modal.confirmation()) {
+            try {
+                service.add(new JurusanModel(
+                        textFieldJurusan.getText(),
+                        textFieldDeskripsi.getText()));
 
-            this.tableReload();
+                this.tableReload();
+            } catch (Exception e) {
+                Modal.fail(e.getMessage());
+            }
         }
     }
 
     @FXML
     public void buttonChangeEvent(ActionEvent event) {
         if (this.selectedJurusan != null) {
-            if (modal.confirmation()) {
-                service.change(
-                        this.selectedJurusan.getId(),
-                        new JurusanModel(
-                                textFieldJurusan.getText(),
-                                textFieldDeskripsi.getText()));
+            if (Modal.confirmation()) {
+                try {
+                    service.change(
+                            this.selectedJurusan.getId(),
+                            new JurusanModel(
+                                    textFieldJurusan.getText(),
+                                    textFieldDeskripsi.getText()));
 
-                this.tableReload();
+                    this.tableReload();
+                } catch (Exception e) {
+                    Modal.fail(e.getMessage());
+                }
             }
         }
     }
@@ -96,15 +103,19 @@ public class JurusanController implements Initializable {
     @FXML
     public void buttonRemoveEvent(ActionEvent event) {
         if (this.selectedJurusan != null) {
-            if (modal.confirmation()) {
-                service.remove(this.selectedJurusan.getId());
+            if (Modal.confirmation()) {
+                try {
+                    service.remove(this.selectedJurusan.getId());
 
-                this.selectedJurusan = null;
+                    this.selectedJurusan = null;
 
-                textFieldJurusan.clear();
-                textFieldDeskripsi.clear();
+                    textFieldJurusan.clear();
+                    textFieldDeskripsi.clear();
 
-                this.tableReload();
+                    this.tableReload();
+                } catch (Exception e) {
+                    Modal.fail(e.getMessage());
+                }
             }
         }
     }

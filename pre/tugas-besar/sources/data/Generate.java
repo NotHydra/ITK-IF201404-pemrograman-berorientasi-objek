@@ -54,16 +54,16 @@ public class Generate {
 		count.put("kelas", 0);
 		count.put("mahasiswaKelas", 0);
 
-		// jurusan();
-		// pendidikan();
-		// tempatLahir();
-		// tahunAjaran();
-		// tahunMasuk();
-		// ruangan();
-		// mataKuliah();
-		// dosen();
-		// mahasiswa();
-		// kelas();
+		jurusan();
+		pendidikan();
+		tempatLahir();
+		tahunAjaran();
+		tahunMasuk();
+		ruangan();
+		mataKuliah();
+		dosen();
+		mahasiswa();
+		kelas();
 		mahasiswaKelas();
 	}
 
