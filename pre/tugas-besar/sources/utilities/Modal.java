@@ -4,7 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 public class Modal {
-    public boolean confirmation() {
+    public static boolean confirmation() {
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Notification");
         confirmation.setHeaderText("Confirmation");
@@ -15,5 +15,13 @@ public class Modal {
         java.util.Optional<ButtonType> result = confirmation.showAndWait();
 
         return result.isPresent() && result.get() == ButtonType.YES;
+    }
+
+    public static void fail(String message) {
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Notification");
+        error.setHeaderText("Fail");
+        error.setContentText(message);
+        error.showAndWait();
     }
 }
