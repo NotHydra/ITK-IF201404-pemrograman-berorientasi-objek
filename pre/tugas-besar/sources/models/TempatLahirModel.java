@@ -2,6 +2,7 @@ package models;
 
 import interfaces.TempatLahirInterface;
 
+
 public class TempatLahirModel extends BaseModel implements TempatLahirInterface {
     private final int id;
     private final String tempatLahir;
@@ -38,7 +39,6 @@ public class TempatLahirModel extends BaseModel implements TempatLahirInterface 
     @Override
     public String getTempatLahir() {
         return this.tempatLahir;
-
     }
 
     @Override
