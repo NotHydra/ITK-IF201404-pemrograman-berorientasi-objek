@@ -1,6 +1,6 @@
-**/settings.json
-**/*.md
+# **/settings.json
+# **/*.md
 **/bin
-**/target
+# **/target
 
 **/*.env
