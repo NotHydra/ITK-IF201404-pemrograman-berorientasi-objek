@@ -193,7 +193,9 @@ public class MainController extends Application {
 	@FXML
 	void buttonEqual(ActionEvent event) {
 		try {
-			textFieldResult.setText(Double.toString((double) calculate(textFieldResult.getText())));
+			if (textFieldResult.getText().length() >= 1) {
+				textFieldResult.setText(Double.toString((double) calculate(textFieldResult.getText())));
+			}
 		} catch (Exception e) {
 			if (e instanceof ArithmeticException || e instanceof IllegalArgumentException)
 				textFieldResult.setText(e.getMessage());
