@@ -31,7 +31,7 @@
          <children>
             <TextField fx:id="textFieldResult" alignment="CENTER_RIGHT" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1F1F1F; -fx-text-fill: #FBFAF5;" GridPane.columnSpan="4">
                <font>
-                  <Font name="Montserrat Bold" size="36.0" />
+                  <Font name="Montserrat Bold" size="32.0" />
                </font>
             </TextField>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonOpenParantheses" style="-fx-background-color: #1F1F1F;" text="(" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.rowIndex="1">
