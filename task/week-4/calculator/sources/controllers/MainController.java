@@ -124,7 +124,13 @@ public class MainController extends Application {
 	@FXML
 	void buttonDelete(ActionEvent event) {
 		try {
-			textFieldResult.setText(textFieldResult.getText().substring(0, textFieldResult.getText().length() - 1));
+			if(textFieldResult.getText().length() >= 1) {
+				if (textFieldResult.getText().length() >= 6 && textFieldResult.getText().substring(textFieldResult.getText().length() - 5).equals(" mod ")) {
+					textFieldResult.setText(textFieldResult.getText().substring(0, textFieldResult.getText().length() - 5));
+				} else { 
+					textFieldResult.setText(textFieldResult.getText().substring(0, textFieldResult.getText().length() - 1));
+				}
+			}
 		} catch (Error e) {
 		}
 	}
@@ -231,8 +237,7 @@ public class MainController extends Application {
 			expression = expression.replaceAll("\\s", "");
 			expression = expression.replaceAll("×", "*");
 			expression = expression.replaceAll(":", "/");
-			expression = expression.replaceAll(" mod ", "%");
-			expression = expression.replaceAll(" log ", "l");
+			expression = expression.replaceAll("mod", "%");
 
 			for (int expressionIndex = 0; expressionIndex < expression.length(); expressionIndex++) {
 				char currentCharacter = expression.charAt(expressionIndex);
@@ -262,11 +267,6 @@ public class MainController extends Application {
 
 					operators.pop();
 				} else if (isOperator(currentCharacter)) {
-					System.out.println("Test 1");
-					System.out.println(operators);
-					System.out.println(currentCharacter);
-					System.out.println(numbers);
-
 					while (!operators.isEmpty() && expressionValidation(currentCharacter, operators.peek())) {
 						char operator = operators.pop();
 						double firstNumber = numbers.pop();
@@ -280,11 +280,6 @@ public class MainController extends Application {
 
 					operators.push(currentCharacter);
 				}
-
-				System.out.println("Test 2");
-				System.out.println(operators);
-				System.out.println(numbers);
-				System.out.println(currentCharacter);
 			}
 
 			while (!operators.isEmpty()) {
@@ -309,10 +304,6 @@ public class MainController extends Application {
 	}
 
 	private static boolean expressionValidation(char firstOperator, char secondOperator) {
-		System.out.println("Test 3");
-		System.out.println(firstOperator);
-		System.out.println(secondOperator);
-
 		if (secondOperator == '(' || secondOperator == ')')
 			return false;
 		if ((firstOperator == '*' || firstOperator == '/') && (secondOperator == '+' || secondOperator == '-'))
@@ -324,7 +315,6 @@ public class MainController extends Application {
 		if ((firstOperator == 'l') && (secondOperator == '+' || secondOperator == '-' || secondOperator == '*' || secondOperator == '/' || secondOperator == '^' || secondOperator == '%' || secondOperator == '√'))
 			return false;
 
-		System.out.println("Test 4");
 		return true;
 	}
 
