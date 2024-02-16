@@ -96,13 +96,10 @@ public class MainController extends Application {
 
 	@FXML
 	void buttonDot(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() >= 1) {
-				if (Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1))) {
-					textFieldResult.setText(textFieldResult.getText() + ".");
-				}
+		if (textFieldResult.getText().length() >= 1) {
+			if (lastCharacterIsDigit()) {
+				textFieldResult.setText(textFieldResult.getText() + ".");
 			}
-		} catch (Error e) {
 		}
 	}
 
@@ -123,91 +120,74 @@ public class MainController extends Application {
 
 	@FXML
 	void buttonDelete(ActionEvent event) {
-		try {
-			if(textFieldResult.getText().length() >= 1) {
-				if (textFieldResult.getText().length() >= 6 && textFieldResult.getText().substring(textFieldResult.getText().length() - 5).equals(" mod ")) {
-					textFieldResult.setText(textFieldResult.getText().substring(0, textFieldResult.getText().length() - 5));
-				} else { 
-					textFieldResult.setText(textFieldResult.getText().substring(0, textFieldResult.getText().length() - 1));
-				}
+		if(textFieldResult.getText().length() >= 1) {
+			if (textFieldResult.getText().length() >= 6 && textFieldResult.getText().substring(textFieldResult.getText().length() - 5).equals(" mod ")) {
+				textFieldResult.setText(textFieldResult.getText().substring(0, textFieldResult.getText().length() - 5));
+			} else { 
+				textFieldResult.setText(textFieldResult.getText().substring(0, textFieldResult.getText().length() - 1));
 			}
-		} catch (Error e) {
 		}
 	}
 
 	@FXML
 	void buttonAdd(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() >= 1) {
-				if (Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1))) {
-					textFieldResult.setText(textFieldResult.getText() + "+");
-				}
+		if (textFieldResult.getText().length() >= 1) {
+			if (lastCharacterIsDigit()) {
+				textFieldResult.setText(textFieldResult.getText() + "+");
 			}
-		} catch (Error e) { }
+		}
 	}
 
 	@FXML
 	void buttonSubtract(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() >= 1) {
-				if (Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1))) {
-					textFieldResult.setText(textFieldResult.getText() + "-");
-				}
+		if (textFieldResult.getText().length() >= 1) {
+			if (lastCharacterIsDigit()) {
+				textFieldResult.setText(textFieldResult.getText() + "-");
 			}
-		} catch (Error e) { }
+		}
 	}
 
 	@FXML
 	void buttonMultiply(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() >= 1) {
-				if (Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1))) {
-					textFieldResult.setText(textFieldResult.getText() + "×");
-				}
+		if (textFieldResult.getText().length() >= 1) {
+			if (lastCharacterIsDigit()) {
+				textFieldResult.setText(textFieldResult.getText() + "×");
 			}
-		} catch (Error e) { }
+		}
 	}
 
 	@FXML
 	void buttonDivide(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() >= 1) {
-				if (Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1))) {
-					textFieldResult.setText(textFieldResult.getText() + ":");
-				}
+		if (textFieldResult.getText().length() >= 1) {
+			if (lastCharacterIsDigit()) {
+				textFieldResult.setText(textFieldResult.getText() + ":");
 			}
-		} catch (Error e) { }
+		}
 	}
 
 	@FXML
 	void buttonMod(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() >= 1) {
-				if (Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1))) {
-					textFieldResult.setText(textFieldResult.getText() + " mod ");
-				}
+		if (textFieldResult.getText().length() >= 1) {
+			if (lastCharacterIsDigit()) {
+				textFieldResult.setText(textFieldResult.getText() + " mod ");
 			}
-		} catch (Error e) { }
+		}
 	}
 
 	@FXML
 	void buttonExponent(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() >= 1) {
-				if (Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1))) {
-					textFieldResult.setText(textFieldResult.getText() + "^");
-				}
+		if (textFieldResult.getText().length() >= 1) {
+			if (lastCharacterIsDigit()) {
+				textFieldResult.setText(textFieldResult.getText() + "^");
 			}
-		} catch (Error e) { }
+		}
 	}
 
 	@FXML
 	void buttonRoot(ActionEvent event) {
-		try {
-			if (textFieldResult.getText().length() == 0 || (textFieldResult.getText().charAt(textFieldResult.getText().length() - 1) != '√' && !Character.isDigit(textFieldResult.getText().charAt(textFieldResult.getText().length() - 1)))) {
-				textFieldResult.setText(textFieldResult.getText() + "√");
-			}
-		} catch (Error e) { }
+		if (textFieldResult.getText().length() == 0 || (getLastCharacter() != '√' && !lastCharacterIsDigit())) {
+			textFieldResult.setText(textFieldResult.getText() + "√");
+		}
 	}
 
 	@FXML
@@ -345,5 +325,13 @@ public class MainController extends Application {
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+
+	private char getLastCharacter() {
+		return textFieldResult.getText().charAt(textFieldResult.getText().length() - 1);
+	}
+
+	private boolean lastCharacterIsDigit() { 
+		return Character.isDigit(getLastCharacter());
 	}
 }
