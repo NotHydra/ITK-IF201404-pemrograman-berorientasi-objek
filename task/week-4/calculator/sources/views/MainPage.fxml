@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:controller="controllers.MainController" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1A1A1A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1A1A1A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
       <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -32,7 +31,7 @@
          <children>
             <TextField fx:id="textFieldResult" alignment="CENTER_RIGHT" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1F1F1F; -fx-text-fill: #FBFAF5;" GridPane.columnSpan="4">
                <font>
-                  <Font name="Montserrat Bold" size="48.0" />
+                  <Font name="Montserrat Bold" size="36.0" />
                </font>
             </TextField>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonOpenParantheses" style="-fx-background-color: #1F1F1F;" text="(" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.rowIndex="1">
@@ -83,15 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonLog" style="-fx-background-color: #1F1F1F;" text="log" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Montserrat Bold" size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonMod" style="-fx-background-color: #1F1F1F;" text="mod" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonMod" style="-fx-background-color: #1F1F1F;" text="mod" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>
@@ -123,7 +114,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonDivide" style="-fx-background-color: #1F1F1F;" text=":" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonDivide" style="-fx-background-color: #1F1F1F;" text=":" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>
@@ -155,7 +146,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonMultiply" style="-fx-background-color: #1F1F1F;" text="×" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonMultiply" style="-fx-background-color: #1F1F1F;" text="×" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>
@@ -187,7 +178,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonSubtract" style="-fx-background-color: #1F1F1F;" text="-" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonSubtract" style="-fx-background-color: #1F1F1F;" text="-" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>
@@ -195,7 +186,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAdd" style="-fx-background-color: #1F1F1F;" text="+" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonAdd" style="-fx-background-color: #1F1F1F;" text="+" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>
@@ -211,7 +202,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonDot" style="-fx-background-color: #1F1F1F;" text="." textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonDot" style="-fx-background-color: #1F1F1F;" text="." textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>
@@ -219,7 +210,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonEqual" style="-fx-background-color: #1F1F1F;" text="=" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonEqual" style="-fx-background-color: #00356B;" text="=" textAlignment="CENTER" textFill="#fbfaf5" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>

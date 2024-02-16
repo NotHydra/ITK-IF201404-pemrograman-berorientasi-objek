@@ -211,11 +211,6 @@ public class MainController extends Application {
 	}
 
 	@FXML
-	void buttonLog(ActionEvent event) {
-		textFieldResult.setText(textFieldResult.getText() + " log ");
-	}
-
-	@FXML
 	void buttonEqual(ActionEvent event) {
 		try {
 			textFieldResult.setText(Double.toString((double) calculate(textFieldResult.getText())));
@@ -300,7 +295,7 @@ public class MainController extends Application {
 	}
 
 	private static boolean isOperator(char operator) {
-		return operator == '+' || operator == '-' || operator == '*' || operator == '/' || operator == '^' || operator == '%' || operator == '√' || operator == 'l';
+		return operator == '+' || operator == '-' || operator == '*' || operator == '/' || operator == '^' || operator == '%' || operator == '√';
 	}
 
 	private static boolean expressionValidation(char firstOperator, char secondOperator) {
@@ -311,8 +306,6 @@ public class MainController extends Application {
 		if ((firstOperator == '^') && (secondOperator == '+' || secondOperator == '-' || secondOperator == '*' || secondOperator == '/'))
 			return false;
 		if ((firstOperator == '√' || firstOperator == '%') && (secondOperator == '+' || secondOperator == '-' || secondOperator == '*' || secondOperator == '/' || secondOperator == '^'))
-			return false;
-		if ((firstOperator == 'l') && (secondOperator == '+' || secondOperator == '-' || secondOperator == '*' || secondOperator == '/' || secondOperator == '^' || secondOperator == '%' || secondOperator == '√'))
 			return false;
 
 		return true;
@@ -345,9 +338,6 @@ public class MainController extends Application {
 
 				case '√':
 					return Math.sqrt(firstNumber);
-
-				case 'l':
-					return Math.log(secondNumber);
 
 				default:
 					throw new IllegalArgumentException("Invalid Syntax");
