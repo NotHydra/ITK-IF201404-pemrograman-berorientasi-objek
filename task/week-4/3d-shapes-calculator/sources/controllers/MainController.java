@@ -55,6 +55,6 @@ public class MainController extends Application {
 
     @FXML
     void buttonCylinder(ActionEvent event) {
-
+		setRoot("Cylinder");
     }
 }

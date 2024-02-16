@@ -17,7 +17,7 @@
     Cylinder
         Input: radius, height
         Volume: pi * radius^2 * height
-        Surface Area: 2 * pi * radius * height + 2 * pi * radius^2
+        Surface Area: 2 * pi * radius * (radius * height)
 
 Color Pallete
     Background: #1A1A1A
