@@ -21,6 +21,9 @@ public class CubeController {
             
             textFieldSurfaceArea.setText(String.valueOf(6 * Math.pow(side, 2)));
             textFieldVolume.setText(String.valueOf(Math.pow(side, 3)));
+        } else {
+            textFieldSurfaceArea.setText("Missing Value");
+            textFieldVolume.setText("Missing Value");
         }
     }
 

@@ -23,6 +23,9 @@ public class SphereController {
             System.out.println(Math.pow(radius, 3));
             textFieldSurfaceArea.setText(String.valueOf(4 * Math.PI * Math.pow(radius, 2)));
             textFieldVolume.setText(String.valueOf(((double) (4) / (double) (3)) * Math.PI * Math.pow(radius, 3)));
+        } else {
+            textFieldSurfaceArea.setText("Missing Value");
+            textFieldVolume.setText("Missing Value");
         }
     }
 
