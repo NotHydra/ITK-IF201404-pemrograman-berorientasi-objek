@@ -48,13 +48,13 @@ public class MainController extends Application {
 		setRoot("Cuboid");
     }
 
-    @FXML
-    void buttonCylinder(ActionEvent event) {
-
+	@FXML
+    void buttonSphere(ActionEvent event) {
+		setRoot("Sphere");
     }
 
     @FXML
-    void buttonSphere(ActionEvent event) {
+    void buttonCylinder(ActionEvent event) {
 
     }
 }
