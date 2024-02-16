@@ -1,0 +1,27 @@
+3D Shapes
+    Cube
+        Input: side
+        Volume: side^3
+        Surface Area: 6 * side^2
+
+    Cuboid
+        Input: length, width, height
+        Volume: length * width * height
+        Surface Area: 2 * length * width + 2 * length * height + 2 * width * height
+
+    Sphere
+        Input: radius
+        Volume: 4/3 * pi * r^3
+        Surface Area: 4 * pi * r^2
+
+    Cylinder
+        Input: radius, height
+        Volume: pi * radius^2 * height
+        Surface Area: 2 * pi * radius * height + 2 * pi * radius^2
+
+Color Pallete
+    Background: #1A1A1A
+    Main: #1F1F1F
+    Text: #FBFAF5
+    Accent: #00356B
+    Danger: #DC143C
