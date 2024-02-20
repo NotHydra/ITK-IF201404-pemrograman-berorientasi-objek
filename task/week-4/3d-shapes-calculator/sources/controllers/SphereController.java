@@ -19,8 +19,6 @@ public class SphereController {
         if (!textFieldRadius.getText().isEmpty()) {
             final double radius = Double.parseDouble(textFieldRadius.getText());
 
-            System.out.println(Math.PI);
-            System.out.println(Math.pow(radius, 3));
             textFieldSurfaceArea.setText(String.valueOf(4 * Math.PI * Math.pow(radius, 2)));
             textFieldVolume.setText(String.valueOf(((double) (4) / (double) (3)) * Math.PI * Math.pow(radius, 3)));
         } else {
@@ -33,5 +31,4 @@ public class SphereController {
     void buttonBack(ActionEvent event) {
         MainController.setRoot("Main");
     }
-
 }

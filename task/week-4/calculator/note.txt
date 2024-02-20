@@ -1,3 +1,11 @@
+Cara Menjalankan
+    Jalankan sekali terlebih dahulu aplikasi (Akan error), 
+    Kemudian tambahkan line dibawah ini setelah "projectName": "calculator_xxxxxxxx" yang di auto generated pada file .vscode/launch
+    
+    "vmArgs": "--module-path \"libraries/javafx/lib\" --add-modules javafx.controls,javafx.fxml"
+
+    Pastikan untuk menambahkan line diatas ke configuration yang calculator_xxxxxxxx yang belum memiliki vmArgs
+
 Resolution
     400 x 600
     400 x 450

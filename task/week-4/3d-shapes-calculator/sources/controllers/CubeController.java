@@ -31,5 +31,4 @@ public class CubeController {
     void buttonBack(ActionEvent event) {
         MainController.setRoot("Main");
     }
-
 }
