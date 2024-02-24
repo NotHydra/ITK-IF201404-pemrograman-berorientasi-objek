@@ -11,6 +11,7 @@ public class App {
 
     private static int menuOption;
     private static int manageOption;
+    private static int operateOption;
 
     public static void main(String[] args) throws Exception {
         matrices.add(new int[][] {
@@ -55,6 +56,19 @@ public class App {
                 } else if (manageOption == 5) {
                     continue;
                 }
+            } else if (menuOption == 2) {
+                getOperateOption();
+
+                if (operateOption == 1) {
+                    operateAddition();
+                }
+
+            } else if (menuOption == 3) {
+                printBorder();
+                printTitle("Thank You For Using Matrix Operation");
+                printBorder();
+
+                break;
             }
         }
     }
@@ -476,6 +490,178 @@ public class App {
             printMatrix(matrices.get(matrixIndex - 1));
 
             matrices.remove(matrixIndex - 1);
+        }
+    }
+
+    private static void getOperateOption() {
+        printBorder();
+        printTitle("Operate");
+
+        while (true) {
+            printBorder();
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Multiplication");
+            System.out.println("4. Back");
+
+            printBorder();
+            System.out.print("Choose an operate option: ");  
+
+            try {
+                operateOption = scanner.nextInt();
+
+                if (operateOption < 1 || operateOption > 4) {
+                    throw new IllegalArgumentException("Input can only accept a number between 1 to 4");
+                }
+
+                break;
+            } catch (InputMismatchException e) {
+                printBorder();
+                System.out.println("Input can only accept a number");
+                scanner.next();
+            } catch (IllegalArgumentException e) {
+                printBorder();
+                System.out.println(e.getMessage());
+                scanner.reset();
+            } catch (Exception e) {
+                printBorder();
+                System.out.println("Invalid input, please try again.");
+                scanner.next();
+            }
+        }
+    }
+
+    private static void operateAddition() {
+        printBorder();
+        printTitle("Addition");
+
+        printBorder();
+        if (matrices.size() < 2) {
+            System.out.println("At least 2 matrices are required to perform addition");
+        } else {
+            for (int i = 0; i < matrices.size(); i++) {
+                System.out.print((i + 1) + ". size(" + matrices.get(i).length + ", " + matrices.get(i)[0].length + "), ");
+                printMatrix(matrices.get(i));
+            }
+
+            int matrixIndex1 = 0;
+            while (true) {
+                printBorder();
+                System.out.print("Choose first matrix to add: ");
+
+                try {
+                    matrixIndex1 = scanner.nextInt();
+
+                    if (matrixIndex1 < 1 || matrixIndex1 > matrices.size()) {
+                        throw new IllegalArgumentException("Input can only accept a number between 1 to " + matrices.size());
+                    }
+
+                    break;
+                } catch (InputMismatchException e) {
+                    printBorder();
+                    System.out.println("Input can only accept a number");
+                    scanner.next();
+                } catch (IllegalArgumentException e) {
+                    printBorder();
+                    System.out.println(e.getMessage());
+                    scanner.reset();
+                } catch (Exception e) {
+                    printBorder();
+                    System.out.println("Invalid input, please try again.");
+                    scanner.next();
+                }
+            }
+
+            int matrixIndex2 = 0;
+            while (true) {
+                printBorder();
+                System.out.print("Choose second matrix to add: ");
+
+                try {
+                    matrixIndex2 = scanner.nextInt();
+
+                    if (matrixIndex2 < 1 || matrixIndex2 > matrices.size()) {
+                        throw new IllegalArgumentException("Input can only accept a number between 1 to " + matrices.size());
+                    }
+
+                    if (
+                        matrices.get(matrixIndex1 - 1).length != matrices.get(matrixIndex2 - 1).length ||
+                        matrices.get(matrixIndex1 - 1)[0].length != matrices.get(matrixIndex2 - 1)[0].length
+                    ) {
+                        throw new IllegalArgumentException("Matrix size must be the same");
+                    }
+
+                    break;
+                } catch (InputMismatchException e) {
+                    printBorder();
+                    System.out.println("Input can only accept a number");
+                    scanner.next();
+                } catch (IllegalArgumentException e) {
+                    printBorder();
+                    System.out.println(e.getMessage());
+                    scanner.reset();
+                } catch (Exception e) {
+                    printBorder();
+                    System.out.println("Invalid input, please try again.");
+                    scanner.next();
+                }
+            }
+
+            printBorder();
+            printTitle("Matrix Addition");
+
+            printBorder();
+            System.out.print("Matrix 1: ");
+            printMatrix(matrices.get(matrixIndex1 - 1));
+
+            printBorder();
+            System.out.print("Matrix 2: ");
+            printMatrix(matrices.get(matrixIndex2 - 1));
+
+            int[][] resultMatrix = new int[matrices.get(matrixIndex1 - 1).length][matrices.get(matrixIndex1 - 1)[0].length];
+
+            for (int i = 0; i < matrices.get(matrixIndex1 - 1).length; i++) {
+                for (int j = 0; j < matrices.get(matrixIndex1 - 1)[0].length; j++) {
+                    resultMatrix[i][j] = matrices.get(matrixIndex1 - 1)[i][j] + matrices.get(matrixIndex2 - 1)[i][j];
+                }
+            }
+
+            printBorder();
+            System.out.print("Matrix Result: ");
+            printMatrix(resultMatrix);
+
+            printBorder();
+            System.out.println("Add Result To Matrix List? (Y/N)");
+
+            while (true) {
+                printBorder();
+                System.out.print("Choose an option: ");
+
+                try {
+                    String option = scanner.next();
+
+                    if (option.equalsIgnoreCase("Y")) {
+                        matrices.add(resultMatrix);
+
+                        printBorder();
+                        printTitle("Matrix Added");
+
+                        printBorder();
+                        System.out.print("Added Matrix: ");
+                        printMatrix(resultMatrix);
+                    }
+
+                    if (option.equalsIgnoreCase("Y") || option.equalsIgnoreCase("N")) {
+                        break;
+                    }
+
+                    throw new IllegalArgumentException("Input can only accept Y or N");
+                } catch (Exception e) {
+                    printBorder();
+                    System.out.println(e.getMessage());
+                    scanner.reset();
+                }
+            }
         }
     }
 }
