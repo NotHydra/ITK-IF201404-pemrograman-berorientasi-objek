@@ -269,7 +269,7 @@ public class App {
             for (int j = 0; j < columnSize; j++) {
                 while (true) {
                     printBorder();
-                    System.out.print("Insert value [" + i + "][" + j + "]: ");
+                    System.out.print("Insert value [" + (i + 1) + "][" + (j + 1) + "]: ");
 
                     try {
                         newMatrix[i][j] = scanner.nextInt();
