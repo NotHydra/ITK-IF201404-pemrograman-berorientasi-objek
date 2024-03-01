@@ -9,9 +9,11 @@ public class App {
         System.out.println(author1);
         System.out.println(author2);
         System.out.println(author3);
+        System.out.println();
 
         author1.setName("Lintas");
         System.out.println(author1.getName());
+        System.out.println();
 
         Publisher publisher1 = new Publisher(1, "PT. Nie", "Jl. Karang Joang");
         Publisher publisher2 = new Publisher(2, "Dept. Cata", "Jl. Sungai Ampal");
@@ -20,12 +22,15 @@ public class App {
         System.out.println(publisher1);
         System.out.println(publisher2);
         System.out.println(publisher3);
+        System.out.println();
 
         publisher1.setName("PT. Nusantara");
         System.out.println(publisher1.getName());
+        System.out.println();
 
         publisher1.setAddress("Jl. Kebon Jeruk");
         System.out.println(publisher1.getAddress());
+        System.out.println();
 
         Genre genre1 = new Genre(1, "Komedi");
         Genre genre2 = new Genre(2, "Petualangan");
@@ -34,9 +39,11 @@ public class App {
         System.out.println(genre1);
         System.out.println(genre2);
         System.out.println(genre3);
+        System.out.println();
 
         genre1.setName("Drama");
         System.out.println(genre1.getName());
+        System.out.println();
 
         ArrayList<Author> authors1 = new ArrayList<Author>();
         authors1.add(author1);
@@ -78,42 +85,55 @@ public class App {
         System.out.println(book1);
         System.out.println(book2);
         System.out.println(book3);
+        System.out.println();
 
         book1.setAuthors(authors2);
         System.out.println(book1.getAuthors());
+        System.out.println();
 
         book1.setPublishers(publishers3);
         System.out.println(book1.getPublishers());
+        System.out.println();
 
         book1.setGenres(genres3);
         System.out.println(book1.getGenres());
+        System.out.println();
 
         book1.setISBN("123-456-78-90");
         System.out.println(book1.getISBN());
+        System.out.println();
 
         book1.setDDS("FAS-02");
         System.out.println(book1.getDDS());
+        System.out.println();
 
         book1.setTitle("Puncak Petualangan");
         System.out.println(book1.getTitle());
+        System.out.println();
 
         book1.addAuthor(author3);
         System.out.println(book1.getAuthors());
+        System.out.println();
 
         book1.addPublisher(publisher1);
         System.out.println(book1.getPublishers());
+        System.out.println();
 
         book1.addGenre(genre3);
         System.out.println(book1.getGenres());
+        System.out.println();
 
         book1.removeAuthor(author3);
         System.out.println(book1.getAuthors());
+        System.out.println();
 
         book1.removePublisher(publisher1);
         System.out.println(book1.getPublishers());
+        System.out.println();
 
         book1.removeGenre(genre3);
         System.out.println(book1.getGenres());
+        System.out.println();
 
         ArrayList<Book> books1 = new ArrayList<Book>();
         books1.add(book1);
@@ -140,11 +160,24 @@ public class App {
         System.out.println(catalogue1.getBooks());
 
         System.out.println(catalogue1.searchBookById(2));
+        System.out.println();
+
         System.out.println(catalogue1.searchBookByAuthor(author2));
+        System.out.println();
+
         System.out.println(catalogue1.searchBookByPublisher(publisher3));
+        System.out.println();
+
         System.out.println(catalogue1.searchBookByGenre(genre2));
+        System.out.println();
+
         System.out.println(catalogue1.searchBookByISBN("857-029-24-53"));
+        System.out.println();
+
         System.out.println(catalogue1.searchBookByDDS("AJD-02"));
+        System.out.println();
+
         System.out.println(catalogue1.searchBookByTitle("Petualangan Ojan Part 2"));
+        System.out.println();
     }
 }
