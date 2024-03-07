@@ -1,22 +1,18 @@
 import java.util.ArrayList;
 
-public class Cube {
-    private final int id;
+public class Cube extends GeometricShape {
     private float length;
 
     public static final ArrayList<Cube> history = new ArrayList<Cube>();
     
     public Cube(float length) {
-        this.id = history.size() + 1;
+        super(history.size() + 1, "Red");
+
         this.length = length;
 
         history.add(this);
     }
 
-    public int getId() {
-        return this.id;
-    }
-    
     public float getLength() {
         return this.length;
     }

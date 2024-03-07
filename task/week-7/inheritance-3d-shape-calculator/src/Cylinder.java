@@ -1,23 +1,18 @@
 import java.util.ArrayList;
 
-
-public class Cylinder {
-    private final int id;
+public class Cylinder extends GeometricShape {
     private float radius;
     private float height;
 
     public static final ArrayList<Cylinder> history = new ArrayList<Cylinder>();
 
     public Cylinder(float radius, float height) {
-        this.id = history.size() + 1;
+        super(history.size() + 1, "Yellow");
+
         this.radius = radius;
         this.height = height;
 
         history.add(this);
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public float getRadius() {

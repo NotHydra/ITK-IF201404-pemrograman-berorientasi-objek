@@ -1,22 +1,18 @@
 import java.util.ArrayList;
 
-public class Cone {
-    private final int id;
+public class Cone extends GeometricShape {
     private float radius;
     private float height;
 
     public static final ArrayList<Cone> history = new ArrayList<Cone>();
 
     public Cone(float radius, float height) {
-        this.id = 1;
+        super(history.size() + 1, "Green");
+
         this.radius = radius;
         this.height = height;
 
         history.add(this);
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public float getRadius() {

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-public class Cuboid {
-    private final int id;
+public class Cuboid extends GeometricShape {
     private float length;
     private float width;
     private float height;
@@ -9,16 +8,13 @@ public class Cuboid {
     public static final ArrayList<Cuboid> history = new ArrayList<Cuboid>();
 
     public Cuboid(float length, float width, float height) {
-        this.id = history.size() + 1;
+        super(history.size() + 1, "Blue");
+
         this.length = length;
         this.width = width;
         this.height = height;
 
         history.add(this);
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public float getLength() {

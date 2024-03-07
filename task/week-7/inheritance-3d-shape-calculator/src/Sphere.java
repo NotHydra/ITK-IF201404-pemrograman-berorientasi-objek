@@ -1,20 +1,16 @@
 import java.util.ArrayList;
 
-public class Sphere {
-    private final int id;
+public class Sphere extends GeometricShape {
     private float radius;
 
     public static final ArrayList<Sphere> history = new ArrayList<Sphere>();
 
     public Sphere(float radius) {
-        this.id = history.size() + 1;
+        super(history.size() + 1, "Purple");
+
         this.radius = radius;
 
         history.add(this);
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public float getRadius() {
