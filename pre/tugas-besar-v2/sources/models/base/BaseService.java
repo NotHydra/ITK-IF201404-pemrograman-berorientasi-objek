@@ -9,9 +9,10 @@ public abstract class BaseService<ModelType extends BaseModel> implements BaseSe
     protected Database database;
     protected String table;
 
-    protected BaseService(Logger logger, Database database) {
+    protected BaseService(Logger logger, Database database, String table) {
         this.logger = logger;
         this.database = database;
+        this.table = table;
     }
 
     public void display() {
@@ -33,7 +34,7 @@ public abstract class BaseService<ModelType extends BaseModel> implements BaseSe
 
     public abstract void add(ModelType model);
 
-    public abstract void change(ModelType model);
+    public abstract void change(int id, ModelType model);
 
     public void remove(int id) {
         this.logger.debug("Remove");

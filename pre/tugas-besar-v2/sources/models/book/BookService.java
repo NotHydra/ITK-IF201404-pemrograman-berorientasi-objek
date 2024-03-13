@@ -15,19 +15,21 @@ public class BookService extends BaseService<BookModel> implements BookServiceIn
     private Database database;
     private String table;
 
-    private BookService(Logger logger, Database database) {
-        super(logger, database);
+    private BookService(Logger logger, Database database, String table) {
+        super(logger, database, table);
 
         this.logger = logger;
         this.database = database;
+        this.table = table;
     }
 
     public static BookService getInstance() {
         if (BookService.instance == null) {
             try {
-                BookService.instance = new BookService(new Logger(BookService.class.getName()), Database.getInstance());
-
-                BookService.instance.table = "books";
+                BookService.instance = new BookService(
+                        new Logger(BookService.class.getName()),
+                        Database.getInstance(),
+                        "book");
             } catch (Exception e) {
                 BookService.instance.logger.error("Failed to initialize BookService instance: " + e.getMessage());
 
@@ -120,7 +122,7 @@ public class BookService extends BaseService<BookModel> implements BookServiceIn
     }
 
     @Override
-    public void change(BookModel model) {
+    public void change(int id, BookModel model) {
         this.logger.debug("Change");
 
         try {
@@ -129,7 +131,7 @@ public class BookService extends BaseService<BookModel> implements BookServiceIn
                     + "title='" + model.getTitle() + "', "
                     + "description='" + model.getDescription() + "' "
                     + "WHERE "
-                    + "id=" + model.getId() + ""
+                    + "id=" + id + ""
                     + ";");
         } catch (Exception e) {
             this.logger.error("Failed to change: " + e.getMessage());

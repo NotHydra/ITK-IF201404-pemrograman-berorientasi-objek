@@ -9,5 +9,5 @@ public interface BookServiceInterface {
 
     public void add(BookModel model);
 
-    public void change(BookModel model);
+    public void change(int id, BookModel model);
 }

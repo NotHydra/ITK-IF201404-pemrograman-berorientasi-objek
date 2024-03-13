@@ -11,7 +11,7 @@ public interface BaseServiceInterface<ModelType extends BaseModel> {
 
     public abstract void add(ModelType model);
 
-    public abstract void change(ModelType model);
+    public abstract void change(int id, ModelType model);
 
     public void remove(int id);
 
