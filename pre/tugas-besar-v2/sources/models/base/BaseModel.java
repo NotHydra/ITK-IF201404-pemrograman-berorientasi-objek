@@ -1,5 +1,7 @@
 package models.base;
 
+import models.base.interfaces.BaseModelInterface;
+
 public abstract class BaseModel implements BaseModelInterface {
     protected final int id;
 

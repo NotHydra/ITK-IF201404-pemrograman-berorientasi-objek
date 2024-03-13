@@ -1,6 +1,7 @@
 package models.book;
 
 import models.base.BaseModel;
+import models.book.interfaces.BookModelInterface;
 
 public class BookModel extends BaseModel implements BookModelInterface {
     private final String title;

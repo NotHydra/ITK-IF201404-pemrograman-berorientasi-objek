@@ -1,4 +1,6 @@
-package models.base;
+package models.base.interfaces;
+
+import models.base.BaseModel;
 
 public interface BaseServiceInterface<ModelType extends BaseModel> {
     public void display();

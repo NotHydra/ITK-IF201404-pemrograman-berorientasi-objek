@@ -1,6 +1,7 @@
 package models.base;
 
 import providers.Logger;
+import models.base.interfaces.BaseServiceInterface;
 import providers.Database;
 
 public abstract class BaseService<ModelType extends BaseModel> implements BaseServiceInterface<ModelType> {

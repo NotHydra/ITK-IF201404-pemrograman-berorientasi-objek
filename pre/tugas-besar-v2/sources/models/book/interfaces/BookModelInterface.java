@@ -1,4 +1,4 @@
-package models.book;
+package models.book.interfaces;
 
 public interface BookModelInterface {
     public String getTitle();

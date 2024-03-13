@@ -6,6 +6,7 @@ import providers.Logger;
 import providers.Database;
 
 import models.base.BaseService;
+import models.book.interfaces.BookServiceInterface;
 
 public class BookService extends BaseService<BookModel> implements BookServiceInterface {
     private static BookService instance;

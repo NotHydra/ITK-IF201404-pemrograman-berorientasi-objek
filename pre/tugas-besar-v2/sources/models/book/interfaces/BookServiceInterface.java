@@ -1,4 +1,6 @@
-package models.book;
+package models.book.interfaces;
+
+import models.book.BookModel;
 
 public interface BookServiceInterface {
     public BookModel[] find();

@@ -1,4 +1,4 @@
-package models.base;
+package models.base.interfaces;
 
 public interface BaseModelInterface {
     public int getId();
