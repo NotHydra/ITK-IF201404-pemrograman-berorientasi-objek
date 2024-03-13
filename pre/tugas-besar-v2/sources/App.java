@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 	private static final HashMap<String, String> views = new HashMap<String, String>();
-	private static final Scene scene = new Scene(App.loadView("book"));
+
+	private static Scene scene;
 
 	public static void main(String[] args) {
 		App.views.put("book", "models/book/Book");
@@ -20,6 +21,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) {
+		scene = new Scene(App.loadView("book"));
 		stage.setScene(App.scene);
 		stage.show();
 	}
