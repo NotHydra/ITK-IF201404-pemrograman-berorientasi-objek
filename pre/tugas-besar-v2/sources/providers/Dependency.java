@@ -10,11 +10,13 @@ public class Dependency {
     private String databaseUsername;
     private String databasePassword;
 
-    private Dependency(Logger logger, String databaseURL, String databaseUsername, String databasePassword) {
+    private Dependency(Logger logger) {
         this.logger = logger;
-        this.databaseURL = databaseURL;
-        this.databaseUsername = databaseUsername;
-        this.databasePassword = databasePassword;
+
+        final Dotenv environment = Dotenv.configure().load();
+        this.databaseURL = environment.get("DATABASE_URL");
+        this.databaseUsername = environment.get("DATABASE_USERNAME");
+        this.databasePassword = environment.get("DATABASE_PASSWORD");
 
         if (this.databaseURL == null || this.databaseURL.trim().isEmpty()) {
             throw new IllegalArgumentException("Database URL cannot be empty");
@@ -31,15 +33,20 @@ public class Dependency {
 
     public static Dependency getInstance() {
         if (Dependency.instance == null) {
-            final Dotenv environment = Dotenv.configure().load();
+            try {
+                Dependency.instance = new Dependency(new Logger(Dependency.class.getName()));
+            } catch (IllegalArgumentException e) {
+                Dependency.instance.logger.error(e.getMessage());
 
-            Dependency.instance = new Dependency(
-                    new Logger(Dependency.class.getName()),
-                    environment.get("DATABASE_URL"),
-                    environment.get("DATABASE_USERNAME"),
-                    environment.get("DATABASE_PASSWORD"));
+                throw e;
+            } catch (Exception e) {
+                Dependency.instance.logger.error("Failed to initialize Dependency instance");
 
+                throw new RuntimeException("Failed to initialize Dependency instance");
+            }
         }
+
+        Dependency.instance.logger.debug("Get Instance");
 
         return Dependency.instance;
     }
