@@ -3,7 +3,7 @@ package models.base;
 import providers.Logger;
 import providers.Database;
 
-public abstract class BaseService<ModelType> {
+public abstract class BaseService<ModelType extends BaseModel> implements BaseServiceInterface<ModelType> {
     protected Logger logger;
     protected Database database;
     protected String table;

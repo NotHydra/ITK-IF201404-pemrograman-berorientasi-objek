@@ -1,9 +1,10 @@
 package models.book;
 
 public interface BookModelInterface {
-    String getTitle();
+    public String getTitle();
 
-    String getDescription();
+    public String getDescription();
 
-    String toString();
+    @Override
+    public String toString();
 }

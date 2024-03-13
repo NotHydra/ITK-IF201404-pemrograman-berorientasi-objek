@@ -28,6 +28,7 @@ public class BookModel extends BaseModel implements BookModelInterface {
         return this.description;
     }
 
+    @Override
     public String toString() {
         return "BookModel("
                 + "id=" + this.id + ", "
