@@ -13,8 +13,6 @@ public class Database {
     }
 
     public static Database getInstance() {
-        Database.instance.logger.debug("Get Instance");
-
         if (Database.instance == null) {
             try {
                 Database.instance = new Database(new Logger(Database.class.getName()));
@@ -30,6 +28,8 @@ public class Database {
                 throw new RuntimeException("Failed to initialize Database instance");
             }
         }
+
+        Database.instance.logger.debug("Get Instance");
 
         return Database.instance;
     }

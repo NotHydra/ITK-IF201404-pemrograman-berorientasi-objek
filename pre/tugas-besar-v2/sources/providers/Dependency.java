@@ -15,8 +15,6 @@ public class Dependency {
     };
 
     public static Dependency getInstance() {
-        Dependency.instance.logger.debug("Get Instance");
-
         if (Dependency.instance == null) {
             try {
                 Dependency.instance = new Dependency(new Logger(Dependency.class.getName()));
@@ -51,6 +49,8 @@ public class Dependency {
                 throw new RuntimeException("Failed to initialize Dependency instance");
             }
         }
+
+        Dependency.instance.logger.debug("Get Instance");
 
         return Dependency.instance;
     }
