@@ -25,7 +25,7 @@ public class App extends Application {
 		stage.show();
 	}
 
-	public static void setRoot(String view) {
+	public static void setView(String view) {
 		scene.setRoot(App.loadView(view));
 	}
 
