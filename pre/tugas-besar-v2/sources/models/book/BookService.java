@@ -1,12 +1,13 @@
 package models.book;
 
-import providers.Logger;
-
 import java.sql.ResultSet;
 
+import providers.Logger;
 import providers.Database;
 
-public class BookService {
+import models.base.BaseService;
+
+public class BookService extends BaseService<BookModel> {
     private static BookService instance;
 
     private Logger logger;
@@ -14,6 +15,8 @@ public class BookService {
     private String table;
 
     private BookService(Logger logger, Database database) {
+        super(logger, database);
+
         this.logger = logger;
         this.database = database;
     }
@@ -36,19 +39,7 @@ public class BookService {
         return BookService.instance;
     }
 
-    public void display() {
-        this.logger.debug("Display");
-
-        try {
-            for (BookModel model : this.find()) {
-                System.out.println(model);
-                System.out.println();
-            }
-        } catch (Exception e) {
-            this.logger.error("Failed to display: " + e.getMessage());
-        }
-    }
-
+    @Override
     public BookModel[] find() {
         this.logger.debug("Find");
 
@@ -82,6 +73,7 @@ public class BookService {
         return null;
     }
 
+    @Override
     public BookModel findId(int id) {
         this.logger.debug("Find Id");
 
@@ -108,6 +100,7 @@ public class BookService {
         return null;
     }
 
+    @Override
     public void add(BookModel model) {
         this.logger.debug("Add");
 
@@ -125,6 +118,7 @@ public class BookService {
         }
     }
 
+    @Override
     public void change(BookModel model) {
         this.logger.debug("Change");
 
@@ -138,31 +132,6 @@ public class BookService {
                     + ";");
         } catch (Exception e) {
             this.logger.error("Failed to change: " + e.getMessage());
-        }
-    }
-
-    public void remove(int id) {
-        this.logger.debug("Remove");
-
-        try {
-            this.database.executeUpdate(""
-                    + "DELETE FROM " + this.table + " "
-                    + "WHERE id=" + id + ""
-                    + ";");
-        } catch (Exception e) {
-            this.logger.error("Failed to remove: " + e.getMessage());
-        }
-    }
-
-    public void truncate() {
-        this.logger.debug("Truncate");
-
-        try {
-            this.database.executeUpdate(""
-                    + "TRUNCATE TABLE " + this.table + ""
-                    + ";");
-        } catch (Exception e) {
-            this.logger.error("Failed to truncate: " + e.getMessage());
         }
     }
 }
