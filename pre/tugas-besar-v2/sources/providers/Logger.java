@@ -1,6 +1,8 @@
 package providers;
 
 public class Logger {
+    private static final Logger instance = new Logger("Logger");
+
     private final String context;
 
     public Logger(String context) {
