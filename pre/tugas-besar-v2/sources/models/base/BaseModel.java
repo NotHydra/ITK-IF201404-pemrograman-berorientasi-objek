@@ -1,6 +1,6 @@
 package models.base;
 
-public abstract class BaseModel {
+public abstract class BaseModel implements BaseModelInterface {
     protected final int id;
 
     public BaseModel() {
