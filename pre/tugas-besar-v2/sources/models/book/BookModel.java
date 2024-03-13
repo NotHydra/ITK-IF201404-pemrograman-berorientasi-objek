@@ -1,24 +1,23 @@
 package models.book;
 
-public class BookModel {
-    private final int id;
+import models.base.BaseModel;
+
+public class BookModel extends BaseModel {
     private final String title;
     private final String description;
 
     public BookModel(String title, String description) {
-        this.id = -1;
+        super(-1);
+
         this.title = title;
         this.description = description;
     }
 
     public BookModel(int id, String title, String description) {
-        this.id = id;
+        super(id);
+
         this.title = title;
         this.description = description;
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public String getTitle() {
