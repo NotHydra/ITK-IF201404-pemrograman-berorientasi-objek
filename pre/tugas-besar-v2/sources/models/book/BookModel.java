@@ -2,7 +2,7 @@ package models.book;
 
 import models.base.BaseModel;
 
-public class BookModel extends BaseModel {
+public class BookModel extends BaseModel implements BookModelInterface {
     private final String title;
     private final String description;
 
