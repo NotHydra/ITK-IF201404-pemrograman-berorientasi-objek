@@ -31,7 +31,7 @@ public class App extends Application {
 
 	private static Parent loadView(String view) {
 		try {
-			return (new FXMLLoader(App.class.getResource(App.views.get(view)))).load();
+			return (new FXMLLoader(App.class.getResource(App.views.get(view) + "View.fxml"))).load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
