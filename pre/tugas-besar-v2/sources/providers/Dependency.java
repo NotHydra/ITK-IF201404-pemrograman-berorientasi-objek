@@ -5,48 +5,60 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class Dependency {
     private static Dependency instance;
 
+    private Logger logger;
     private String databaseURL;
     private String databaseUsername;
     private String databasePassword;
 
-    private Dependency() {
+    private Dependency(Logger logger, String databaseURL, String databaseUsername, String databasePassword) {
+        this.logger = logger;
+        this.databaseURL = databaseURL;
+        this.databaseUsername = databaseUsername;
+        this.databasePassword = databasePassword;
+
+        if (this.databaseURL == null || this.databaseURL.trim().isEmpty()) {
+            throw new IllegalArgumentException("Database URL cannot be empty");
+        }
+
+        if (this.databaseUsername == null || this.databaseUsername.trim().isEmpty()) {
+            throw new IllegalArgumentException("Database username cannot be empty");
+        }
+
+        if (this.databasePassword == null || this.databasePassword.trim().isEmpty()) {
+            throw new IllegalArgumentException("Database password cannot be empty");
+        }
     };
 
     public static Dependency getInstance() {
         if (Dependency.instance == null) {
-            Dependency.instance = new Dependency();
+            final Dotenv environment = Dotenv.configure().load();
 
-            final Dotenv environment = Dotenv.load();
+            Dependency.instance = new Dependency(
+                    new Logger(Dependency.class.getName()),
+                    environment.get("DATABASE_URL"),
+                    environment.get("DATABASE_USERNAME"),
+                    environment.get("DATABASE_PASSWORD"));
 
-            Dependency.instance.databaseURL = environment.get("DATABASE_URL");
-            Dependency.instance.databaseUsername = environment.get("DATABASE_USERNAME");
-            Dependency.instance.databasePassword = environment.get("DATABASE_PASSWORD");
-
-            if (Dependency.instance.databaseURL == null || Dependency.instance.databaseURL.trim().isEmpty()) {
-                throw new IllegalArgumentException("Database URL cannot be empty");
-            }
-
-            if (Dependency.instance.databaseUsername == null || Dependency.instance.databaseUsername.trim().isEmpty()) {
-                throw new IllegalArgumentException("Database username cannot be empty");
-            }
-
-            if (Dependency.instance.databasePassword == null || Dependency.instance.databasePassword.trim().isEmpty()) {
-                throw new IllegalArgumentException("Database password cannot be empty");
-            }
         }
 
         return Dependency.instance;
     }
 
     public String getDatabaseURL() {
-        return Dependency.instance.databaseURL;
+        this.logger.debug("Get Database URL");
+
+        return this.databaseURL;
     }
 
     public String getDatabaseUsername() {
-        return Dependency.instance.databaseUsername;
+        this.logger.debug("Get Database Username");
+
+        return this.databaseUsername;
     }
 
     public String getDatabasePassword() {
-        return Dependency.instance.databasePassword;
+        this.logger.debug("Get Database Password");
+
+        return this.databasePassword;
     }
 }
