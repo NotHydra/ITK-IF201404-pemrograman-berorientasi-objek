@@ -60,7 +60,7 @@ public class BookController implements Initializable {
 
     @FXML
     public void buttonAddEvent(ActionEvent event) {
-        if (Modal.confirmation()) {
+        if (Modal.getInstance().confirmation()) {
             try {
                 service.add(new BookModel(
                         textFieldTitle.getText(),
@@ -68,7 +68,7 @@ public class BookController implements Initializable {
 
                 this.tableReload();
             } catch (Exception e) {
-                Modal.fail(e.getMessage());
+                Modal.getInstance().fail(e.getMessage());
             }
         }
     }
@@ -76,7 +76,7 @@ public class BookController implements Initializable {
     @FXML
     public void buttonChangeEvent(ActionEvent event) {
         if (this.selectedBook != null) {
-            if (Modal.confirmation()) {
+            if (Modal.getInstance().confirmation()) {
                 try {
                     service.change(
                             this.selectedBook.getId(),
@@ -86,7 +86,7 @@ public class BookController implements Initializable {
 
                     this.tableReload();
                 } catch (Exception e) {
-                    Modal.fail(e.getMessage());
+                    Modal.getInstance().fail(e.getMessage());
                 }
             }
         }
@@ -95,7 +95,7 @@ public class BookController implements Initializable {
     @FXML
     public void buttonRemoveEvent(ActionEvent event) {
         if (this.selectedBook != null) {
-            if (Modal.confirmation()) {
+            if (Modal.getInstance().confirmation()) {
                 try {
                     service.remove(this.selectedBook.getId());
 
@@ -106,7 +106,7 @@ public class BookController implements Initializable {
 
                     this.tableReload();
                 } catch (Exception e) {
-                    Modal.fail(e.getMessage());
+                    Modal.getInstance().fail(e.getMessage());
                 }
             }
         }
