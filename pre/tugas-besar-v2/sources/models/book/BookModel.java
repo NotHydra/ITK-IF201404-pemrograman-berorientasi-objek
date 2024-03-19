@@ -10,6 +10,8 @@ public class BookModel extends BaseModel implements BookModelInterface {
     public BookModel(String title, String description) {
         super(-1);
 
+        validate(title, description);
+
         this.title = title;
         this.description = description;
     }
@@ -17,8 +19,23 @@ public class BookModel extends BaseModel implements BookModelInterface {
     public BookModel(int id, String title, String description) {
         super(id);
 
+        validate(title, description);
+
         this.title = title;
         this.description = description;
+    }
+
+    private void validate(
+            String title,
+            String description) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be empty");
+        }
+
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException("Description cannot be empty");
+        }
+
     }
 
     public String getTitle() {
