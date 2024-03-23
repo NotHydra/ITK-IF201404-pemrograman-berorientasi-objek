@@ -3,6 +3,7 @@ public class PersonalContact extends Contact {
 
     public PersonalContact(int id, String name, String phone, String email, String nickname) {
         super(id, name, phone, email);
+
         this.nickname = nickname;
     }
 
