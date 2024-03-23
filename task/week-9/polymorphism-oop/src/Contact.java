@@ -12,19 +12,19 @@ public class Contact {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setName(String name) {
@@ -41,10 +41,10 @@ public class Contact {
 
     public String toString() {
         return "Contact("
-                + "id=" + id + ", "
-                + "name=\"" + name + "\", "
-                + "phoneNumber=\"" + phoneNumber + "\", "
-                + "email=\"" + email + "\""
+                + "id=" + this.id + ", "
+                + "name=\"" + this.name + "\", "
+                + "phoneNumber=\"" + this.phoneNumber + "\", "
+                + "email=\"" + this.email + "\""
                 + ")";
     }
 }
