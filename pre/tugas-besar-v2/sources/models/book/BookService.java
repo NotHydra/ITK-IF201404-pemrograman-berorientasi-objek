@@ -11,16 +11,8 @@ import models.book.interfaces.BookServiceInterface;
 public class BookService extends BaseService<BookModel> implements BookServiceInterface {
     private static BookService instance;
 
-    private final Logger logger;
-    private final Database database;
-    private final String table;
-
     private BookService(Logger logger, Database database, String table) {
         super(logger, database, table);
-
-        this.logger = logger;
-        this.database = database;
-        this.table = table;
     }
 
     public static BookService getInstance() {
