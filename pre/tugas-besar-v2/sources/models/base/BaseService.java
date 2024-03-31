@@ -5,9 +5,9 @@ import models.base.interfaces.BaseServiceInterface;
 import providers.Database;
 
 public abstract class BaseService<ModelType extends BaseModel> implements BaseServiceInterface<ModelType> {
-    protected Logger logger;
-    protected Database database;
-    protected String table;
+    protected final Logger logger;
+    protected final Database database;
+    protected final String table;
 
     protected BaseService(Logger logger, Database database, String table) {
         this.logger = logger;

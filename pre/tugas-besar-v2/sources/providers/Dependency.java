@@ -5,7 +5,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class Dependency {
     private static Dependency instance;
 
-    private Logger logger;
+    private final Logger logger;
+
     private String databaseURL;
     private String databaseUsername;
     private String databasePassword;

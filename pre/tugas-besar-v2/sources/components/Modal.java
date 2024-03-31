@@ -8,7 +8,7 @@ import providers.Logger;
 public class Modal {
     private static Modal instance;
 
-    private Logger logger;
+    private final Logger logger;
 
     private Modal(Logger logger) {
         this.logger = logger;
@@ -27,7 +27,7 @@ public class Modal {
     public boolean confirmation() {
         this.logger.debug("Confirmation");
 
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        final Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Notification");
         confirmation.setHeaderText("Confirmation");
         confirmation.setContentText("Are you sure?");
@@ -42,7 +42,7 @@ public class Modal {
     public void fail(String message) {
         this.logger.debug("Fail");
 
-        Alert error = new Alert(Alert.AlertType.ERROR);
+        final Alert error = new Alert(Alert.AlertType.ERROR);
         error.setTitle("Notification");
         error.setHeaderText("Fail");
         error.setContentText(message);

@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class View {
     private static View instance;
 
-    private Logger logger;
+    private final Logger logger;
     private final HashMap<String, String> views = new HashMap<String, String>();
 
     private View(Logger logger) {

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Logger {
-    @SuppressWarnings("unused")
     private static final Logger instance = new Logger("Logger");
 
     private final String context;
