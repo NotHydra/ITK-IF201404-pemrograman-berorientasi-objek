@@ -1,9 +1,8 @@
 package models.book;
 
 import models.base.BaseModel;
-import models.book.interfaces.BookModelInterface;
 
-public class BookModel extends BaseModel implements BookModelInterface {
+public class BookModel extends BaseModel {
     private final String title;
     private final String description;
 

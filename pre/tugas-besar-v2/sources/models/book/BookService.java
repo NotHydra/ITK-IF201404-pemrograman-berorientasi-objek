@@ -5,10 +5,14 @@ import java.sql.ResultSet;
 import providers.Logger;
 import providers.Database;
 
-import models.base.BaseService;
-import models.book.interfaces.BookServiceInterface;
+import interfaces.ServiceFindInterface;
+import interfaces.ServiceAddInterface;
+import interfaces.ServiceChangeInterface;
 
-public class BookService extends BaseService<BookModel> implements BookServiceInterface {
+import models.base.BaseService;
+
+public class BookService extends BaseService<BookModel>
+        implements ServiceFindInterface<BookModel>, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel> {
     private static BookService instance;
 
     private BookService(Logger logger, Database database, String table) {
