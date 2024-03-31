@@ -6,12 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import providers.Logger;
 import providers.View;
 
 public class App extends Application {
 	private static Scene scene;
 
 	public static void main(String[] args) {
+		Logger.getInstance().info("Starting application");
 		View.getInstance().add("book", "models/book/Book");
 		View.getInstance().add("author", "models/author/Author");
 
@@ -26,6 +28,8 @@ public class App extends Application {
 	}
 
 	public static void setView(String view) {
+		Logger.getInstance().debug("Set View");
+
 		scene.setRoot(App.loadView(view));
 	}
 

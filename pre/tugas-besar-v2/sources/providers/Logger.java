@@ -12,6 +12,10 @@ public class Logger {
         this.context = context;
     }
 
+    public static Logger getInstance() {
+        return instance;
+    }
+
     private String currentTimestamp() {
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
