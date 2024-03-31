@@ -1,10 +1,9 @@
 package models.base;
 
 import providers.Logger;
-import models.base.interfaces.BaseServiceInterface;
 import providers.Database;
 
-public abstract class BaseService<ModelType extends BaseModel> implements BaseServiceInterface<ModelType> {
+public abstract class BaseService<ModelType extends BaseModel> {
     protected final Logger logger;
     protected final Database database;
     protected final String table;

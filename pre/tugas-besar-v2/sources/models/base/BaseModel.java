@@ -1,8 +1,6 @@
 package models.base;
 
-import models.base.interfaces.BaseModelInterface;
-
-public abstract class BaseModel implements BaseModelInterface {
+public abstract class BaseModel {
     protected final int id;
 
     public BaseModel() {
