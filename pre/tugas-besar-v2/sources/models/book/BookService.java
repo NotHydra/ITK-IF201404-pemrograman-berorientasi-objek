@@ -12,7 +12,8 @@ import interfaces.ServiceChangeInterface;
 
 import models.base.BaseService;
 
-public class BookService extends BaseService<BookModel>
+public class BookService
+        extends BaseService<BookModel>
         implements ServiceFindInterface<BookModel>, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel> {
     private static BookService instance;
 
