@@ -1,4 +1,4 @@
-package models.base;
+package global.base;
 
 public abstract class BaseModel {
     protected final int id;

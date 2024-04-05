@@ -1,7 +1,7 @@
 package models.book;
 
 
-import models.base.BaseModel;
+import global.base.BaseModel;
 
 public class BookModel extends BaseModel {
     private final String title;

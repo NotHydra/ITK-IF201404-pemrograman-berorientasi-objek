@@ -10,7 +10,7 @@ import interfaces.ServiceFindInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 
-import models.base.BaseService;
+import global.base.BaseService;
 
 public class BookService
         extends BaseService<BookModel>

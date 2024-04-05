@@ -1,4 +1,4 @@
-package models.base;
+package global.base;
 
 
 import providers.Logger;

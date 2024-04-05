@@ -1,7 +1,7 @@
 package models.author;
 
 
-import models.base.BaseModel;
+import global.base.BaseModel;
 
 public class AuthorModel extends BaseModel {
     private final String name;
