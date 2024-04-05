@@ -1,5 +1,6 @@
 package providers;
 
+
 import java.sql.*;
 
 public class Database {
@@ -22,7 +23,8 @@ public class Database {
                         Dependency.getInstance().getDatabaseUsername(),
                         Dependency.getInstance().getDatabasePassword());
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Database.instance.logger.error("Failed to initialize Database instance: " + e.getMessage());
 
                 throw new RuntimeException("Failed to initialize Database instance");
@@ -41,7 +43,8 @@ public class Database {
             if (this.connection != null && !this.connection.isClosed()) {
                 this.connection.close();
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to close database connection: " + e.getMessage());
 
             throw new RuntimeException("Failed to close database connection");
@@ -53,7 +56,8 @@ public class Database {
 
         try {
             this.executeUpdate("SET FOREIGN_KEY_CHECKS = 0;");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to disable foreign key checks: " + e.getMessage());
 
             throw new RuntimeException("Failed to disable foreign key checks");
@@ -66,7 +70,8 @@ public class Database {
 
         try {
             return this.connection.getMetaData().getTables(null, null, table, null).next();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to check if table exist: " + e.getMessage());
         }
 
@@ -81,7 +86,8 @@ public class Database {
             result.next();
 
             return result.getInt("total");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to get table total: " + e.getMessage());
         }
 
@@ -93,7 +99,8 @@ public class Database {
 
         try {
             return this.connection.prepareStatement(query).executeQuery();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to execute query: " + e.getMessage());
         }
 
@@ -105,7 +112,8 @@ public class Database {
 
         try {
             this.connection.prepareStatement(query).executeUpdate();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to execute update: " + e.getMessage());
         }
     }

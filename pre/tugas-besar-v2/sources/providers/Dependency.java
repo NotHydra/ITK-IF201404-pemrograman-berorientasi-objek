@@ -1,5 +1,6 @@
 package providers;
 
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Dependency {
@@ -25,26 +26,25 @@ public class Dependency {
                 Dependency.instance.databaseUsername = environment.get("DATABASE_USERNAME");
                 Dependency.instance.databasePassword = environment.get("DATABASE_PASSWORD");
 
-                if (Dependency.instance.databaseURL == null
-                        || Dependency.instance.databaseURL.trim().isEmpty()) {
+                if (Dependency.instance.databaseURL == null || Dependency.instance.databaseURL.trim().isEmpty()) {
                     throw new IllegalArgumentException("Database URL cannot be empty");
                 }
 
-                if (Dependency.instance.databaseUsername == null
-                        || Dependency.instance.databaseUsername.trim().isEmpty()) {
+                if (Dependency.instance.databaseUsername == null || Dependency.instance.databaseUsername.trim().isEmpty()) {
                     throw new IllegalArgumentException("Database username cannot be empty");
                 }
 
-                if (Dependency.instance.databasePassword == null
-                        || Dependency.instance.databasePassword.trim().isEmpty()) {
+                if (Dependency.instance.databasePassword == null || Dependency.instance.databasePassword.trim().isEmpty()) {
                     throw new IllegalArgumentException("Database password cannot be empty");
                 }
 
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 Dependency.instance.logger.error(e.getMessage());
 
                 throw e;
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Dependency.instance.logger.error("Failed to initialize Dependency instance: " + e.getMessage());
 
                 throw new RuntimeException("Failed to initialize Dependency instance");

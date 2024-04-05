@@ -14,7 +14,7 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		Logger.getInstance().info("Starting application");
-		
+
 		View.getInstance().add("book", "models/book/Book");
 		View.getInstance().add("author", "models/author/Author");
 
@@ -37,7 +37,8 @@ public class App extends Application {
 	private static Parent loadView(String view) {
 		try {
 			return (new FXMLLoader(App.class.getResource(View.getInstance().get(view) + "View.fxml"))).load();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 

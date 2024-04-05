@@ -1,5 +1,6 @@
 package models.book;
 
+
 import java.sql.ResultSet;
 
 import providers.Logger;
@@ -26,7 +27,8 @@ public class BookService extends BaseService<BookModel>
                         new Logger(BookService.class.getName()),
                         Database.getInstance(),
                         "book");
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 BookService.instance.logger.error("Failed to initialize BookService instance: " + e.getMessage());
 
                 throw new RuntimeException("Failed to initialize BookService instance");
@@ -65,7 +67,8 @@ public class BookService extends BaseService<BookModel>
             }
 
             return models;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to find: " + e.getMessage());
         }
 
@@ -92,7 +95,8 @@ public class BookService extends BaseService<BookModel>
                         result.getString("title"),
                         result.getString("description"));
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to find id: " + e.getMessage());
         }
 
@@ -112,7 +116,8 @@ public class BookService extends BaseService<BookModel>
                     + "'" + model.getTitle() + "', "
                     + "'" + model.getDescription() + "'"
                     + ");");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to add: " + e.getMessage());
         }
     }
@@ -129,7 +134,8 @@ public class BookService extends BaseService<BookModel>
                     + "WHERE "
                     + "id=" + id + ""
                     + ";");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to change: " + e.getMessage());
         }
     }

@@ -1,5 +1,6 @@
 package models.base;
 
+
 import providers.Logger;
 import providers.Database;
 
@@ -22,7 +23,8 @@ public abstract class BaseService<ModelType extends BaseModel> {
                 System.out.println(model);
                 System.out.println();
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to display: " + e.getMessage());
         }
     }
@@ -43,7 +45,8 @@ public abstract class BaseService<ModelType extends BaseModel> {
                     + "DELETE FROM " + this.table + " "
                     + "WHERE id=" + id + ""
                     + ";");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to remove: " + e.getMessage());
         }
     }
@@ -55,7 +58,8 @@ public abstract class BaseService<ModelType extends BaseModel> {
             this.database.executeUpdate(""
                     + "TRUNCATE TABLE " + this.table + ""
                     + ";");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             this.logger.error("Failed to truncate: " + e.getMessage());
         }
     }

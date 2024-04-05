@@ -1,5 +1,6 @@
 package models.book;
 
+
 import models.base.BaseModel;
 
 public class BookModel extends BaseModel {

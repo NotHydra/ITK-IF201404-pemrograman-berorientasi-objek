@@ -1,5 +1,6 @@
 package models.book;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -54,7 +55,8 @@ public class BookController implements Initializable {
 
             textFieldTitle.setText(this.selectedBook.getTitle());
             textFieldDescription.setText(this.selectedBook.getDescription());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
         }
     }
 
@@ -67,7 +69,8 @@ public class BookController implements Initializable {
                         textFieldDescription.getText()));
 
                 this.tableReload();
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Modal.getInstance().fail(e.getMessage());
             }
         }
@@ -85,7 +88,8 @@ public class BookController implements Initializable {
                                     textFieldDescription.getText()));
 
                     this.tableReload();
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     Modal.getInstance().fail(e.getMessage());
                 }
             }
@@ -105,7 +109,8 @@ public class BookController implements Initializable {
                     textFieldDescription.clear();
 
                     this.tableReload();
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     Modal.getInstance().fail(e.getMessage());
                 }
             }
