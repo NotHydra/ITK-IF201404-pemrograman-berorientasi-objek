@@ -14,6 +14,7 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		Logger.getInstance().info("Starting application");
+		
 		View.getInstance().add("book", "models/book/Book");
 		View.getInstance().add("author", "models/author/Author");
 

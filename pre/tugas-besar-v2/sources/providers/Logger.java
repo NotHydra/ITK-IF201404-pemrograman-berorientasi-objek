@@ -23,19 +23,23 @@ public class Logger {
     }
 
     public void info(String message) {
-        System.out.println("[" + this.currentTimestamp() + "][" + this.context + "][info] " + message);
+        System.out.println("\u001B[34m" + "[" + this.currentTimestamp() + "][" + this.context + "][info] " + message
+                + "\u001B[0m");
     }
 
     public void debug(String message) {
-        System.out.println("[" + this.currentTimestamp() + "][" + this.context + "][debug] " + message);
+        System.out.println("\u001B[32m" + "[" + this.currentTimestamp() + "][" + this.context + "][debug] " + message
+                + "\u001B[0m");
     }
 
     public void warn(String message) {
-        System.out.println("[" + this.currentTimestamp() + "][" + this.context + "][warn] " + message);
+        System.out.println("\u001B[31m" + "[" + this.currentTimestamp() + "][" + this.context + "][warn] " + message
+                + "\u001B[0m");
     }
 
     public void error(String message) {
-        System.err.println("[" + this.currentTimestamp() + "][" + this.context + "][error] " + message);
+        System.err.println("\u001B[32m" + "[" + this.currentTimestamp() + "][" + this.context + "][error] " + message
+                + "\u001B[0m");
     }
 
 }
