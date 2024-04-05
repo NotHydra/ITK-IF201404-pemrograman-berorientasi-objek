@@ -7,16 +7,17 @@ import providers.Logger;
 import providers.Database;
 
 import interfaces.ServiceFindInterface;
+import interfaces.ServiceFindExtendInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 
-import models.base.BaseService;
+import global.extend.ExtendService;
 
 import models.book.BookModel;
 
 public class AuthorService
-        extends BaseService<AuthorModel>
-        implements ServiceFindInterface<AuthorModel>, ServiceAddInterface<AuthorModel>, ServiceChangeInterface<AuthorModel> {
+        extends ExtendService<AuthorModel, AuthorExtendModel>
+        implements ServiceFindInterface<AuthorModel>, ServiceFindExtendInterface<AuthorExtendModel>, ServiceAddInterface<AuthorModel>, ServiceChangeInterface<AuthorModel> {
     private static AuthorService instance;
 
     private AuthorService(Logger logger, Database database, String table) {
@@ -103,6 +104,7 @@ public class AuthorService
         return null;
     }
 
+    @Override
     public AuthorExtendModel[] findExtend() {
         this.logger.debug("Find Extend");
 
@@ -145,6 +147,7 @@ public class AuthorService
         return null;
     }
 
+    @Override
     public AuthorExtendModel findIdExtend(int id) {
         this.logger.debug("Find Id Extend");
 
