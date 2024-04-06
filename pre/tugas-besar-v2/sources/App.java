@@ -23,7 +23,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		scene = new Scene(App.loadView("book"));
+		scene = new Scene(App.loadView("author"));
 		stage.setScene(App.scene);
 		stage.show();
 	}
