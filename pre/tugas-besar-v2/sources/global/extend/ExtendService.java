@@ -12,6 +12,20 @@ public abstract class ExtendService<ModelType extends BaseModel, ModelExtendType
         super(logger, database, table);
     }
 
+    public void displayExtend() {
+        this.logger.debug("Display Extend");
+
+        try {
+            for (ModelExtendType model : this.findExtend()) {
+                System.out.println(model);
+                System.out.println();
+            }
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to display extend: " + e.getMessage());
+        }
+    }
+
     public abstract ModelExtendType[] findExtend();
 
     public abstract ModelExtendType findIdExtend(int id);
