@@ -9,12 +9,14 @@ import providers.Database;
 import interfaces.ServiceFindInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
+import interfaces.ServiceChoiceBoxInterface;
 
 import global.base.BaseService;
+import global.choice_box.ChoiceBoxModel;
 
 public class BookService
         extends BaseService<BookModel>
-        implements ServiceFindInterface<BookModel>, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel> {
+        implements ServiceFindInterface<BookModel>, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel>, ServiceChoiceBoxInterface {
     private static BookService instance;
 
     private BookService(Logger logger, Database database, String table) {
@@ -139,5 +141,41 @@ public class BookService
         catch (Exception e) {
             this.logger.error("Failed to change: " + e.getMessage());
         }
+    }
+
+    @Override
+    public ChoiceBoxModel[] findChoiceBox() {
+        this.logger.debug("Find Choice Box");
+
+        try {
+            final int total = this.database.tableTotal(this.table);
+            final ResultSet result = this.database.executeQuery(""
+                    + "SELECT "
+                    + "id, "
+                    + "title, "
+                    + "description "
+                    + "FROM " + this.table + ""
+                    + ";");
+
+            final ChoiceBoxModel[] models = new ChoiceBoxModel[total + 1];
+
+            models[0] = new ChoiceBoxModel("Select Book");
+
+            int i = 1;
+            while (result.next()) {
+                models[i] = new ChoiceBoxModel(
+                        result.getInt("id"),
+                        result.getString("title") + " - " + result.getString("description"));
+
+                i++;
+            }
+
+            return models;
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to find choice box: " + e.getMessage());
+        }
+
+        return null;
     }
 }
