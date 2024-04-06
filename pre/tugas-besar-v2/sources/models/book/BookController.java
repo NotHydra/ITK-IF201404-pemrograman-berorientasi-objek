@@ -3,6 +3,8 @@ package models.book;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import components.Modal;
@@ -18,7 +19,7 @@ import components.Modal;
 public class BookController implements Initializable {
     private final static BookService service = BookService.getInstance();
 
-    private BookModel selectedBook;
+    private BookModel selectedModel;
 
     @FXML
     private TableView<BookModel> tableViewBook;
@@ -37,8 +38,8 @@ public class BookController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableColumnTitle.setCellValueFactory(new PropertyValueFactory<BookModel, String>("title"));
-        tableColumnDescription.setCellValueFactory(new PropertyValueFactory<BookModel, String>("description"));
+        tableColumnTitle.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getTitle()));
+        tableColumnDescription.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getDescription()));
 
         tableViewBook.setItems(FXCollections.observableArrayList(service.find()));
     }
@@ -50,10 +51,10 @@ public class BookController implements Initializable {
     @FXML
     public void tableItemClick(MouseEvent event) {
         try {
-            this.selectedBook = tableViewBook.getSelectionModel().getSelectedItem();
+            this.selectedModel = tableViewBook.getSelectionModel().getSelectedItem();
 
-            textFieldTitle.setText(this.selectedBook.getTitle());
-            textFieldDescription.setText(this.selectedBook.getDescription());
+            textFieldTitle.setText(this.selectedModel.getTitle());
+            textFieldDescription.setText(this.selectedModel.getDescription());
         }
         catch (Exception e) {
         }
@@ -77,11 +78,11 @@ public class BookController implements Initializable {
 
     @FXML
     public void buttonChangeEvent(ActionEvent event) {
-        if (this.selectedBook != null) {
+        if (this.selectedModel != null) {
             if (Modal.getInstance().confirmation()) {
                 try {
                     service.change(
-                            this.selectedBook.getId(),
+                            this.selectedModel.getId(),
                             new BookModel(
                                     textFieldTitle.getText(),
                                     textFieldDescription.getText()));
@@ -97,12 +98,12 @@ public class BookController implements Initializable {
 
     @FXML
     public void buttonRemoveEvent(ActionEvent event) {
-        if (this.selectedBook != null) {
+        if (this.selectedModel != null) {
             if (Modal.getInstance().confirmation()) {
                 try {
-                    service.remove(this.selectedBook.getId());
+                    service.remove(this.selectedModel.getId());
 
-                    this.selectedBook = null;
+                    this.selectedModel = null;
 
                     textFieldTitle.clear();
                     textFieldDescription.clear();
