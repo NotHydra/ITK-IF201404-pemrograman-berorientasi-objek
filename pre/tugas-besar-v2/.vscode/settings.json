@@ -11,7 +11,7 @@
         "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx.swing.jar",
         "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx.web.jar",
         "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx-swt.jar",
-        "c:\\Program Files\\Java\\jbcrypt\\jbcrypt.jar"
+        "c:\\Program Files\\Java\\jbcrypt\\jbcrypt.jar",
     ],
     "java.format.settings.url": "eclipse-formatter.xml",
     "[java]": {
