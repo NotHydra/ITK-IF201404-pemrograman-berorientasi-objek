@@ -94,6 +94,22 @@ public class Database {
         return -1;
     }
 
+    public int tableTotal(String table, String where) {
+        this.logger.debug("Table Total");
+
+        try {
+            final ResultSet result = this.executeQuery("SELECT COUNT(*) AS `total` FROM " + table + " " + where + ";");
+            result.next();
+
+            return result.getInt("total");
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to get table total: " + e.getMessage());
+        }
+
+        return -1;
+    }
+
     public ResultSet executeQuery(String query) {
         this.logger.debug("Execute Query");
 
