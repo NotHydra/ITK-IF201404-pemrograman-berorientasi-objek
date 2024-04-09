@@ -17,13 +17,14 @@ public class App extends Application {
 
 		View.getInstance().add("book", "models/book/Book");
 		View.getInstance().add("author", "models/author/Author");
+		View.getInstance().add("genre", "models/genre/Genre");
 
 		App.launch(args);
 	};
 
 	@Override
 	public void start(Stage stage) {
-		scene = new Scene(App.loadView("author"));
+		scene = new Scene(App.loadView("genre"));
 		stage.setScene(App.scene);
 		stage.show();
 	}
