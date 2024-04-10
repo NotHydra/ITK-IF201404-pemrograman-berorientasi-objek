@@ -3,13 +3,13 @@ package models.genre;
 
 import java.sql.ResultSet;
 
-import providers.Logger;
-import providers.Database;
-
 import interfaces.ServiceFindInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 import interfaces.ServiceChoiceBoxInterface;
+
+import providers.Logger;
+import providers.Database;
 
 import global.base.BaseService;
 import global.choice_box.ChoiceBoxModel;
@@ -53,7 +53,7 @@ public class GenreService
                     + "SELECT "
                     + "id, "
                     + "name "
-                    + "FROM " + this.table + ""
+                    + "FROM " + this.table
                     + ";");
 
             final GenreModel[] models = new GenreModel[total];
@@ -86,7 +86,7 @@ public class GenreService
                     + "id, "
                     + "name "
                     + "FROM " + this.table + " "
-                    + "WHERE id=" + id + ""
+                    + "WHERE id=" + id
                     + ";");
 
             if (result.next()) {
@@ -128,7 +128,7 @@ public class GenreService
                     + "UPDATE " + this.table + " SET "
                     + "name='" + model.getName() + "' "
                     + "WHERE "
-                    + "id=" + id + ""
+                    + "id=" + id
                     + ";");
         }
         catch (Exception e) {
@@ -146,7 +146,7 @@ public class GenreService
                     + "SELECT "
                     + "id, "
                     + "name "
-                    + "FROM " + this.table + ""
+                    + "FROM " + this.table
                     + ";");
 
             final ChoiceBoxModel[] models = new ChoiceBoxModel[total + 1];

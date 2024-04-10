@@ -35,7 +35,7 @@ public class Modal {
 
         confirmation.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 
-        java.util.Optional<ButtonType> result = confirmation.showAndWait();
+        final java.util.Optional<ButtonType> result = confirmation.showAndWait();
 
         return result.isPresent() && result.get() == ButtonType.YES;
     }

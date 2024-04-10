@@ -3,14 +3,15 @@ package models.book;
 
 import java.sql.ResultSet;
 
-import providers.Logger;
-import providers.Database;
-
 import interfaces.ServiceFindInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 import interfaces.ServiceChoiceBoxInterface;
 import interfaces.ServiceFindExtendInterface;
+
+import providers.Logger;
+import providers.Database;
+
 import global.extend.ExtendService;
 import global.choice_box.ChoiceBoxModel;
 
@@ -56,7 +57,7 @@ public class BookService
                     + "id, "
                     + "title, "
                     + "description "
-                    + "FROM " + this.table + ""
+                    + "FROM " + this.table
                     + ";");
 
             final BookModel[] models = new BookModel[total];
@@ -119,7 +120,7 @@ public class BookService
                     + "id, "
                     + "title, "
                     + "description "
-                    + "FROM " + this.table + ""
+                    + "FROM " + this.table
                     + ";");
 
             final BookExtendModel[] models = new BookExtendModel[total];
@@ -226,7 +227,7 @@ public class BookService
                     + "id, "
                     + "title, "
                     + "description "
-                    + "FROM " + this.table + ""
+                    + "FROM " + this.table
                     + ";");
 
             final ChoiceBoxModel[] models = new ChoiceBoxModel[total + 1];
@@ -298,7 +299,7 @@ public class BookService
                     + "title='" + model.getTitle() + "', "
                     + "description='" + model.getDescription() + "' "
                     + "WHERE "
-                    + "id=" + id + ""
+                    + "id=" + id
                     + ";");
         }
         catch (Exception e) {

@@ -3,13 +3,13 @@ package models.author;
 
 import java.sql.ResultSet;
 
-import providers.Logger;
-import providers.Database;
-
 import interfaces.ServiceFindInterface;
 import interfaces.ServiceFindExtendInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
+
+import providers.Logger;
+import providers.Database;
 
 import global.extend.ExtendService;
 
@@ -52,7 +52,7 @@ public class AuthorService
                     + "id, "
                     + "name, "
                     + "idBook "
-                    + "FROM " + this.table + ""
+                    + "FROM " + this.table
                     + ";");
 
             final AuthorModel[] models = new AuthorModel[total];
@@ -87,7 +87,7 @@ public class AuthorService
                     + "name, "
                     + "idBook "
                     + "FROM " + this.table + " "
-                    + "WHERE id=" + id + ""
+                    + "WHERE id=" + id
                     + ";");
 
             if (result.next()) {
@@ -162,7 +162,7 @@ public class AuthorService
                     + "book.description "
                     + "FROM author "
                     + "INNER JOIN book ON author.idBook=book.id "
-                    + "WHERE author.id=" + id + ""
+                    + "WHERE author.id=" + id
                     + ";");
 
             if (result.next()) {
@@ -212,7 +212,7 @@ public class AuthorService
                     + "name='" + model.getName() + "', "
                     + "idBook='" + model.getIdBook() + "' "
                     + "WHERE "
-                    + "id=" + id + ""
+                    + "id=" + id
                     + ";");
         }
         catch (Exception e) {
