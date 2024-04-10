@@ -98,7 +98,7 @@ public class Database {
         this.logger.debug("Table Total");
 
         try {
-            final ResultSet result = this.executeQuery("SELECT COUNT(*) AS `total` FROM " + table + " " + where + ";");
+            final ResultSet result = this.executeQuery("SELECT COUNT(*) AS `total` FROM " + table + " WHERE " + where + ";");
             result.next();
 
             return result.getInt("total");
