@@ -9,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -16,19 +18,26 @@ import javafx.scene.input.MouseEvent;
 
 import components.Modal;
 
+import global.choice_box.ChoiceBoxModel;
+
+import models.genre.GenreModel;
+import models.genre.GenreService;
+
 public class BookController implements Initializable {
     private final static BookService service = BookService.getInstance();
+    private final static GenreService genreService = GenreService.getInstance();
 
-    private BookModel selectedModel;
-
-    @FXML
-    private TableView<BookModel> tableViewBook;
-
-    @FXML
-    private TableColumn<BookModel, String> tableColumnTitle;
+    private BookExtendModel selectedModel;
+    private GenreModel selectedGenreModel;
 
     @FXML
-    private TableColumn<BookModel, String> tableColumnDescription;
+    private TableView<BookExtendModel> tableViewBook;
+
+    @FXML
+    private TableColumn<BookExtendModel, String> tableColumnTitle;
+
+    @FXML
+    private TableColumn<BookExtendModel, String> tableColumnDescription;
 
     @FXML
     private TextField textFieldTitle;
@@ -36,25 +45,68 @@ public class BookController implements Initializable {
     @FXML
     private TextField textFieldDescription;
 
+    @FXML
+    private TableView<GenreModel> tableViewGenre;
+
+    @FXML
+    private TableColumn<GenreModel, String> tableColumnGenreName;
+
+    @FXML
+    private ChoiceBox<ChoiceBoxModel> choiceBoxGenre;
+
+    @FXML
+    private Button buttonGenreAdd;
+
+    @FXML
+    private Button buttonGenreRemove;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Book
         tableColumnTitle.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getTitle()));
         tableColumnDescription.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getDescription()));
 
-        tableViewBook.setItems(FXCollections.observableArrayList(service.find()));
+        tableViewBook.setItems(FXCollections.observableArrayList(service.findExtend()));
+
+        // Book -> Genre
+        tableColumnGenreName.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getName()));
+
+        tableViewGenre.setItems(null);
+
+        choiceBoxGenre.setDisable(true);
+        buttonGenreAdd.setDisable(true);
+        buttonGenreRemove.setDisable(true);
+
+        choiceBoxGenre.getItems().addAll(genreService.findChoiceBox());
+        choiceBoxGenre.setValue(choiceBoxGenre.getItems().get(0));
     }
 
     public void tableReload() {
-        tableViewBook.setItems(FXCollections.observableArrayList(service.find()));
+        tableViewBook.setItems(FXCollections.observableArrayList(service.findExtend()));
     }
 
     @FXML
     public void tableItemClick(MouseEvent event) {
         try {
-            this.selectedModel = tableViewBook.getSelectionModel().getSelectedItem();
+            if (event.getSource() == tableViewBook) {
+                this.selectedModel = tableViewBook.getSelectionModel().getSelectedItem();
+                this.selectedGenreModel = null;
 
-            textFieldTitle.setText(this.selectedModel.getTitle());
-            textFieldDescription.setText(this.selectedModel.getDescription());
+                // Book
+                textFieldTitle.setText(this.selectedModel.getTitle());
+                textFieldDescription.setText(this.selectedModel.getDescription());
+
+                // Book -> Genre
+                tableViewGenre.setItems(FXCollections.observableArrayList(this.selectedModel.getGenres()));
+
+                choiceBoxGenre.setDisable(false);
+                buttonGenreAdd.setDisable(false);
+                buttonGenreRemove.setDisable(false);
+            }
+            else if (event.getSource() == tableViewGenre) {
+                this.selectedGenreModel = tableViewGenre.getSelectionModel().getSelectedItem();
+            }
+
         }
         catch (Exception e) {
         }
@@ -116,4 +168,53 @@ public class BookController implements Initializable {
             }
         }
     }
+
+    @FXML
+    public void buttonGenreAddEvent(ActionEvent event) {
+        if (Modal.getInstance().confirmation()) {
+            try {
+                if (choiceBoxGenre.getValue().getId() <= 0) {
+                    throw new IllegalArgumentException("Selected genre cannot be empty");
+                }
+
+                for (GenreModel genre : this.selectedModel.getGenres()) {
+                    if (choiceBoxGenre.getValue().getId() == genre.getId()) {
+                        throw new IllegalArgumentException("Selected genre already exists");
+                    }
+                }
+
+                service.addGenre(this.selectedModel.getId(), choiceBoxGenre.getValue().getId());
+
+                this.selectedModel = service.findIdExtend(this.selectedModel.getId());
+
+                this.tableReload();
+                tableViewGenre.setItems(FXCollections.observableArrayList(this.selectedModel.getGenres()));
+
+            }
+            catch (Exception e) {
+                Modal.getInstance().fail(e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    public void buttonGenreRemoveEvent(ActionEvent event) {
+        if (this.selectedGenreModel != null) {
+            if (Modal.getInstance().confirmation()) {
+                try {
+                    service.removeGenre(this.selectedModel.getId(), this.selectedGenreModel.getId());
+
+                    this.selectedModel = service.findIdExtend(this.selectedModel.getId());
+                    this.selectedGenreModel = null;
+
+                    this.tableReload();
+                    tableViewGenre.setItems(FXCollections.observableArrayList(this.selectedModel.getGenres()));
+                }
+                catch (Exception e) {
+                    Modal.getInstance().fail(e.getMessage());
+                }
+            }
+        }
+    }
+
 }
