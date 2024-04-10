@@ -17,11 +17,15 @@ import javafx.scene.input.MouseEvent;
 
 import components.Modal;
 
+import providers.Logger;
+
 import global.choice_box.ChoiceBoxModel;
 
 import models.book.BookService;
 
 public class AuthorController implements Initializable {
+	private final static Logger logger = new Logger(AuthorController.class.getName());
+
 	private final static AuthorService service = AuthorService.getInstance();
 	private final static BookService bookService = BookService.getInstance();
 
@@ -47,6 +51,8 @@ public class AuthorController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		logger.debug("Initialize");
+
 		tableColumnName.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getName()));
 		tableColumnBookTitle.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getBook().getTitle()));
 		tableColumnBookDescription.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getBook().getDescription()));
@@ -58,11 +64,15 @@ public class AuthorController implements Initializable {
 	}
 
 	public void tableReload() {
+		logger.debug("Table Reload");
+
 		tableViewAuthor.setItems(FXCollections.observableArrayList(service.findExtend()));
 	}
 
 	@FXML
 	public void tableItemClick(MouseEvent event) {
+		logger.debug("Table Item Click");
+
 		try {
 			this.selectedModel = tableViewAuthor.getSelectionModel().getSelectedItem();
 
@@ -78,6 +88,8 @@ public class AuthorController implements Initializable {
 
 	@FXML
 	public void buttonAddEvent(ActionEvent event) {
+		logger.debug("Button Add Event");
+
 		if (Modal.getInstance().confirmation()) {
 			try {
 				if (choiceBoxBook.getValue().getId() <= 0) {
@@ -92,12 +104,16 @@ public class AuthorController implements Initializable {
 			}
 			catch (Exception e) {
 				Modal.getInstance().fail(e.getMessage());
+
+				logger.error(e.getMessage());
 			}
 		}
 	}
 
 	@FXML
 	public void buttonChangeEvent(ActionEvent event) {
+		logger.debug("Button Change Event");
+
 		if (this.selectedModel != null) {
 			if (Modal.getInstance().confirmation()) {
 				try {
@@ -115,6 +131,8 @@ public class AuthorController implements Initializable {
 				}
 				catch (Exception e) {
 					Modal.getInstance().fail(e.getMessage());
+
+					logger.error(e.getMessage());
 				}
 			}
 		}
@@ -122,6 +140,8 @@ public class AuthorController implements Initializable {
 
 	@FXML
 	public void buttonRemoveEvent(ActionEvent event) {
+		logger.debug("Button Remove Event");
+
 		if (this.selectedModel != null) {
 			if (Modal.getInstance().confirmation()) {
 				try {
@@ -136,6 +156,8 @@ public class AuthorController implements Initializable {
 				}
 				catch (Exception e) {
 					Modal.getInstance().fail(e.getMessage());
+
+					logger.error(e.getMessage());
 				}
 			}
 		}

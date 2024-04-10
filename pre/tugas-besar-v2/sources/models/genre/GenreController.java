@@ -16,7 +16,11 @@ import javafx.scene.input.MouseEvent;
 
 import components.Modal;
 
+import providers.Logger;
+
 public class GenreController implements Initializable {
+    private final static Logger logger = new Logger(GenreController.class.getName());
+    
     private final static GenreService service = GenreService.getInstance();
 
     private GenreModel selectedModel;
@@ -32,17 +36,23 @@ public class GenreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logger.debug("Initialize");
+
         tableColumnName.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getName()));
 
         tableViewGenre.setItems(FXCollections.observableArrayList(service.find()));
     }
 
     public void tableReload() {
+        logger.debug("Table Reload");
+
         tableViewGenre.setItems(FXCollections.observableArrayList(service.find()));
     }
 
     @FXML
     public void tableItemClick(MouseEvent event) {
+        logger.debug("Table Item Click");
+
         try {
             this.selectedModel = tableViewGenre.getSelectionModel().getSelectedItem();
 
@@ -54,6 +64,8 @@ public class GenreController implements Initializable {
 
     @FXML
     public void buttonAddEvent(ActionEvent event) {
+        logger.debug("Button Add Event");
+
         if (Modal.getInstance().confirmation()) {
             try {
                 service.add(new GenreModel(textFieldName.getText()));
@@ -62,12 +74,16 @@ public class GenreController implements Initializable {
             }
             catch (Exception e) {
                 Modal.getInstance().fail(e.getMessage());
+
+                logger.error(e.getMessage());
             }
         }
     }
 
     @FXML
     public void buttonChangeEvent(ActionEvent event) {
+        logger.debug("Button Change Event");
+
         if (this.selectedModel != null) {
             if (Modal.getInstance().confirmation()) {
                 try {
@@ -79,6 +95,8 @@ public class GenreController implements Initializable {
                 }
                 catch (Exception e) {
                     Modal.getInstance().fail(e.getMessage());
+
+                    logger.error(e.getMessage());
                 }
             }
         }
@@ -86,6 +104,8 @@ public class GenreController implements Initializable {
 
     @FXML
     public void buttonRemoveEvent(ActionEvent event) {
+        logger.debug("Button Remove Event");
+
         if (this.selectedModel != null) {
             if (Modal.getInstance().confirmation()) {
                 try {
@@ -99,6 +119,8 @@ public class GenreController implements Initializable {
                 }
                 catch (Exception e) {
                     Modal.getInstance().fail(e.getMessage());
+
+                    logger.error(e.getMessage());
                 }
             }
         }

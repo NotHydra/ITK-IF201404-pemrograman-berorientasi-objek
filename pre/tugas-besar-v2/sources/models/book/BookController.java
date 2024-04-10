@@ -18,12 +18,16 @@ import javafx.scene.input.MouseEvent;
 
 import components.Modal;
 
+import providers.Logger;
+
 import global.choice_box.ChoiceBoxModel;
 
 import models.genre.GenreModel;
 import models.genre.GenreService;
 
 public class BookController implements Initializable {
+    private final static Logger logger = new Logger(BookController.class.getName());
+
     private final static BookService service = BookService.getInstance();
     private final static GenreService genreService = GenreService.getInstance();
 
@@ -62,6 +66,8 @@ public class BookController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logger.debug("Initialize");
+
         // Book
         tableColumnTitle.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getTitle()));
         tableColumnDescription.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getDescription()));
@@ -82,11 +88,15 @@ public class BookController implements Initializable {
     }
 
     public void tableReload() {
+        logger.debug("Table Reload");
+
         tableViewBook.setItems(FXCollections.observableArrayList(service.findExtend()));
     }
 
     @FXML
     public void tableItemClick(MouseEvent event) {
+        logger.debug("Table Item Click");
+
         try {
             if (event.getSource() == tableViewBook) {
                 this.selectedModel = tableViewBook.getSelectionModel().getSelectedItem();
@@ -114,6 +124,8 @@ public class BookController implements Initializable {
 
     @FXML
     public void buttonAddEvent(ActionEvent event) {
+        logger.debug("Button Add Event");
+
         if (Modal.getInstance().confirmation()) {
             try {
                 service.add(new BookModel(
@@ -124,12 +136,16 @@ public class BookController implements Initializable {
             }
             catch (Exception e) {
                 Modal.getInstance().fail(e.getMessage());
+
+                logger.error(e.getMessage());
             }
         }
     }
 
     @FXML
     public void buttonChangeEvent(ActionEvent event) {
+        logger.debug("Button Change Event");
+
         if (this.selectedModel != null) {
             if (Modal.getInstance().confirmation()) {
                 try {
@@ -143,6 +159,8 @@ public class BookController implements Initializable {
                 }
                 catch (Exception e) {
                     Modal.getInstance().fail(e.getMessage());
+
+                    logger.error(e.getMessage());
                 }
             }
         }
@@ -150,6 +168,8 @@ public class BookController implements Initializable {
 
     @FXML
     public void buttonRemoveEvent(ActionEvent event) {
+        logger.debug("Button Remove Event");
+
         if (this.selectedModel != null) {
             if (Modal.getInstance().confirmation()) {
                 try {
@@ -164,6 +184,8 @@ public class BookController implements Initializable {
                 }
                 catch (Exception e) {
                     Modal.getInstance().fail(e.getMessage());
+
+                    logger.error(e.getMessage());
                 }
             }
         }
@@ -171,6 +193,8 @@ public class BookController implements Initializable {
 
     @FXML
     public void buttonGenreAddEvent(ActionEvent event) {
+        logger.debug("Button Genre Add Event");
+
         if (Modal.getInstance().confirmation()) {
             try {
                 if (choiceBoxGenre.getValue().getId() <= 0) {
@@ -193,12 +217,16 @@ public class BookController implements Initializable {
             }
             catch (Exception e) {
                 Modal.getInstance().fail(e.getMessage());
+
+                logger.error(e.getMessage());
             }
         }
     }
 
     @FXML
     public void buttonGenreRemoveEvent(ActionEvent event) {
+        logger.debug("Button Genre Remove Event");
+
         if (this.selectedGenreModel != null) {
             if (Modal.getInstance().confirmation()) {
                 try {
@@ -212,6 +240,8 @@ public class BookController implements Initializable {
                 }
                 catch (Exception e) {
                     Modal.getInstance().fail(e.getMessage());
+
+                    logger.error(e.getMessage());
                 }
             }
         }

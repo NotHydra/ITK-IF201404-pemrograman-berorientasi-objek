@@ -24,7 +24,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		scene = new Scene(App.loadView("book"));
+		scene = new Scene(App.loadView("genre"));
 		stage.setScene(App.scene);
 		stage.show();
 	}
