@@ -10,7 +10,7 @@ import interfaces.ServiceFindInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 import interfaces.ServiceChoiceBoxInterface;
-
+import interfaces.ServiceFindExtendInterface;
 import global.extend.ExtendService;
 import global.choice_box.ChoiceBoxModel;
 
@@ -18,7 +18,7 @@ import models.genre.GenreModel;
 
 public class BookService
         extends ExtendService<BookModel, BookExtendModel>
-        implements ServiceFindInterface<BookModel>, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel>, ServiceChoiceBoxInterface {
+        implements ServiceFindInterface<BookModel>, ServiceFindExtendInterface<BookExtendModel>, ServiceChoiceBoxInterface, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel> {
     private static BookService instance;
 
     private BookService(Logger logger, Database database, String table) {
@@ -216,43 +216,6 @@ public class BookService
     }
 
     @Override
-    public void add(BookModel model) {
-        this.logger.debug("Add");
-
-        try {
-            this.database.executeUpdate(""
-                    + "INSERT INTO " + this.table + " ("
-                    + "title, "
-                    + "description"
-                    + ") VALUES ("
-                    + "'" + model.getTitle() + "', "
-                    + "'" + model.getDescription() + "'"
-                    + ");");
-        }
-        catch (Exception e) {
-            this.logger.error("Failed to add: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void change(int id, BookModel model) {
-        this.logger.debug("Change");
-
-        try {
-            this.database.executeUpdate(""
-                    + "UPDATE " + this.table + " SET "
-                    + "title='" + model.getTitle() + "', "
-                    + "description='" + model.getDescription() + "' "
-                    + "WHERE "
-                    + "id=" + id + ""
-                    + ";");
-        }
-        catch (Exception e) {
-            this.logger.error("Failed to change: " + e.getMessage());
-        }
-    }
-
-    @Override
     public ChoiceBoxModel[] findChoiceBox() {
         this.logger.debug("Find Choice Box");
 
@@ -286,5 +249,76 @@ public class BookService
         }
 
         return null;
+    }
+
+    @Override
+    public void add(BookModel model) {
+        this.logger.debug("Add");
+
+        try {
+            this.database.executeUpdate(""
+                    + "INSERT INTO " + this.table + " ("
+                    + "title, "
+                    + "description"
+                    + ") VALUES ("
+                    + "'" + model.getTitle() + "', "
+                    + "'" + model.getDescription() + "'"
+                    + ");");
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to add: " + e.getMessage());
+        }
+    }
+
+    public void addGenre(int idBook, int idGenre) {
+        this.logger.debug("Add Book Genre");
+
+        try {
+            this.database.executeUpdate(""
+                    + "INSERT INTO book_genre ("
+                    + "id_book, "
+                    + "id_genre"
+                    + ") VALUES ("
+                    + idBook + ", "
+                    + idGenre
+                    + ");");
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to add book genre: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void change(int id, BookModel model) {
+        this.logger.debug("Change");
+
+        try {
+            this.database.executeUpdate(""
+                    + "UPDATE " + this.table + " SET "
+                    + "title='" + model.getTitle() + "', "
+                    + "description='" + model.getDescription() + "' "
+                    + "WHERE "
+                    + "id=" + id + ""
+                    + ";");
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to change: " + e.getMessage());
+        }
+    }
+
+    public void removeGenre(int idBook, int idGenre) {
+        this.logger.debug("Remove Book Genre");
+
+        try {
+            this.database.executeUpdate(""
+                    + "DELETE FROM book_genre "
+                    + "WHERE "
+                    + "id_book=" + idBook + " AND "
+                    + "id_genre=" + idGenre
+                    + ";");
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to remove book genre: " + e.getMessage());
+        }
     }
 }

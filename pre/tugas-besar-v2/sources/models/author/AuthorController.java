@@ -68,7 +68,7 @@ public class AuthorController implements Initializable {
 
 			textFieldName.setText(this.selectedModel.getName());
 			choiceBoxBook.setValue(choiceBoxBook.getItems().stream()
-					.filter(item -> item.getId() == selectedModel.getBook().getId())
+					.filter(item -> item.getId() == this.selectedModel.getBook().getId())
 					.findFirst()
 					.orElse(null));
 		}
