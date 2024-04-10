@@ -11,11 +11,13 @@ import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 import interfaces.ServiceChoiceBoxInterface;
 
-import global.base.BaseService;
+import global.extend.ExtendService;
 import global.choice_box.ChoiceBoxModel;
 
+import models.genre.GenreModel;
+
 public class BookService
-        extends BaseService<BookModel>
+        extends ExtendService<BookModel, BookExtendModel>
         implements ServiceFindInterface<BookModel>, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel>, ServiceChoiceBoxInterface {
     private static BookService instance;
 
@@ -89,7 +91,7 @@ public class BookService
                     + "title, "
                     + "description "
                     + "FROM " + this.table + " "
-                    + "WHERE id=" + id + ""
+                    + "WHERE id=" + id
                     + ";");
 
             if (result.next()) {
@@ -101,6 +103,113 @@ public class BookService
         }
         catch (Exception e) {
             this.logger.error("Failed to find id: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    @Override
+    public BookExtendModel[] findExtend() {
+        this.logger.debug("Find Extend");
+
+        try {
+            final int total = this.database.tableTotal(this.table);
+            final ResultSet result = this.database.executeQuery(""
+                    + "SELECT "
+                    + "id, "
+                    + "title, "
+                    + "description "
+                    + "FROM " + this.table + ""
+                    + ";");
+
+            final BookExtendModel[] models = new BookExtendModel[total];
+
+            int i = 0;
+            while (result.next()) {
+                final int bookGenreTotal = this.database.tableTotal("book_genre", "id_book=" + result.getInt("id"));
+                final ResultSet bookGenreResult = this.database.executeQuery(""
+                        + "SELECT "
+                        + "genre.id, "
+                        + "genre.name "
+                        + "FROM book_genre "
+                        + "INNER JOIN genre ON book_genre.id_genre=genre.id "
+                        + "WHERE book_genre.id_book=" + result.getInt("id")
+                        + ";");
+
+                final GenreModel[] genres = new GenreModel[bookGenreTotal];
+
+                int genreIndex = 0;
+                while (bookGenreResult.next()) {
+                    genres[genreIndex] = new GenreModel(
+                            bookGenreResult.getInt("genre.id"),
+                            bookGenreResult.getString("genre.name"));
+
+                    genreIndex++;
+                }
+
+                models[i] = new BookExtendModel(
+                        result.getInt("id"),
+                        result.getString("title"),
+                        result.getString("description"),
+                        genres);
+
+                i++;
+            }
+
+            return models;
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to find extend: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    @Override
+    public BookExtendModel findIdExtend(int id) {
+        this.logger.debug("Find Id Extend");
+
+        try {
+            final ResultSet result = this.database.executeQuery(""
+                    + "SELECT "
+                    + "id, "
+                    + "title, "
+                    + "description "
+                    + "FROM " + this.table + " "
+                    + "WHERE id=" + id
+                    + ";");
+
+            if (result.next()) {
+                final int bookGenreTotal = this.database.tableTotal("book_genre", "id_book=" + result.getInt("id"));
+                final ResultSet bookGenreResult = this.database.executeQuery(""
+                        + "SELECT "
+                        + "genre.id, "
+                        + "genre.name "
+                        + "FROM book_genre "
+                        + "INNER JOIN genre ON book_genre.id_genre=genre.id "
+                        + "WHERE book_genre.id_book=" + result.getInt("id")
+                        + ";");
+
+                final GenreModel[] genres = new GenreModel[bookGenreTotal];
+
+                int genreIndex = 0;
+                while (bookGenreResult.next()) {
+                    genres[genreIndex] = new GenreModel(
+                            bookGenreResult.getInt("genre.id"),
+                            bookGenreResult.getString("genre.name"));
+
+                    genreIndex++;
+                }
+
+                return new BookExtendModel(
+                        result.getInt("id"),
+                        result.getString("title"),
+                        result.getString("description"),
+                        genres);
+            }
+        }
+        catch (Exception e) {
+            this.logger.error("Failed to find id extend: " + e.getMessage());
         }
 
         return null;
