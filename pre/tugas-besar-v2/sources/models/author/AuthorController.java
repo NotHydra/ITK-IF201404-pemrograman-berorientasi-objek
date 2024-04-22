@@ -29,19 +29,19 @@ public class AuthorController implements Initializable {
 	private final static AuthorService service = AuthorService.getInstance();
 	private final static BookService bookService = BookService.getInstance();
 
-	private AuthorExtendModel selectedModel;
+	private AuthorDetailedModel selectedModel;
 
 	@FXML
-	private TableView<AuthorExtendModel> tableViewAuthor;
+	private TableView<AuthorDetailedModel> tableViewAuthor;
 
 	@FXML
-	private TableColumn<AuthorExtendModel, String> tableColumnName;
+	private TableColumn<AuthorDetailedModel, String> tableColumnName;
 
 	@FXML
-	private TableColumn<AuthorExtendModel, String> tableColumnBookTitle;
+	private TableColumn<AuthorDetailedModel, String> tableColumnBookTitle;
 
 	@FXML
-	private TableColumn<AuthorExtendModel, String> tableColumnBookDescription;
+	private TableColumn<AuthorDetailedModel, String> tableColumnBookDescription;
 
 	@FXML
 	private TextField textFieldName;
@@ -57,7 +57,7 @@ public class AuthorController implements Initializable {
 		tableColumnBookTitle.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getBook().getTitle()));
 		tableColumnBookDescription.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getBook().getDescription()));
 
-		tableViewAuthor.setItems(FXCollections.observableArrayList(service.findExtend()));
+		tableViewAuthor.setItems(FXCollections.observableArrayList(service.findDetailed()));
 
 		choiceBoxBook.getItems().addAll(bookService.findChoiceBox());
 		choiceBoxBook.setValue(choiceBoxBook.getItems().get(0));
@@ -66,7 +66,7 @@ public class AuthorController implements Initializable {
 	public void tableReload() {
 		logger.debug("Table Reload");
 
-		tableViewAuthor.setItems(FXCollections.observableArrayList(service.findExtend()));
+		tableViewAuthor.setItems(FXCollections.observableArrayList(service.findDetailed()));
 	}
 
 	@FXML

@@ -3,10 +3,10 @@ package models.book;
 
 import models.genre.GenreModel;
 
-public class BookExtendModel extends BookModel {
+public class BookDetailedModel extends BookModel {
 	private final GenreModel[] genres;
 
-	public BookExtendModel(int id, String title, String description, GenreModel[] genres) {
+	public BookDetailedModel(int id, String title, String description, GenreModel[] genres) {
 		super(id, title, description);
 
 		this.genres = genres;
@@ -18,7 +18,7 @@ public class BookExtendModel extends BookModel {
 
 	@Override
 	public String toString() {
-		return "BookExtendModel("
+		return "BookDetailedModel("
 				+ "id=" + this.getId() + ", "
 				+ "title=" + this.getTitle() + ", "
 				+ "description=" + this.getDescription() + ", "

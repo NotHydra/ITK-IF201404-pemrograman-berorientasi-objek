@@ -31,17 +31,17 @@ public class BookController implements Initializable {
     private final static BookService service = BookService.getInstance();
     private final static GenreService genreService = GenreService.getInstance();
 
-    private BookExtendModel selectedModel;
+    private BookDetailedModel selectedModel;
     private GenreModel selectedGenreModel;
 
     @FXML
-    private TableView<BookExtendModel> tableViewBook;
+    private TableView<BookDetailedModel> tableViewBook;
 
     @FXML
-    private TableColumn<BookExtendModel, String> tableColumnTitle;
+    private TableColumn<BookDetailedModel, String> tableColumnTitle;
 
     @FXML
-    private TableColumn<BookExtendModel, String> tableColumnDescription;
+    private TableColumn<BookDetailedModel, String> tableColumnDescription;
 
     @FXML
     private TextField textFieldTitle;
@@ -72,7 +72,7 @@ public class BookController implements Initializable {
         tableColumnTitle.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getTitle()));
         tableColumnDescription.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getDescription()));
 
-        tableViewBook.setItems(FXCollections.observableArrayList(service.findExtend()));
+        tableViewBook.setItems(FXCollections.observableArrayList(service.findDetailed()));
 
         // Book -> Genre
         tableColumnGenreName.setCellValueFactory(model -> new SimpleStringProperty(model.getValue().getName()));
@@ -90,7 +90,7 @@ public class BookController implements Initializable {
     public void tableReload() {
         logger.debug("Table Reload");
 
-        tableViewBook.setItems(FXCollections.observableArrayList(service.findExtend()));
+        tableViewBook.setItems(FXCollections.observableArrayList(service.findDetailed()));
     }
 
     @FXML
@@ -209,7 +209,7 @@ public class BookController implements Initializable {
 
                 service.addGenre(this.selectedModel.getId(), choiceBoxGenre.getValue().getId());
 
-                this.selectedModel = service.findIdExtend(this.selectedModel.getId());
+                this.selectedModel = service.findIdDetailed(this.selectedModel.getId());
 
                 this.tableReload();
                 tableViewGenre.setItems(FXCollections.observableArrayList(this.selectedModel.getGenres()));
@@ -232,7 +232,7 @@ public class BookController implements Initializable {
                 try {
                     service.removeGenre(this.selectedModel.getId(), this.selectedGenreModel.getId());
 
-                    this.selectedModel = service.findIdExtend(this.selectedModel.getId());
+                    this.selectedModel = service.findIdDetailed(this.selectedModel.getId());
                     this.selectedGenreModel = null;
 
                     this.tableReload();

@@ -7,19 +7,17 @@ import interfaces.ServiceFindInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 import interfaces.ServiceChoiceBoxInterface;
-import interfaces.ServiceFindExtendInterface;
+import interfaces.ServiceFindDetailedInterface;
 
 import providers.Logger;
 import providers.Database;
-
-import global.extend.ExtendService;
 import global.choice_box.ChoiceBoxModel;
-
+import global.detailed.DetailedService;
 import models.genre.GenreModel;
 
 public class BookService
-        extends ExtendService<BookModel, BookExtendModel>
-        implements ServiceFindInterface<BookModel>, ServiceFindExtendInterface<BookExtendModel>, ServiceChoiceBoxInterface, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel> {
+        extends DetailedService<BookModel, BookDetailedModel>
+        implements ServiceFindInterface<BookModel>, ServiceFindDetailedInterface<BookDetailedModel>, ServiceChoiceBoxInterface, ServiceAddInterface<BookModel>, ServiceChangeInterface<BookModel> {
     private static BookService instance;
 
     private BookService(Logger logger, Database database, String table) {
@@ -110,8 +108,8 @@ public class BookService
     }
 
     @Override
-    public BookExtendModel[] findExtend() {
-        this.logger.debug("Find Extend");
+    public BookDetailedModel[] findDetailed() {
+        this.logger.debug("Find Detailed");
 
         try {
             final int total = this.database.tableTotal(this.table);
@@ -123,7 +121,7 @@ public class BookService
                     + "FROM " + this.table
                     + ";");
 
-            final BookExtendModel[] models = new BookExtendModel[total];
+            final BookDetailedModel[] models = new BookDetailedModel[total];
 
             int i = 0;
             while (result.next()) {
@@ -148,7 +146,7 @@ public class BookService
                     genreIndex++;
                 }
 
-                models[i] = new BookExtendModel(
+                models[i] = new BookDetailedModel(
                         result.getInt("id"),
                         result.getString("title"),
                         result.getString("description"),
@@ -160,15 +158,15 @@ public class BookService
             return models;
         }
         catch (Exception e) {
-            this.logger.error("Failed to find extend: " + e.getMessage());
+            this.logger.error("Failed to find detailed: " + e.getMessage());
         }
 
         return null;
     }
 
     @Override
-    public BookExtendModel findIdExtend(int id) {
-        this.logger.debug("Find Id Extend");
+    public BookDetailedModel findIdDetailed(int id) {
+        this.logger.debug("Find Id Detailed");
 
         try {
             final ResultSet result = this.database.executeQuery(""
@@ -202,7 +200,7 @@ public class BookService
                     genreIndex++;
                 }
 
-                return new BookExtendModel(
+                return new BookDetailedModel(
                         result.getInt("id"),
                         result.getString("title"),
                         result.getString("description"),
@@ -210,7 +208,7 @@ public class BookService
             }
         }
         catch (Exception e) {
-            this.logger.error("Failed to find id extend: " + e.getMessage());
+            this.logger.error("Failed to find id detailed: " + e.getMessage());
         }
 
         return null;

@@ -3,21 +3,19 @@ package models.author;
 
 import java.sql.ResultSet;
 
+import global.detailed.DetailedService;
 import interfaces.ServiceFindInterface;
-import interfaces.ServiceFindExtendInterface;
+import interfaces.ServiceFindDetailedInterface;
 import interfaces.ServiceAddInterface;
 import interfaces.ServiceChangeInterface;
 
 import providers.Logger;
 import providers.Database;
-
-import global.extend.ExtendService;
-
 import models.book.BookModel;
 
 public class AuthorService
-        extends ExtendService<AuthorModel, AuthorExtendModel>
-        implements ServiceFindInterface<AuthorModel>, ServiceFindExtendInterface<AuthorExtendModel>, ServiceAddInterface<AuthorModel>, ServiceChangeInterface<AuthorModel> {
+        extends DetailedService<AuthorModel, AuthorDetailedModel>
+        implements ServiceFindInterface<AuthorModel>, ServiceFindDetailedInterface<AuthorDetailedModel>, ServiceAddInterface<AuthorModel>, ServiceChangeInterface<AuthorModel> {
     private static AuthorService instance;
 
     private AuthorService(Logger logger, Database database, String table) {
@@ -105,8 +103,8 @@ public class AuthorService
     }
 
     @Override
-    public AuthorExtendModel[] findExtend() {
-        this.logger.debug("Find Extend");
+    public AuthorDetailedModel[] findDetailed() {
+        this.logger.debug("Find Detailed");
 
         try {
             final int total = this.database.tableTotal(this.table);
@@ -122,11 +120,11 @@ public class AuthorService
                     + "INNER JOIN book ON author.idBook=book.id"
                     + ";");
 
-            final AuthorExtendModel[] models = new AuthorExtendModel[total];
+            final AuthorDetailedModel[] models = new AuthorDetailedModel[total];
 
             int i = 0;
             while (result.next()) {
-                models[i] = new AuthorExtendModel(
+                models[i] = new AuthorDetailedModel(
                         result.getInt("author.id"),
                         result.getString("author.name"),
                         result.getInt("author.idBook"),
@@ -141,15 +139,15 @@ public class AuthorService
             return models;
         }
         catch (Exception e) {
-            this.logger.error("Failed to find extend: " + e.getMessage());
+            this.logger.error("Failed to find detailed: " + e.getMessage());
         }
 
         return null;
     }
 
     @Override
-    public AuthorExtendModel findIdExtend(int id) {
-        this.logger.debug("Find Id Extend");
+    public AuthorDetailedModel findIdDetailed(int id) {
+        this.logger.debug("Find Id Detailed");
 
         try {
             final ResultSet result = this.database.executeQuery(""
@@ -166,7 +164,7 @@ public class AuthorService
                     + ";");
 
             if (result.next()) {
-                return new AuthorExtendModel(
+                return new AuthorDetailedModel(
                         result.getInt("author.id"),
                         result.getString("author.name"),
                         result.getInt("author.idBook"),
@@ -177,7 +175,7 @@ public class AuthorService
             }
         }
         catch (Exception e) {
-            this.logger.error("Failed to find id extend: " + e.getMessage());
+            this.logger.error("Failed to find id detailed: " + e.getMessage());
         }
 
         return null;

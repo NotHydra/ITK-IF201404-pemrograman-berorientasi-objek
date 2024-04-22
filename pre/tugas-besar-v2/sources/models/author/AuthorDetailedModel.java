@@ -3,10 +3,10 @@ package models.author;
 
 import models.book.BookModel;
 
-public class AuthorExtendModel extends AuthorModel {
+public class AuthorDetailedModel extends AuthorModel {
 	private final BookModel book;
 
-	public AuthorExtendModel(int id, String name, int idBook, BookModel book) {
+	public AuthorDetailedModel(int id, String name, int idBook, BookModel book) {
 		super(id, name, idBook);
 
 		this.book = book;
@@ -18,7 +18,7 @@ public class AuthorExtendModel extends AuthorModel {
 
 	@Override
 	public String toString() {
-		return "AuthorExtendModel("
+		return "AuthorDetailedModel("
 				+ "id=" + this.getId() + ", "
 				+ "name=" + this.getName() + ", "
 				+ "idBook=" + this.getIdBook() + ", "
